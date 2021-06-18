@@ -1,1 +1,3 @@
-export 'src/icon/icon.dart';
+export 'src/colors/colors.dart';
+export 'src/icons/icons.dart';
+export 'src/themes/themes.dart';
