@@ -19,6 +19,7 @@ class OutlineTextField extends StatefulWidget {
   final bool? readOnly;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
+  final Widget? trailing;
 
   const OutlineTextField(
       {Key? key,
@@ -36,7 +37,8 @@ class OutlineTextField extends StatefulWidget {
       this.textEditingController,
       this.readOnly,
       this.onTap,
-      this.onChanged})
+      this.onChanged,
+      this.trailing})
       : super(key: key);
 
   @override
@@ -72,31 +74,34 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
             fontSize: 16.0,
             fontWeight: FontWeight.w600),
         decoration: InputDecoration(
-            filled: true,
-            fillColor: widget.fillColor ?? Colors.white,
-            contentPadding: EdgeInsets.fromLTRB(16.0, 13, 13, 0),
-            labelText: widget.labelText,
-            labelStyle: TextStyle(
-                fontFamily: 'packages/helper_design/Nunito',
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-                fontSize: _labelFontSize,
-                height: 1,
-                color: _labelColor),
-            border: OutlineInputBorder(
-              gapPadding: 4,
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(width: 1),
-            ),
-            enabledBorder: OutlineInputBorder(
-              gapPadding: 4,
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(width: 1, color: HelperColors.gray2),
-            ),
-            focusedBorder: OutlineInputBorder(
-                gapPadding: 4,
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(width: 1, color: HelperColors.orange))),
+          filled: true,
+          fillColor: widget.fillColor ?? Colors.white,
+          contentPadding: EdgeInsets.fromLTRB(16.0, 13, 13, 0),
+          labelText: widget.labelText,
+          labelStyle: TextStyle(
+              fontFamily: 'packages/helper_design/Nunito',
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+              fontSize: _labelFontSize,
+              height: 1,
+              color: _labelColor),
+          border: OutlineInputBorder(
+            gapPadding: 4,
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(width: 1),
+          ),
+          enabledBorder: OutlineInputBorder(
+            gapPadding: 4,
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(width: 1, color: HelperColors.gray2),
+          ),
+          focusedBorder: OutlineInputBorder(
+            gapPadding: 4,
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(width: 1, color: HelperColors.orange),
+          ),
+          suffixIcon: widget.trailing,
+        ),
         enabled: widget.enabled,
         initialValue: widget.initialValue,
         keyboardType: widget.keyboardType,
