@@ -43,11 +43,6 @@ flutter:
     - family: HelperIcons
       fonts:
         - asset: lib/fonts/HelperIcons.ttf
-    - family: Nunito
-      fonts:
-        - asset: lib/fonts/Nunito-Regular.ttf
-        - asset: lib/fonts/Nunito-SemiBold.ttf
-          style: normal
 
   # To add Flutter specific assets to your application, add an assets section,
   # like this:
