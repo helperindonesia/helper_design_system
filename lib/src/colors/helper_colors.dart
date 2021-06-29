@@ -14,6 +14,11 @@ class HelperColors {
   static const Color orange4 = Color(0xFFFE7104);
   static const Color orange5 = Color(0xFFFE7104);
 
+  static const Color gray2 = Color(0xFFC1C1C1);
+  static const Color gray3 = Color(0xFFACACAC);
+  static const Color gray4 = Color(0xFFFE7104);
+  static const Color gray5 = Color(0xFFFE7104);
+
   static const Color black2 = Color(0xFF313131);
   static const Color black3 = Color(0xFF313131);
   static const Color black4 = Color(0xFF313131);
