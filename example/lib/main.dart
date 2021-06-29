@@ -1,4 +1,3 @@
-import 'package:example/widgets/textfield/outline_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
@@ -48,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               labelText: 'Apa Kebutuhanmu?',
               trailing: Icon(
                 Icons.mic,
-                color: HelperColors.gray4,
+                color: HelperColors.black9,
               ),
             )
           ],
