@@ -11,7 +11,6 @@ class OutlineTextField extends StatefulWidget {
   final String? labelText;
   final TextAlign? textAlign;
   final FormFieldValidator? validator;
-
   // final List<TextInputFormatter> inputFormatters;
   final Color? fillColor;
   final double? borderRadius;
@@ -49,11 +48,16 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
   Color? _labelColor;
   double? _labelFontSize;
 
-  void validateFontSize(String? value, bool hasFocus) {
+  void validateFont(String? value, bool hasFocus) {
     if (value == null && !hasFocus || value == '' && !hasFocus) {
       _labelFontSize = 16;
+      _labelColor = HelperColors.black7;
+    } else if(!hasFocus){
+      _labelFontSize = 12;
+      _labelColor = HelperColors.black5;
     } else {
       _labelFontSize = 12;
+      _labelColor = HelperColors.orange3;
     }
   }
 
@@ -62,8 +66,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
     return Focus(
       onFocusChange: (hasFocus) {
         setState(() {
-          _labelColor = hasFocus ? HelperColors.orange : HelperColors.gray3;
-          validateFontSize(widget.textEditingController?.text, hasFocus);
+          validateFont(widget.textEditingController?.text, hasFocus);
         });
       },
       child: TextFormField(
@@ -88,12 +91,12 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
           border: OutlineInputBorder(
             gapPadding: 4,
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(width: 1),
+            borderSide: BorderSide(width: 1, color: HelperColors.black8),
           ),
           enabledBorder: OutlineInputBorder(
             gapPadding: 4,
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(width: 1, color: HelperColors.gray2),
+            borderSide: BorderSide(width: 1, color: HelperColors.black8),
           ),
           focusedBorder: OutlineInputBorder(
             gapPadding: 4,
