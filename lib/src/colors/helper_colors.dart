@@ -16,7 +16,7 @@ class HelperColors {
 
   static const Color gray2 = Color(0xFFC1C1C1);
   static const Color gray3 = Color(0xFFACACAC);
-  static const Color gray4 = Color(0xFFFE7104);
+  static const Color gray4 = Color(0xFFD5D5D5);
   static const Color gray5 = Color(0xFFFE7104);
 
   static const Color black2 = Color(0xFF313131);
