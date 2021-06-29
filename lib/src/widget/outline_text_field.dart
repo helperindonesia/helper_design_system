@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:helper_design/helper_design.dart';
 
 class OutlineTextField extends StatefulWidget {
@@ -9,15 +10,17 @@ class OutlineTextField extends StatefulWidget {
   final bool? enabled;
   final String? initialValue;
   final String? labelText;
+  final String? hintText;
   final TextAlign? textAlign;
   final FormFieldValidator? validator;
-  // final List<TextInputFormatter> inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
   final Color? fillColor;
   final double? borderRadius;
   final TextEditingController? textEditingController;
   final bool? readOnly;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
+  final ValueChanged<String?>? onSaved;
   final Widget? trailing;
 
   const OutlineTextField(
@@ -29,14 +32,17 @@ class OutlineTextField extends StatefulWidget {
       this.enabled,
       this.initialValue,
       @required this.labelText,
+      this.hintText,
       this.textAlign,
       this.validator,
+      this.inputFormatters,
       this.fillColor,
       this.borderRadius = 0,
       this.textEditingController,
       this.readOnly,
       this.onTap,
       this.onChanged,
+      this.onSaved,
       this.trailing})
       : super(key: key);
 
@@ -45,14 +51,21 @@ class OutlineTextField extends StatefulWidget {
 }
 
 class _OutlineTextFieldState extends State<OutlineTextField> {
-  Color? _labelColor;
-  double? _labelFontSize;
+  late Color? _labelColor;
+  late double? _labelFontSize;
+
+  @override
+  void initState() {
+    super.initState();
+    _labelColor = HelperColors.black7;
+    _labelFontSize = 16;
+  }
 
   void validateFont(String? value, bool hasFocus) {
     if (value == null && !hasFocus || value == '' && !hasFocus) {
       _labelFontSize = 16;
       _labelColor = HelperColors.black7;
-    } else if(!hasFocus){
+    } else if (!hasFocus) {
       _labelFontSize = 12;
       _labelColor = HelperColors.black5;
     } else {
@@ -70,24 +83,19 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         });
       },
       child: TextFormField(
-        style: TextStyle(
-            color: HelperColors.black,
-            fontFamily: 'packages/helper_design/Nunito',
-            fontStyle: FontStyle.normal,
-            fontSize: 16.0,
-            fontWeight: FontWeight.w600),
+        style: Theme.of(context).textTheme.subtitle1,
         decoration: InputDecoration(
           filled: true,
           fillColor: widget.fillColor ?? Colors.white,
           contentPadding: EdgeInsets.fromLTRB(16.0, 13, 13, 0),
+          hintText: widget.hintText,
+          hintStyle: Theme.of(context)
+              .textTheme
+              .bodyText2
+              ?.copyWith(color: HelperColors.black7),
           labelText: widget.labelText,
-          labelStyle: TextStyle(
-              fontFamily: 'packages/helper_design/Nunito',
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.normal,
-              fontSize: _labelFontSize,
-              height: 1,
-              color: _labelColor),
+          labelStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
+              height: 1, fontSize: _labelFontSize, color: _labelColor),
           border: OutlineInputBorder(
             gapPadding: 4,
             borderRadius: BorderRadius.circular(12),
@@ -117,6 +125,8 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         readOnly: widget.readOnly ?? false,
         onTap: widget.onTap,
         onChanged: widget.onChanged,
+        onSaved: widget.onSaved,
+        inputFormatters: widget.inputFormatters,
       ),
     );
   }
