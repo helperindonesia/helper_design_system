@@ -40,9 +40,17 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            OutlineTextField(labelText: 'Apa Kebutuhanmu?', textEditingController: myController),
+            OutlineTextField(
+                labelText: 'Apa Kebutuhanmu?',
+                textEditingController: myController),
             SizedBox(height: 20),
-            OutlineTextField(labelText: 'Apa Kebutuhanmu?')
+            OutlineTextField(
+              labelText: 'Apa Kebutuhanmu?',
+              trailing: Icon(
+                Icons.mic,
+                color: HelperColors.gray4,
+              ),
+            )
           ],
         ),
       ),
