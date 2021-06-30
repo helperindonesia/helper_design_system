@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
-class Expand extends StatefulWidget {
+class ExpandView extends StatefulWidget {
   final String title;
   final List<Widget> child;
   final Color? backgroundColor;
@@ -9,7 +9,7 @@ class Expand extends StatefulWidget {
   final bool? initialExpanded;
   final ValueChanged<bool>? onExpansionChanged;
 
-  const Expand({
+  const ExpandView({
     Key? key,
     required this.title,
     this.child = const [],
@@ -20,10 +20,10 @@ class Expand extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ExpandState createState() => _ExpandState();
+  _ExpandViewState createState() => _ExpandViewState();
 }
 
-class _ExpandState extends State<Expand> {
+class _ExpandViewState extends State<ExpandView> {
   @override
   Widget build(BuildContext context) {
     return Theme(
