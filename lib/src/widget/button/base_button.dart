@@ -29,7 +29,7 @@ class BaseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      width: width,
+      width: width ?? MediaQuery.of(context).size.width,
       child: MaterialButton(
         padding: EdgeInsets.all(0),
         minWidth: 0,
@@ -43,7 +43,7 @@ class BaseButton extends StatelessWidget {
                     width: 1, color: borderColor ?? HelperColors.orange),
                 borderRadius: BorderRadius.circular(radius ?? 12),
               ),
-        color: backgroundColor ?? Colors.white,
+        color: backgroundColor ?? HelperColors.orange,
         child: child,
       ),
     );
