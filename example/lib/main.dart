@@ -51,7 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.mic,
                 color: HelperColors.black9,
               ),
-            )
+            ),
+            SizedBox(height: 20),
+            Expand(title: 'Bantu jelaskan dengan foto atau video',child: [
+              Text('Data 1asfasdasfbaksjdhlkagsfljaghjlsdghajsgkfjhgahsdgajgsdajgsfhkjgkajgsdasd'),Text('Data 1'),Text('Data 1'),
+            ],)
           ],
         ),
       ),
