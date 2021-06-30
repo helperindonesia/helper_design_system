@@ -27,41 +27,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  TextEditingController myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title,
+            style: HelperThemeData.textTheme.bodyText3!
+                .copyWith(color: HelperColors.orange2)),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: Theme.of(context).textTheme.subtitle1,
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline3,
-            ),
+          children: [
+            OutlineTextField(
+                labelText: 'Apa Kebutuhanmu?',
+                textEditingController: myController),
+            SizedBox(height: 20),
+            OutlineTextField(
+              labelText: 'Apa Kebutuhanmu?',
+              trailing: Icon(
+                Icons.mic,
+                color: HelperColors.black9,
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(HelperIcons.plus),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
