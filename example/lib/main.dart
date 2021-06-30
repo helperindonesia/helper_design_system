@@ -33,7 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title,
+            style: HelperThemeData.textTheme.bodyText3!
+                .copyWith(color: HelperColors.orange2)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
