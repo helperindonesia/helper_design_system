@@ -43,7 +43,7 @@ class OutlinedButton extends BaseButton {
     required VoidCallback onPressed,
     double? width,
     required Widget icon,
-    final Color? backgroundColor,
+    Color? backgroundColor,
     double? radius,
   }) = _OutlinedButtonWithIcon;
 
