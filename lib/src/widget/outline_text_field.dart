@@ -83,18 +83,16 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         });
       },
       child: TextFormField(
-        style: Theme.of(context).textTheme.subtitle1,
+        style: HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
           filled: true,
           fillColor: widget.fillColor ?? Colors.white,
           contentPadding: EdgeInsets.fromLTRB(16.0, 13, 13, 0),
           hintText: widget.hintText,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .bodyText2
+          hintStyle: HelperThemeData.textTheme.bodyText2
               ?.copyWith(color: HelperColors.black7),
           labelText: widget.labelText,
-          labelStyle: Theme.of(context).textTheme.bodyText2?.copyWith(
+          labelStyle: HelperThemeData.textTheme.bodyText2?.copyWith(
               height: 1, fontSize: _labelFontSize, color: _labelColor),
           border: OutlineInputBorder(
             gapPadding: 4,
