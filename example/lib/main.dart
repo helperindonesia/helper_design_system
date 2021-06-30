@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide OutlinedButton;
 import 'package:helper_design/helper_design.dart';
 
 void main() {
@@ -49,6 +49,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.mic,
                 color: HelperColors.black9,
               ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                OutlinedButton(
+                  width: 80,
+                  height: 24,
+                  onPressed: () {},
+                  text: 'Tambah',
+                  textStyle: Theme.of(context)
+                      .textTheme
+                      .button
+                      ?.copyWith(color: HelperColors.orange),
+                ),
+                SizedBox(width: 20),
+                OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.edit, size: 16, color: HelperColors.black3),
+                  borderColor: HelperColors.black5,
+                  text: 'Ubah',
+                  textStyle: Theme.of(context)
+                      .textTheme
+                      .button
+                      ?.copyWith(color: HelperColors.black3),
+                  width: 75,
+                  height: 24,
+                ),
+              ],
             )
           ],
         ),
