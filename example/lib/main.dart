@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide OutlinedButton;
 import 'package:helper_design/helper_design.dart';
 
 void main() {
@@ -51,6 +51,52 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.mic,
                 color: HelperColors.black9,
               ),
+            ),
+            SizedBox(height: 20),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    OutlinedButton(
+                      width: 80,
+                      height: 24,
+                      onPressed: () {},
+                      text: 'Tambah',
+                      textStyle: HelperThemeData.textTheme.subtitle2
+                          ?.copyWith(color: HelperColors.orange),
+                    ),
+                    SizedBox(width: 20),
+                    OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.edit,
+                          size: 16, color: HelperColors.black3),
+                      borderColor: HelperColors.black5,
+                      text: 'Ubah',
+                      textStyle: HelperThemeData.textTheme.subtitle2
+                          ?.copyWith(color: HelperColors.black3),
+                      width: 75,
+                      height: 24,
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                ),
+                SizedBox(height: 20),
+                PrimaryButton(
+                  height: 48,
+                  text: 'Tambah',
+                  textStyle: HelperThemeData.textTheme.subtitle1
+                      ?.copyWith(color: HelperColors.white),
+                  onPressed: () {},
+                ),
+                SizedBox(height: 20),
+                PrimaryButton.icon(
+                  textStyle: HelperThemeData.textTheme.subtitle1?.copyWith(color: HelperColors.white),
+                  height: 48,
+                  text: 'Lanjut',
+                  icon: Icon(HelperIcons.durasi, size: 24, color: HelperColors.white,),
+                  onPressed: () {},
+                )
+              ],
             )
           ],
         ),
