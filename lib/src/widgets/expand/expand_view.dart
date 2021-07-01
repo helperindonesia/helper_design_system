@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
+import 'expansion_view.dart';
+
 class ExpandView extends StatefulWidget {
   final String title;
   final List<Widget> child;
@@ -28,7 +30,7 @@ class _ExpandViewState extends State<ExpandView> {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-      child: ExpansionTile(
+      child: ExpansionView(
         backgroundColor: widget.backgroundColor ?? HelperColors.white,
         onExpansionChanged: widget.onExpansionChanged,
         initiallyExpanded: widget.initialExpanded ?? false,
