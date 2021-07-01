@@ -88,13 +88,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       ?.copyWith(color: HelperColors.white),
                   onPressed: () {},
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 PrimaryButton.icon(
-                  textStyle: HelperThemeData.textTheme.subtitle1?.copyWith(color: HelperColors.white),
+                  textStyle: HelperThemeData.textTheme.subtitle1
+                      ?.copyWith(color: HelperColors.white),
                   height: 48,
                   text: 'Lanjut',
-                  icon: Icon(HelperIcons.durasi, size: 24, color: HelperColors.white,),
+                  icon: Icon(
+                    HelperIcons.durasi,
+                    size: 24,
+                    color: HelperColors.white,
+                  ),
                   onPressed: () {},
+                ),
+                SizedBox(height: 10),
+                ExpandView(
+                  title: 'Bantu jelaskan dengan foto atau video',
+                  child: [Text('Data 1'), Text('Data 1'), Text('Data 1')],
                 )
               ],
             )
