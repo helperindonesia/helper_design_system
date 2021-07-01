@@ -4,8 +4,8 @@ import 'package:helper_design/helper_design.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
-class CustomExpansionView extends StatefulWidget {
-  const CustomExpansionView({
+class ExpansionView extends StatefulWidget {
+  const ExpansionView({
     Key? key,
     required this.title,
     this.onExpansionChanged,
@@ -41,10 +41,10 @@ class CustomExpansionView extends StatefulWidget {
   final EdgeInsetsGeometry? titlePadding;
 
   @override
-  _CustomExpansionViewState createState() => _CustomExpansionViewState();
+  _ExpansionViewState createState() => _ExpansionViewState();
 }
 
-class _CustomExpansionViewState extends State<CustomExpansionView>
+class _ExpansionViewState extends State<ExpansionView>
     with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeOutTween =
       CurveTween(curve: Curves.easeOut);
