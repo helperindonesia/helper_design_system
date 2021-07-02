@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {},
                 ),
                 SizedBox(height: 10),
-                CustomExpansionView(
+                ExpansionView(
                   title: 'Bantu jelaskan dengan foto atau video',
                   children: [Text('Data 1'), Text('Data 1'), Text('Data 1')],
                 ),
