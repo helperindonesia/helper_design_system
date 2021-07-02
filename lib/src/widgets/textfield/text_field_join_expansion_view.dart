@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:helper_design/helper_design.dart';
 
-class TextFieldJoinExpansionView extends StatefulWidget {
-  final bool? isMultiLine;
+class TextFieldJoinExpansionView extends StatelessWidget {
+  final bool isMultiLine;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final bool? enabled;
@@ -38,100 +38,93 @@ class TextFieldJoinExpansionView extends StatefulWidget {
   final TextStyle? expansionTitleStyle;
   final EdgeInsetsGeometry? expansionTitlePadding;
 
-  const TextFieldJoinExpansionView(
-      {Key? key,
-      this.isMultiLine = true,
-      this.keyboardType,
-      this.textInputAction,
-      this.enabled,
-      this.initialValue,
-      required this.labelText,
-      this.hintText,
-      this.textAlign,
-      this.validator,
-      this.inputFormatters,
-      this.fillColor,
-      this.borderRadius,
-      this.textEditingController,
-      this.readOnly,
-      this.onTap,
-      this.onChanged,
-      this.onSaved,
-      this.trailing,
-      //Expansions
-      required this.expansionTitle,
-      this.onExpansionChanged,
-      this.expansionChildren = const [],
-      this.expansionBackgroundColor,
-      this.expansionCollapsedBackgroundColor,
-      this.expansionTrailing,
-      this.initiallyExpanded = false,
-      this.expansionMaintainState = false,
-      this.expandedAlignment,
-      this.expandedCrossAxisAlignment,
-      this.expansionChildrenPadding,
-      this.expansionIconColor,
-      this.expansionIconSize,
-      this.expansionTitleStyle,
-      this.expansionTitlePadding})
-      : super(key: key);
+  const TextFieldJoinExpansionView({
+    Key? key,
+    this.isMultiLine = true,
+    this.keyboardType,
+    this.textInputAction,
+    this.enabled,
+    this.initialValue,
+    required this.labelText,
+    this.hintText,
+    this.textAlign,
+    this.validator,
+    this.inputFormatters,
+    this.fillColor,
+    this.borderRadius,
+    this.textEditingController,
+    this.readOnly,
+    this.onTap,
+    this.onChanged,
+    this.onSaved,
+    this.trailing,
+    //Expansions
+    required this.expansionTitle,
+    this.onExpansionChanged,
+    this.expansionChildren = const <Widget>[],
+    this.expansionBackgroundColor,
+    this.expansionCollapsedBackgroundColor,
+    this.expansionTrailing,
+    this.initiallyExpanded = false,
+    this.expansionMaintainState = false,
+    this.expandedAlignment,
+    this.expandedCrossAxisAlignment,
+    this.expansionChildrenPadding,
+    this.expansionIconColor,
+    this.expansionIconSize,
+    this.expansionTitleStyle,
+    this.expansionTitlePadding,
+  }) : super(key: key);
 
-  @override
-  _TextFieldJoinExpansionViewState createState() =>
-      _TextFieldJoinExpansionViewState();
-}
-
-class _TextFieldJoinExpansionViewState
-    extends State<TextFieldJoinExpansionView> {
   @override
   Widget build(BuildContext context) {
     return Card(
       borderOnForeground: false,
       elevation: 0,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(width: 0.75, color: HelperColors.black10)),
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(width: 0.75, color: HelperColors.black10),
+      ),
       child: Column(
         children: [
           OutlineTextField(
-            labelText: 'Apa kebutuhanmu?',
-            isMultiLine: widget.isMultiLine ?? true,
-            keyboardType: widget.keyboardType,
-            textInputAction: widget.textInputAction,
-            enabled: widget.enabled,
-            initialValue: widget.initialValue,
-            hintText: widget.hintText,
-            textAlign: widget.textAlign,
-            validator: widget.validator,
-            inputFormatters: widget.inputFormatters,
-            fillColor: widget.fillColor,
-            borderRadius: widget.borderRadius,
-            textEditingController: widget.textEditingController,
-            readOnly: widget.readOnly,
-            onTap: widget.onTap,
-            onChanged: widget.onChanged,
-            onSaved: widget.onSaved,
-            trailing: widget.trailing,
+            labelText: labelText,
+            isMultiLine: isMultiLine,
+            keyboardType: keyboardType,
+            textInputAction: textInputAction,
+            enabled: enabled,
+            initialValue: initialValue,
+            hintText: hintText,
+            textAlign: textAlign,
+            validator: validator,
+            inputFormatters: inputFormatters,
+            fillColor: fillColor,
+            borderRadius: borderRadius,
+            textEditingController: textEditingController,
+            readOnly: readOnly,
+            onTap: onTap,
+            onChanged: onChanged,
+            onSaved: onSaved,
+            trailing: trailing,
           ),
           Card(
             elevation: 0,
             child: ExpansionView(
-              title: widget.expansionTitle,
-              onExpansionChanged: widget.onExpansionChanged,
-              children: widget.expansionChildren,
-              backgroundColor: widget.expansionBackgroundColor,
-              collapsedBackgroundColor:
-                  widget.expansionCollapsedBackgroundColor,
-              trailing: widget.expansionTrailing,
-              initiallyExpanded: widget.initiallyExpanded,
-              maintainState: widget.expansionMaintainState,
-              expandedAlignment: widget.expandedAlignment,
-              expandedCrossAxisAlignment: widget.expandedCrossAxisAlignment,
-              childrenPadding: widget.expansionChildrenPadding,
-              iconColor: widget.expansionIconColor,
-              titleStyle: widget.expansionTitleStyle,
-              titlePadding: widget.expansionTitlePadding,
-              iconSize: widget.expansionIconSize,
+              title: expansionTitle,
+              onExpansionChanged: onExpansionChanged,
+              children: expansionChildren,
+              backgroundColor: expansionBackgroundColor,
+              collapsedBackgroundColor: expansionCollapsedBackgroundColor,
+              trailing: expansionTrailing,
+              initiallyExpanded: initiallyExpanded,
+              maintainState: expansionMaintainState,
+              expandedAlignment: expandedAlignment,
+              expandedCrossAxisAlignment: expandedCrossAxisAlignment,
+              childrenPadding: expansionChildrenPadding,
+              iconColor: expansionIconColor,
+              titleStyle: expansionTitleStyle,
+              titlePadding: expansionTitlePadding,
+              iconSize: expansionIconSize,
             ),
           ),
         ],
