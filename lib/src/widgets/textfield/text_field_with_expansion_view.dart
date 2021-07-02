@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:helper_design/helper_design.dart';
 
-class TextFieldJoinExpansionView extends StatelessWidget {
+class TextFieldWithExpansionView extends StatelessWidget {
   final bool isMultiLine;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -38,7 +38,7 @@ class TextFieldJoinExpansionView extends StatelessWidget {
   final TextStyle? expansionTitleStyle;
   final EdgeInsetsGeometry? expansionTitlePadding;
 
-  const TextFieldJoinExpansionView({
+  const TextFieldWithExpansionView({
     Key? key,
     this.isMultiLine = true,
     this.keyboardType,
