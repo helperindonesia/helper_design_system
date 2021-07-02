@@ -39,19 +39,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
+            TextFieldWithExpansionView(
+              labelText: 'Apa kebutuhanmu?',
+              expansionTitle: 'Bantu jelaskan dengan foto atau video',
+              expansionChildren: [
+                Text('Data 1'),
+                Text('Data 1'),
+                Text('Data 1')
+              ],
+            ),
+            SizedBox(height: 20),
             OutlineTextField(
                 labelText: 'Apa Kebutuhanmu?',
                 textEditingController: myController),
-            SizedBox(height: 20),
-            OutlineTextField(
-              labelText: 'Apa Kebutuhanmu?',
-              trailing: Icon(
-                Icons.mic,
-                color: HelperColors.black9,
-              ),
-            ),
             SizedBox(height: 20),
             Column(
               children: [
