@@ -39,9 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
-            TextFieldJoinExpansionView(
+            TextFieldWithExpansionView(
               labelText: 'Apa kebutuhanmu?',
               expansionTitle: 'Bantu jelaskan dengan foto atau video',
               expansionChildren: [
