@@ -112,7 +112,7 @@ class _ExpansionViewState extends State<ExpansionView>
             onTap: _handleTap,
             child: Container(
               padding: widget.titlePadding ??
-                  EdgeInsets.only(left: 16.0, top: 12, bottom: 12, right: 12.0),
+                  EdgeInsets.only(left: 16.0, top: 7, bottom: 7, right: 12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
