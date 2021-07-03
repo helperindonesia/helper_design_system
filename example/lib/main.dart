@@ -27,7 +27,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController myController = TextEditingController();
+  late TextEditingController myController;
+  late bool? _isSwitched;
+
+  @override
+  void initState() {
+    super.initState();
+    myController = TextEditingController();
+    _isSwitched = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       textStyle: HelperThemeData.textTheme.subtitle2
                           ?.copyWith(color: HelperColors.orange),
                     ),
-                    SizedBox(width: 20),
+                    SizedBox(width: 10),
                     OutlinedButton.icon(
                       onPressed: () {},
                       icon: Icon(Icons.edit,
@@ -79,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 75,
                       height: 24,
                     ),
-                    SizedBox(width: 20),
+                    SizedBox(width: 10),
+                    SwitchControl(value: _isSwitched, onToggle: _updateSwitchState)
                   ],
                 ),
                 SizedBox(height: 20),
@@ -114,5 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void _updateSwitchState(bool newValue) {
+    setState(() {
+      _isSwitched = newValue;
+    });
   }
 }
