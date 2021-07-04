@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' hide OutlinedButton;
+import 'package:flutter/material.dart'
+    hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -27,107 +28,118 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late TextEditingController myController;
-  late bool? _isSwitched;
+  int currentStep = 0;
 
   @override
   void initState() {
     super.initState();
-    myController = TextEditingController();
-    _isSwitched = false;
+  }
+
+  Future<bool> _onWillPop() async {
+    if (currentStep > 0 && currentStep <= 2) {
+      setState(() {
+        currentStep--;
+      });
+      return false;
+    }
+
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title,
-            style: HelperThemeData.textTheme.bodyText3!
-                .copyWith(color: HelperColors.orange2)),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            TextFieldWithExpansionView(
-              labelText: 'Apa kebutuhanmu?',
-              expansionTitle: 'Bantu jelaskan dengan foto atau video',
-              expansionChildren: [
-                Text('Data 1'),
-                Text('Data 1'),
-                Text('Data 1')
-              ],
-            ),
-            SizedBox(height: 20),
-            OutlineTextField(
-                labelText: 'Apa Kebutuhanmu?',
-                textEditingController: myController),
-            SizedBox(height: 20),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    OutlinedButton(
-                      width: 80,
-                      height: 24,
-                      onPressed: () {},
-                      text: 'Tambah',
-                      textStyle: HelperThemeData.textTheme.subtitle2
-                          ?.copyWith(color: HelperColors.orange),
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title, style: HelperThemeData.textTheme.headline5),
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          width: MediaQuery.of(context).size.width,
+          child: StepView(
+            currentStep: currentStep,
+            stepViewType: StepViewType.horizontal,
+            steps: [
+              for (int i = 0; i < 3; i++)
+                Step(
+                  title: 'Tahapan ${i + 1}',
+                  content: _buildContent(),
+                  action: PrimaryButton.icon(
+                    height: 48,
+                    text: 'Lanjutkan',
+                    onPressed: () {
+                      setState(() {
+                        if (currentStep < 2) currentStep++;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.chevron_right_rounded,
+                      color: Colors.white,
                     ),
-                    SizedBox(width: 10),
-                    OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.edit,
-                          size: 16, color: HelperColors.black3),
-                      borderColor: HelperColors.black5,
-                      text: 'Ubah',
-                      textStyle: HelperThemeData.textTheme.subtitle2
-                          ?.copyWith(color: HelperColors.black3),
-                      width: 75,
-                      height: 24,
-                    ),
-                    SizedBox(width: 10),
-                    SwitchControl(value: _isSwitched, onToggle: _updateSwitchState)
-                  ],
-                ),
-                SizedBox(height: 20),
-                PrimaryButton(
-                  height: 48,
-                  text: 'Tambah',
-                  textStyle: HelperThemeData.textTheme.subtitle1
-                      ?.copyWith(color: HelperColors.white),
-                  onPressed: () {},
-                ),
-                SizedBox(height: 10),
-                PrimaryButton.icon(
-                  textStyle: HelperThemeData.textTheme.subtitle1
-                      ?.copyWith(color: HelperColors.white),
-                  height: 48,
-                  text: 'Lanjut',
-                  icon: Icon(
-                    HelperIcons.durasi,
-                    size: 24,
-                    color: HelperColors.white,
                   ),
-                  onPressed: () {},
                 ),
-                SizedBox(height: 10),
-                ExpansionView(
-                  title: 'Bantu jelaskan dengan foto atau video',
-                  children: [Text('Data 1'), Text('Data 1'), Text('Data 1')],
-                ),
-              ],
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  void _updateSwitchState(bool newValue) {
-    setState(() {
-      _isSwitched = newValue;
+  Widget _buildContent() {
+    List<Step> steps = List.generate(3, (index) {
+      switch (currentStep) {
+        case 0:
+          return Step(
+            content: TextFieldWithExpansionView(
+              labelText: 'adda',
+              expansionTitle: 'abc',
+              expansionChildren: [
+                ...List.generate(3, (index) => Text('$index')),
+              ],
+            ),
+          );
+        case 1:
+          return Step(
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PrimaryButton(text: 'Ini Button', onPressed: () {}),
+                PrimaryButton.icon(
+                  text: 'Ini Button dgn Icon',
+                  onPressed: () {},
+                  icon: Icon(Icons.camera),
+                )
+              ],
+            ),
+          );
+        default:
+          return Step(
+            lineColor: index > 0 ? HelperColors.black7 : null,
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  text: 'ABC',
+                ),
+                OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(
+                    HelperIcons.edit,
+                    color: HelperColors.orange,
+                  ),
+                  text: 'abc',
+                )
+              ],
+            ),
+          );
+      }
     });
+
+    return StepView(
+      steps: steps,
+      stepViewType: StepViewType.vertical,
+    );
   }
 }
