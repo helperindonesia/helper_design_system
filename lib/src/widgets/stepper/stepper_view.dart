@@ -63,13 +63,12 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
             radius: 14,
             backgroundColor:
                 widget.steps[index].indicatorColor ?? HelperColors.orange,
-            child: widget.steps[index].indicatorIcon != null
-                ? widget.steps[index].indicatorIcon
-                : Text(
-                    '${index + 1}',
-                    style: HelperThemeData.textTheme.caption!
-                        .copyWith(color: Colors.white),
-                  ),
+            child: widget.steps[index].indicatorIcon ??
+                Text(
+                  '${index + 1}',
+                  style: HelperThemeData.textTheme.caption!
+                      .copyWith(color: Colors.white),
+                ),
           );
         },
         connectorBuilder: (_, index, type) => Connector.dashedLine(
