@@ -21,52 +21,58 @@ class PrimaryButton extends BaseButton {
     this.backgroundColor,
     this.radius,
   }) : super(
-            key: key,
-            onPressed: onPressed,
-            height: height,
-            width: width,
-            backgroundColor: backgroundColor,
-            radius: radius,
-            child: child);
+          key: key,
+          onPressed: onPressed,
+          height: height,
+          width: width,
+          backgroundColor: backgroundColor,
+          radius: radius,
+          child: child,
+        );
 
-  factory PrimaryButton.icon(
-      {Key? key,
-      required String text,
-      TextStyle? textStyle,
-      double? width,
-      double? height,
-      required VoidCallback? onPressed,
-      Color? backgroundColor,
-      double? radius,
-      required Widget icon}) = _PrimaryButtonWithIcon;
+  factory PrimaryButton.icon({
+    Key? key,
+    required String text,
+    TextStyle? textStyle,
+    double? width,
+    double? height,
+    required VoidCallback? onPressed,
+    Color? backgroundColor,
+    double? radius,
+    required Widget icon,
+  }) = _PrimaryButtonWithIcon;
 
   @override
   Widget build(BuildContext context) {
     return _PrimaryButton(
-      text: text,
-      textStyle: textStyle,
       width: width,
       height: height,
       onPressed: onPressed,
       backgroundColor: backgroundColor,
       radius: radius,
-      child: child ?? Text(text, style: textStyle),
+      child: child ??
+          Text(
+            text,
+            style: textStyle ??
+                HelperThemeData.textTheme.buttonText1!
+                    .copyWith(color: Colors.white),
+          ),
     );
   }
 }
 
 class _PrimaryButtonWithIcon extends PrimaryButton {
-  _PrimaryButtonWithIcon(
-      {Key? key,
-      required String text,
-      TextStyle? textStyle,
-      double? width,
-      double? height,
-      VoidCallback? onPressed,
-      Color? backgroundColor,
-      double? radius,
-      required Widget icon})
-      : super(
+  _PrimaryButtonWithIcon({
+    Key? key,
+    required String text,
+    TextStyle? textStyle,
+    double? width,
+    double? height,
+    VoidCallback? onPressed,
+    Color? backgroundColor,
+    double? radius,
+    required Widget icon,
+  }) : super(
             key: key,
             text: text,
             textStyle: textStyle,
@@ -80,22 +86,23 @@ class _PrimaryButtonWithIcon extends PrimaryButton {
                 Center(
                   child: Text(
                     text,
-                    style: textStyle,
+                    style: textStyle ??
+                        HelperThemeData.textTheme.buttonText1!
+                            .copyWith(color: Colors.white),
                   ),
                 ),
                 Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 12.0),
-                      child: icon,
-                    ))
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: icon,
+                  ),
+                )
               ],
             ));
 }
 
 class _PrimaryButton extends StatelessWidget {
-  final String? text;
-  final TextStyle? textStyle;
   final double? height;
   final double? width;
   final VoidCallback? onPressed;
@@ -103,17 +110,15 @@ class _PrimaryButton extends StatelessWidget {
   final Color? backgroundColor;
   final double? radius;
 
-  const _PrimaryButton(
-      {Key? key,
-      this.text,
-      this.textStyle,
-      this.height,
-      this.width,
-      this.onPressed,
-      this.child,
-      this.backgroundColor,
-      this.radius})
-      : super(key: key);
+  const _PrimaryButton({
+    Key? key,
+    this.height,
+    this.width,
+    this.onPressed,
+    required this.child,
+    this.backgroundColor,
+    this.radius,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
