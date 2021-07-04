@@ -61,8 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
             currentStep: currentStep,
             stepViewType: StepViewType.horizontal,
             steps: [
-              for (int i = 0; i < 3; i++)
-                Step(
+              ...List.generate(
+                3,
+                (i) => Step(
                   title: 'Tahapan ${i + 1}',
                   content: _buildContent(),
                   action: PrimaryButton.icon(
@@ -79,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+              ),
             ],
           ),
         ),
@@ -91,6 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
       switch (currentStep) {
         case 0:
           return Step(
+            indicatorIcon: index > 1
+                ? Icon(
+                    HelperIcons.plus,
+                    color: HelperColors.white,
+                  )
+                : null,
             content: TextFieldWithExpansionView(
               labelText: 'adda',
               expansionTitle: 'abc',
