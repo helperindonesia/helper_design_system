@@ -58,7 +58,11 @@ class OutlinedButton extends BaseButton {
       onPressed: onPressed,
       backgroundColor: backgroundColor,
       radius: radius,
-      child: child ?? Text(text, style: textStyle),
+      child: child ??
+          Text(text,
+              style: textStyle ??
+                  HelperThemeData.textTheme.buttonText2!
+                      .copyWith(color: HelperColors.orange)),
     );
   }
 }
@@ -92,7 +96,10 @@ class _OutlinedButtonWithIcon extends OutlinedButton {
               icon,
               SizedBox(width: 4),
               Text(
-                text, style: textStyle,
+                text,
+                style: textStyle ??
+                    HelperThemeData.textTheme.buttonText2!
+                        .copyWith(color: HelperColors.orange),
               )
             ],
           ),
