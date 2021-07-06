@@ -143,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mediaUrl:
                       "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
                 ),
+                DashBorder.iconWithText(onPressed: () {})
               ],
             ),
           );
