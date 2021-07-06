@@ -121,6 +121,31 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           );
+        case 2:
+          return Step(
+            content: Row(
+              children: [
+                MediaThumbnail(
+                  margin: EdgeInsets.all(5),
+                  mediaUrl:
+                      "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
+                ),
+                MediaThumbnail(
+                  mediaType: MediaType.video,
+                  margin: EdgeInsets.all(5),
+                  mediaUrl:
+                      "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4",
+                ),
+                MediaThumbnail(
+                  isWithIcon: true,
+                  mediaType: MediaType.image,
+                  margin: EdgeInsets.all(5),
+                  mediaUrl:
+                      "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
+                ),
+              ],
+            ),
+          );
         default:
           return Step(
             lineColor: index > 0 ? HelperColors.black7 : null,
