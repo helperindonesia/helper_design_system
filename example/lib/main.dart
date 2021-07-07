@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
@@ -118,11 +119,77 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {},
                   icon: Icon(Icons.camera),
                 ),
-                TaskCard(
-                  title: 'Ambil Barang di Kota',
-                  address: 'Jln. Perintis Kemerdekaan',
-                  deleteTaskPressed: () {},
-                  editTaskPressed: () {},
+                CardContainer(
+                  border: Border.all(width: 0.75, color: HelperColors.black10),
+                  padding: EdgeInsets.all(12.0),
+                  children: [
+                    CardContainer.horizontal(
+                      margin: EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Ambil Barang di Kota",
+                          style: HelperThemeData.textTheme.buttonText1!
+                              .copyWith(color: HelperColors.black),
+                        ),
+                        Icon(
+                          Icons.drag_handle,
+                          color: HelperColors.black8,
+                          size: 24.0,
+                        )
+                      ],
+                    ),
+                    CardContainer(
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      children: [
+                        Text(
+                          'Jln. Perintis Kemerdekaan',
+                          style: HelperThemeData.textTheme.caption!
+                              .copyWith(color: HelperColors.black5),
+                        ),
+                      ],
+                    ),
+                    CardContainer(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 4.0, vertical: 14.0),
+                      children: [
+                        Divider()
+                      ], //TODO: Change to DashLine after Merge
+                    ),
+                    CardContainer.horizontal(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        OutlinedButton.icon(
+                          borderColor: HelperColors.black5,
+                          width: 82,
+                          height: 24,
+                          onPressed: () {},
+                          text: 'Hapus',
+                          textStyle: HelperThemeData.textTheme.buttonText2!
+                              .copyWith(color: HelperColors.black3),
+                          icon: Icon(
+                            Icons.remove_circle_rounded,
+                            size: 16.0,
+                            color: HelperColors.black3,
+                          ),
+                        ),
+                        OutlinedButton.icon(
+                          borderColor: HelperColors.black5,
+                          width: 82,
+                          height: 24,
+                          onPressed: () {},
+                          text: 'Hapus',
+                          textStyle: HelperThemeData.textTheme.buttonText2!
+                              .copyWith(color: HelperColors.black3),
+                          icon: Icon(
+                            Icons.edit,
+                            size: 16.0,
+                            color: HelperColors.black3,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 )
               ],
             ),
