@@ -51,8 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: HelperAppBar(
-          title: 'Help Asisten', isHelp: true,
+        appBar: HelperAppBar.helpIcon(title: 'Help Asisten',
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
