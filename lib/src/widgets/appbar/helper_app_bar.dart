@@ -6,7 +6,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextStyle? textStyle;
   final Widget? leading;
   final double? leadingSize;
-  final VoidCallback? onPressed;
+  final VoidCallback? onBackPressed;
   final List<Widget>? actions;
   final double? elevation;
   final Color? backgroundColor;
@@ -17,7 +17,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.textStyle,
     this.leading,
     this.leadingSize,
-    this.onPressed,
+    this.onBackPressed,
     this.actions,
     this.elevation,
     this.backgroundColor,
@@ -28,7 +28,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     TextStyle? textStyle,
     IconData? leadingIcon,
     double? leadingSize,
-    VoidCallback? onPressed,
+    VoidCallback? onBackPressed,
     VoidCallback? onHelpPressed,
     List<Widget>? actions,
     double? elevation,
@@ -40,7 +40,8 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       shadowColor: HelperColors.black,
       titleSpacing: 0.0,
-      leading: leading,
+      leading: InkWell(
+          onTap: onBackPressed ?? () => Navigator.pop(context), child: leading),
       title: title,
       centerTitle: false,
       actions: actions,
@@ -60,7 +61,7 @@ class _HelperAppBarWithHelpIcon extends HelperAppBar {
       TextStyle? textStyle,
       IconData? leadingIcon,
       double? leadingSize,
-      VoidCallback? onPressed,
+      VoidCallback? onBackPressed,
       VoidCallback? onHelpPressed,
       List<Widget>? actions,
       double? elevation,
@@ -68,7 +69,7 @@ class _HelperAppBarWithHelpIcon extends HelperAppBar {
       : super(
             key: key,
             leading: IconButton(
-              onPressed: onPressed,
+              onPressed: onBackPressed,
               icon: Icon(
                 leadingIcon ?? Icons.arrow_back,
                 color: HelperColors.black3,
