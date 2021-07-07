@@ -6,3 +6,4 @@ export 'switch/switch.dart';
 export 'textfield/textfield.dart';
 export 'media/media.dart';
 export 'dash/dash.dart';
+export 'card/card.dart';
