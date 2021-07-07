@@ -117,6 +117,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Ini Button dgn Icon',
                   onPressed: () {},
                   icon: Icon(Icons.camera),
+                ),
+                TaskCard(
+                  title: 'Ambil Barang di Kota',
+                  address: 'Jln. Perintis Kemerdekaan',
+                  deleteTaskPressed: () {},
+                  editTaskPressed: () {},
                 )
               ],
             ),
