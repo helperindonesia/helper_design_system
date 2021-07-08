@@ -68,17 +68,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     (i) => Step(
                       title: 'Tahapan ${i + 1}',
                       content: _buildContent(),
-                      action: PrimaryButton.icon(
-                        height: 48,
-                        text: 'Lanjutkan',
-                        onPressed: () {
-                          setState(() {
-                            if (currentStep < 2) currentStep++;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.chevron_right_rounded,
-                          color: Colors.white,
+                      action: Padding(
+                        padding: const EdgeInsets.only(bottom: 70),
+                        child: PrimaryButton.icon(
+                          height: 48,
+                          text: 'Lanjutkan',
+                          onPressed: () {
+                            setState(() {
+                              if (currentStep < 2) currentStep++;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.chevron_right_rounded,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -87,13 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             DraggableBottomSheet(
-              minHeight: 48,
-              backdropEnabled: true,
-              backdropColor: HelperColors.black4,
-              panel: Center(
-                child: Text("ini panel/content"),
+              backgroundColor: Colors.red,
+              child: Column(
+                children: _buildHelper(),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -197,4 +198,15 @@ class _MyHomePageState extends State<MyHomePage> {
       stepViewType: StepViewType.vertical,
     );
   }
+}
+
+List<Widget> _buildHelper() {
+  var helper = <Widget>[];
+  helper.add(Text("Helpers"));
+
+  for (var i = 0; i < 50; i++) {
+    helper.add(Text("Helper " + i.toString()));
+  }
+
+  return helper;
 }
