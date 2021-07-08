@@ -51,37 +51,50 @@ class _MyHomePageState extends State<MyHomePage> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: HelperAppBar.helpIcon(title: 'Help Asisten',
+        appBar: HelperAppBar.helpIcon(
+          title: 'Help Asisten',
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          width: MediaQuery.of(context).size.width,
-          child: StepView(
-            currentStep: currentStep,
-            stepViewType: StepViewType.horizontal,
-            steps: [
-              ...List.generate(
-                3,
-                (i) => Step(
-                  title: 'Tahapan ${i + 1}',
-                  content: _buildContent(),
-                  action: PrimaryButton.icon(
-                    height: 48,
-                    text: 'Lanjutkan',
-                    onPressed: () {
-                      setState(() {
-                        if (currentStep < 2) currentStep++;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.chevron_right_rounded,
-                      color: Colors.white,
+        body: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              width: MediaQuery.of(context).size.width,
+              child: StepView(
+                currentStep: currentStep,
+                stepViewType: StepViewType.horizontal,
+                steps: [
+                  ...List.generate(
+                    3,
+                    (i) => Step(
+                      title: 'Tahapan ${i + 1}',
+                      content: _buildContent(),
+                      action: PrimaryButton.icon(
+                        height: 48,
+                        text: 'Lanjutkan',
+                        onPressed: () {
+                          setState(() {
+                            if (currentStep < 2) currentStep++;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.chevron_right_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+            DraggableBottomSheet(
+              minHeight: 48,
+              backdropEnabled: true,
+              backdropColor: HelperColors.black4,
+              panel: Center(
+                child: Text("ini panel/content"),
+              ),
+            ),
+          ],
         ),
       ),
     );
