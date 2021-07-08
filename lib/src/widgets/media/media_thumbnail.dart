@@ -159,7 +159,7 @@ class _MediaThumbnailState extends State<MediaThumbnail> {
                       child: Icon(
                         Icons.remove_circle_rounded,
                         size: 20,
-                        color: HelperColors.black3,
+                        color: HelperColors.black8,
                       ),
                     ),
                   ),
