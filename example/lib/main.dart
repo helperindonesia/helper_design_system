@@ -120,43 +120,41 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Icon(Icons.camera),
                 ),
                 CardContainer(
-                  border: Border.all(width: 0.75, color: HelperColors.black10),
                   padding: EdgeInsets.all(12.0),
                   children: [
-                    CardContainer.horizontal(
-                      margin: EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Ambil Barang di Kota",
-                          style: HelperThemeData.textTheme.buttonText1!
-                              .copyWith(color: HelperColors.black),
-                        ),
-                        Icon(
-                          Icons.drag_handle,
-                          color: HelperColors.black8,
-                          size: 24.0,
-                        )
-                      ],
-                    ),
-                    CardContainer(
-                      padding: EdgeInsets.symmetric(horizontal: 4.0),
-                      children: [
-                        Text(
-                          'Jln. Perintis Kemerdekaan',
-                          style: HelperThemeData.textTheme.caption!
-                              .copyWith(color: HelperColors.black5),
-                        ),
-                      ],
-                    ),
-                    CardContainer(
+                    Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 4.0, vertical: 14.0),
-                      children: [
-                        Divider()
-                      ], //TODO: Change to DashLine after Merge
+                          EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Ambil Barang di Kota",
+                            style: HelperThemeData.textTheme.buttonText1!
+                                .copyWith(color: HelperColors.black),
+                          ),
+                          Icon(
+                            Icons.drag_handle,
+                            color: HelperColors.black8,
+                            size: 24.0,
+                          )
+                        ],
+                      ),
                     ),
-                    CardContainer.horizontal(
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      child: Text(
+                        'Jln. Perintis Kemerdekaan',
+                        style: HelperThemeData.textTheme.caption!
+                            .copyWith(color: HelperColors.black5),
+                      ),
+                    ),
+                    Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 4.0, vertical: 14.0),
+                        child: Divider() //TODO: Change Divider to DashLine after Merge
+                        ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         OutlinedButton.icon(
