@@ -71,7 +71,7 @@ class CardContainer extends StatelessWidget {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            border: border ?? Border(),
+            border: border ?? Border.all(width: 0.75, color: HelperColors.black10),
             borderRadius: BorderRadius.circular(radius ?? 12.0),
           ),
           child: cardType == CardType.vertical
