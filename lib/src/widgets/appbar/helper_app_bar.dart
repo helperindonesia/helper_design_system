@@ -80,7 +80,7 @@ class _HelperAppBarWithHelpIcon extends HelperAppBar {
               title ?? '',
               style: textStyle ??
                   HelperThemeData.textTheme.headline4!
-                      .copyWith(color: HelperColors.black),
+                      .copyWith(color: HelperColors.black, fontWeight: FontWeight.w800),
             ),
             actions: actions ??
                 <Widget>[
