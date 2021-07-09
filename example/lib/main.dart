@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
@@ -130,6 +131,76 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Ini Button dgn Icon',
                   onPressed: () {},
                   icon: Icon(Icons.camera),
+                ),
+                CardContainer(
+                  padding: EdgeInsets.all(12.0),
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Ambil Barang di Kota",
+                            style: HelperThemeData.textTheme.buttonText1!
+                                .copyWith(color: HelperColors.black),
+                          ),
+                          Icon(
+                            Icons.drag_handle,
+                            color: HelperColors.black8,
+                            size: 24.0,
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      child: Text(
+                        'Jln. Perintis Kemerdekaan',
+                        style: HelperThemeData.textTheme.caption!
+                            .copyWith(color: HelperColors.black5),
+                      ),
+                    ),
+                    Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 4.0, vertical: 14.0),
+                        child: Divider() //TODO: Change Divider to DashLine after Merge
+                        ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        OutlinedButton.icon(
+                          borderColor: HelperColors.black5,
+                          width: 82,
+                          height: 24,
+                          onPressed: () {},
+                          text: 'Hapus',
+                          textStyle: HelperThemeData.textTheme.buttonText2!
+                              .copyWith(color: HelperColors.black3),
+                          icon: Icon(
+                            Icons.remove_circle_rounded,
+                            size: 16.0,
+                            color: HelperColors.black3,
+                          ),
+                        ),
+                        OutlinedButton.icon(
+                          borderColor: HelperColors.black5,
+                          width: 82,
+                          height: 24,
+                          onPressed: () {},
+                          text: 'Hapus',
+                          textStyle: HelperThemeData.textTheme.buttonText2!
+                              .copyWith(color: HelperColors.black3),
+                          icon: Icon(
+                            Icons.edit,
+                            size: 16.0,
+                            color: HelperColors.black3,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 )
               ],
             ),
