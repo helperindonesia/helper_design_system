@@ -12,7 +12,7 @@ class MediaThumbnail extends StatefulWidget {
   final double? width;
   final double? height;
   final BorderRadius? borderRadius;
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? margin;
   final bool isWithIcon;
   final VoidCallback? onIconPressed;
 
@@ -25,7 +25,7 @@ class MediaThumbnail extends StatefulWidget {
     this.width,
     this.height,
     this.borderRadius,
-    required this.margin,
+    this.margin,
     this.isWithIcon = false,
     this.onIconPressed,
   }) : super(key: key);
@@ -114,7 +114,7 @@ class _MediaThumbnailState extends State<MediaThumbnail> {
         ? InkWell(
             onTap: widget.onPressed,
             child: Container(
-              margin: widget.margin,
+              margin: widget.margin ?? EdgeInsets.all(5.0),
               width: widget.width ?? 76.0,
               height: widget.height ?? 76.0,
               child: ClipRRect(
@@ -124,7 +124,7 @@ class _MediaThumbnailState extends State<MediaThumbnail> {
             ),
           )
         : Container(
-            margin: widget.margin,
+            margin: widget.margin ?? EdgeInsets.all(5.0),
             width: widget.width ?? 80.0,
             height: widget.height ?? 82.0,
             color: Colors.transparent,
