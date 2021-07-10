@@ -93,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
             DraggableBottomSheet(
               backgroundColor: Colors.red,
               child: Column(
-                children: _buildHelper(),
+                children: _buildHelper(50),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -113,11 +113,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: HelperColors.white,
                   )
                 : null,
-            content: TextFieldWithExpansionView(
-              labelText: 'adda',
-              expansionTitle: 'abc',
-              expansionChildren: [
-                ...List.generate(3, (index) => Text('$index')),
+            content: Column(
+              children: [
+                TextFieldWithExpansionView(
+                  labelText: 'adda',
+                  expansionTitle: 'abc',
+                  expansionChildren: [
+                    ...List.generate(3, (index) => Text('$index')),
+                  ],
+                ),
+                SizedBox(height: 10),
+                PrimaryButton(
+                  text: 'Show Modal Bottom Sheet',
+                  onPressed: () {
+                    showModalBottomSheet(
+                      backgroundColor: Colors.transparent,isScrollControlled: true,
+                      context: context,
+                      builder: (context) {
+                        return ModalBottomSheet(children: _buildHelper(30));
+                      },
+                    );
+                  },
+                )
               ],
             ),
           );
@@ -165,7 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 4.0, vertical: 14.0),
-                        child: Divider() //TODO: Change Divider to DashLine after Merge
+                        child:
+                            Divider() //TODO: Change Divider to DashLine after Merge
                         ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -271,11 +289,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-List<Widget> _buildHelper() {
+List<Widget> _buildHelper(int value) {
   var helper = <Widget>[];
   helper.add(Text("Helpers"));
 
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < value; i++) {
     helper.add(Text("Helper " + i.toString()));
   }
 
