@@ -52,8 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: HelperAppBar.helpIcon(
-          title: 'Help Asisten',
+        appBar: HelperAppBar.image(
+          name: 'Help Asisten',
+          mediaUrl:
+              'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
         ),
         body: Stack(
           children: [
@@ -91,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             DraggableBottomSheet(
+              initialChildSize: 0.1,
               backgroundColor: Colors.red,
               child: Column(
                 children: _buildHelper(),
@@ -165,7 +168,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 4.0, vertical: 14.0),
-                        child: Divider() //TODO: Change Divider to DashLine after Merge
+                        child:
+                            Divider() //TODO: Change Divider to DashLine after Merge
                         ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
