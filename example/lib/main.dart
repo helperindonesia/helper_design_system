@@ -52,8 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        appBar: HelperAppBar.helpIcon(
-          title: 'Help Asisten',
+        appBar: HelperAppBar.image(
+          name: 'Help Asisten',
+          mediaUrl:
+              'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
         ),
         body: Stack(
           children: [
@@ -91,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             DraggableBottomSheet(
+              initialChildSize: 0.1,
               backgroundColor: Colors.red,
               child: Column(
                 children: _buildHelper(50),
@@ -230,6 +233,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     )
                   ],
+                ),
+                Container(
+                  decoration: ShapeDecoration(shape: ToolTipsShapeBorder()),
                 )
               ],
             ),
@@ -258,7 +264,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       mediaUrl:
                           "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
                     ),
-                    DashBorder.iconWithText(onPressed: () {})
                   ],
                 ),
                 Container(
@@ -266,6 +271,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 200,
                   child: DashLine(color: HelperColors.orange),
                 ),
+                DashBorder.iconWithText(onPressed: () {}),
+                SizedBox(height: 10),
+                ToolTipsExtraTime(
+                    onPressed: () {},
+                    text:
+                        'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?')
               ],
             ),
           );

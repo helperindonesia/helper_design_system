@@ -35,6 +35,18 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     Color? backgroundColor,
   }) = _HelperAppBarWithHelpIcon;
 
+  factory HelperAppBar.image(
+      {Key? key,
+      String? name,
+      required String mediaUrl,
+      TextStyle? textStyle,
+      IconData? leadingIcon,
+      double? leadingSize,
+      VoidCallback? onBackPressed,
+      List<Widget>? actions,
+      double? elevation,
+      Color? backgroundColor}) = _HelperAppBarWithImage;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -79,8 +91,8 @@ class _HelperAppBarWithHelpIcon extends HelperAppBar {
             title: Text(
               title ?? '',
               style: textStyle ??
-                  HelperThemeData.textTheme.headline4!
-                      .copyWith(color: HelperColors.black, fontWeight: FontWeight.w800),
+                  HelperThemeData.textTheme.headline4!.copyWith(
+                      color: HelperColors.black, fontWeight: FontWeight.w800),
             ),
             actions: actions ??
                 <Widget>[
@@ -94,6 +106,50 @@ class _HelperAppBarWithHelpIcon extends HelperAppBar {
                     iconSize: 24.0,
                   )
                 ],
+            elevation: elevation,
+            backgroundColor: backgroundColor);
+}
+
+class _HelperAppBarWithImage extends HelperAppBar {
+  _HelperAppBarWithImage(
+      {Key? key,
+      String? name,
+      required String mediaUrl,
+      TextStyle? textStyle,
+      IconData? leadingIcon,
+      double? leadingSize,
+      VoidCallback? onBackPressed,
+      List<Widget>? actions,
+      double? elevation,
+      Color? backgroundColor})
+      : super(
+            key: key,
+            leading: IconButton(
+              onPressed: onBackPressed,
+              icon: Icon(
+                leadingIcon ?? Icons.arrow_back_rounded,
+                color: HelperColors.black3,
+              ),
+              iconSize: leadingSize ?? 24.0,
+            ),
+            title: Row(
+              children: [
+                MediaThumbnail(
+                    height: 40.0,
+                    width: 40.0,
+                    borderRadius: BorderRadius.circular(24.0),
+                    mediaUrl: mediaUrl),
+                SizedBox(width: 12.0),
+                Text(
+                  name ?? '',
+                  style: textStyle ??
+                      HelperThemeData.textTheme.headline4!.copyWith(
+                          color: HelperColors.black,
+                          fontWeight: FontWeight.w800),
+                ),
+              ],
+            ),
+            actions: actions ?? <Widget>[],
             elevation: elevation,
             backgroundColor: backgroundColor);
 }
