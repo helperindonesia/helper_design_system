@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(height: 10),
                 PrimaryButton(
-                  text: 'Show Modal Bottom Sheet',
+                  text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet(
                       backgroundColor: Colors.transparent,
@@ -150,7 +150,15 @@ class _MyHomePageState extends State<MyHomePage> {
                               print('confirm : $time}');
                             },
                           ),
-                          SizedBox(height: 50,)
+                          SizedBox(height: 50,),
+                          SwipeButton(
+                              // disable: true,
+                              height: 48.0,
+                              width: MediaQuery.of(context).size.width - 30,
+                              onConfirmation: () {
+                                print('onConfirmation');
+                              }),
+                          SizedBox(height: 50.0),
                         ]);
                       },
                     );
