@@ -130,10 +130,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Show Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet(
-                      backgroundColor: Colors.transparent,isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return ModalBottomSheet(children: _buildHelper(30));
+                        return ModalBottomSheet(children: [
+                          Container(
+                            padding: EdgeInsets.only(top: 16, left: 16.0),
+                            child: Text('Jadwal Pengerjaan'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 16.0),
+                            child: Text(
+                                'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
+                          ),
+                          DateTimePickerView(
+                            onChanged: (DateTime time) {
+                              print('confirm : $time}');
+                            },
+                            minTime: DateTime.now(),
+                            currentTime:
+                                DateTime.now().add(Duration(hours: 3)),
+                          ),
+                          SizedBox(height: 50,)
+                        ]);
                       },
                     );
                   },
