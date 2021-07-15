@@ -30,8 +30,8 @@ class DateTimePickerView extends StatelessWidget {
       theme: theme,
       onChanged: onChanged,
       pickerModel: DateTimePickerModel(
-        currentTime: currentTime,
-        minTime: minTime,
+        currentTime: currentTime ?? DateTime.now().add(Duration(hours: 3)),
+        minTime: minTime ?? DateTime.now(),
         maxTime: maxTime,
         locale: locale ?? LocaleType.id,
       ),
