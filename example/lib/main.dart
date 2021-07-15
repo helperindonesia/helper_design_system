@@ -149,9 +149,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             onChanged: (DateTime time) {
                               print('confirm : $time}');
                             },
-                            minTime: DateTime.now(),
-                            currentTime:
-                                DateTime.now().add(Duration(hours: 3)),
                           ),
                           SizedBox(height: 50,)
                         ]);
