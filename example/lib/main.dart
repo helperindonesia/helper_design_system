@@ -276,7 +276,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ToolTipsExtraTime(
                     onPressed: () {},
                     text:
-                        'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?')
+                        'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?'),
+                CircleIconButton(
+                  onPressed: () {},
+                  badgeCount: 1,
+                )
               ],
             ),
           );
