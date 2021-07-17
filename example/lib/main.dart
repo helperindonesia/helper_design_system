@@ -135,7 +135,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       context: context,
                       builder: (context) {
                         return ModalBottomSheet(children: [
-                          SizedBox(height: 25.0),
+                          Container(
+                            padding: EdgeInsets.only(top: 16, left: 16.0),
+                            child: Text('Jadwal Pengerjaan'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 16.0),
+                            child: Text(
+                                'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
+                          ),
+                          DateTimePickerView(
+                            onChanged: (DateTime time) {
+                              print('confirm : $time}');
+                            },
+                          ),
+                          SizedBox(height: 50,),
                           SwipeButton(
                               // disable: true,
                               height: 48.0,
