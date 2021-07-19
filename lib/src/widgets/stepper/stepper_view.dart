@@ -29,13 +29,11 @@ class StepView extends StatefulWidget {
     this.currentStep = 0,
     required this.steps,
     this.stepViewType = StepViewType.vertical,
-    this.physics,
   }) : super(key: key);
 
   final int currentStep;
   final List<Step> steps;
   final StepViewType stepViewType;
-  final ScrollPhysics? physics;
 
   @override
   _StepViewState createState() => _StepViewState();
@@ -62,7 +60,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
           return CircleAvatar(
             radius: 14,
             backgroundColor:
-                widget.steps[index].indicatorColor ?? HelperColors.orange,
+            widget.steps[index].indicatorColor ?? HelperColors.orange,
             child: widget.steps[index].indicatorIcon ??
                 Text(
                   '${index + 1}',
@@ -71,16 +69,18 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
                 ),
           );
         },
-        connectorBuilder: (_, index, type) => Connector.dashedLine(
-          dash: 4,
-          gap: 3,
-          thickness: 0.75,
-          color: widget.steps[index].lineColor ?? HelperColors.orange,
-        ),
-        contentsBuilder: (_, index) => Container(
-          margin: const EdgeInsets.only(left: 16, bottom: 16),
-          child: widget.steps[index].content,
-        ),
+        connectorBuilder: (_, index, type) =>
+            Connector.dashedLine(
+              dash: 4,
+              gap: 3,
+              thickness: 0.75,
+              color: widget.steps[index].lineColor ?? HelperColors.orange,
+            ),
+        contentsBuilder: (_, index) =>
+            Container(
+              padding: const EdgeInsets.only(left: 16, bottom: 16),
+              child: widget.steps[index].content,
+            ),
       ),
     );
   }
@@ -91,28 +91,29 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.steps[widget.currentStep].title!,
-          style: HelperThemeData.textTheme.headline5,
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            widget.steps[widget.currentStep].title!,
+            style: HelperThemeData.textTheme.headline5,
+          ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.only(top: 14, bottom: 16),
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
+          padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: ProgressIndicator(
             percentage: 100 / widget.steps.length * (widget.currentStep + 1),
           ),
         ),
         Expanded(
-          child: ListView(
-            physics: widget.physics,
-            children: [
-              AnimatedSize(
-                vsync: this,
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.fastOutSlowIn,
-                child: widget.steps[widget.currentStep].content,
-              ),
-            ],
+          child: AnimatedSize(
+            vsync: this,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.fastOutSlowIn,
+            child: widget.steps[widget.currentStep].content,
           ),
         ),
         widget.steps[widget.currentStep].action ?? Container(),
