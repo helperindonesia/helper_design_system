@@ -127,14 +127,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(height: 10),
                 PrimaryButton(
-                  text: 'Show Modal Bottom Sheet',
+                  text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet(
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return ModalBottomSheet(children: _buildHelper(30));
+                        return ModalBottomSheet(children: [
+                          SizedBox(height: 25.0),
+                          SwipeButton(
+                              // disable: true,
+                              height: 48.0,
+                              width: MediaQuery.of(context).size.width - 30,
+                              onConfirmation: () {
+                                print('onConfirmation');
+                              }),
+                          SizedBox(height: 50.0),
+                        ]);
                       },
                     );
                   },
@@ -277,6 +287,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     isSend: true,
                     text: 'Pak saya sudah ada didepan tapi'),
                 SizedBox(height: 10),
+                CircleIconButton(
+                  onPressed: () {},
+                  badgeCount: 1,
+                )
               ],
             ),
           );
