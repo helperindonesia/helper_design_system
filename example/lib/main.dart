@@ -130,7 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Show Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet(
-                      backgroundColor: Colors.transparent,isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) {
                         return ModalBottomSheet(children: _buildHelper(30));
@@ -265,7 +266,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 ToolTipsExtraTime(
                     onPressed: () {},
                     text:
-                        'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?')
+                        'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?'),
+                SizedBox(height: 10),
+                ChatBubble(
+                    text:
+                        'Pak saya sudah ada didepan tapi saya lihat pintu masih tertutup pak apakah ada orang?'),
+                SizedBox(height: 10),
+                ChatBubble(
+                    isRead: true,
+                    isSend: true,
+                    text: 'Pak saya sudah ada didepan tapi'),
+                SizedBox(height: 10),
               ],
             ),
           );
