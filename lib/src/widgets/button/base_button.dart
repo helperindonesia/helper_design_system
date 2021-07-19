@@ -35,6 +35,7 @@ class BaseButton extends StatelessWidget {
         minWidth: 0,
         elevation: elevation,
         onPressed: onPressed,
+        disabledColor: HelperColors.black9,
         shape: !isOutlinedButton
             ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius ?? 24))
