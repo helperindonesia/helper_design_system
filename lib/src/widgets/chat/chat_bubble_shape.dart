@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
+enum TypeMessage { Sender, Receiver }
+
 class ChatBubbleShapeBorder extends ShapeBorder {
   final double arrowWidth;
   final double arrowHeight;
   final double radius;
   final double padding;
-  final bool isSend;
+  final TypeMessage typeMessage;
 
   ChatBubbleShapeBorder({
     this.radius = 12.0,
     this.arrowWidth = 8.0,
     this.arrowHeight = 16.0,
     this.padding = 12.0,
-    this.isSend = false,
+    this.typeMessage = TypeMessage.Sender
   });
 
   @override
@@ -24,7 +26,7 @@ class ChatBubbleShapeBorder extends ShapeBorder {
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    if (!isSend) {
+    if (typeMessage != TypeMessage.Sender) {
       rect = Rect.fromPoints(rect.topLeft, rect.bottomRight);
       return Path()
         ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)))

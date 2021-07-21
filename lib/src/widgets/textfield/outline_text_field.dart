@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:helper_design/helper_design.dart';
 
 class OutlineTextField extends StatefulWidget {
-  final String? title;
   final bool isMultiLine;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -16,35 +15,42 @@ class OutlineTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Color? fillColor;
   final double? borderRadius;
+  final Color? borderColor;
+  final Color? enableBorderColor;
+  final Color? focusedBorderColor;
   final TextEditingController? textEditingController;
   final bool? readOnly;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
   final Widget? trailing;
+  final Widget? prefixIcon;
 
-  const OutlineTextField(
-      {Key? key,
-      this.title,
-      this.isMultiLine = true,
-      this.keyboardType = TextInputType.text,
-      this.textInputAction = TextInputAction.next,
-      this.enabled,
-      this.initialValue,
-      @required this.labelText,
-      this.hintText,
-      this.textAlign,
-      this.validator,
-      this.inputFormatters,
-      this.fillColor,
-      this.borderRadius = 0,
-      this.textEditingController,
-      this.readOnly,
-      this.onTap,
-      this.onChanged,
-      this.onSaved,
-      this.trailing})
-      : super(key: key);
+  const OutlineTextField({
+    Key? key,
+    this.isMultiLine = true,
+    this.keyboardType = TextInputType.text,
+    this.textInputAction = TextInputAction.next,
+    this.enabled,
+    this.initialValue,
+    this.labelText,
+    this.hintText,
+    this.textAlign,
+    this.validator,
+    this.inputFormatters,
+    this.fillColor,
+    this.borderRadius = 0,
+    this.textEditingController,
+    this.readOnly,
+    this.onTap,
+    this.onChanged,
+    this.onSaved,
+    this.trailing,
+    this.prefixIcon,
+    this.borderColor,
+    this.enableBorderColor,
+    this.focusedBorderColor,
+  }) : super(key: key);
 
   @override
   _OutlineTextFieldState createState() => _OutlineTextFieldState();
@@ -85,6 +91,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
       child: TextFormField(
         style: HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
+          prefixIcon: widget.prefixIcon ?? null,
           filled: true,
           fillColor: widget.fillColor ?? Colors.white,
           contentPadding: EdgeInsets.fromLTRB(16.0, 13, 13, 0),
@@ -96,18 +103,23 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
               height: 1, fontSize: _labelFontSize, color: _labelColor),
           border: OutlineInputBorder(
             gapPadding: 4,
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(width: 1, color: HelperColors.black8),
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
+            borderSide: BorderSide(
+                width: 1, color: widget.borderColor ?? HelperColors.black8),
           ),
           enabledBorder: OutlineInputBorder(
             gapPadding: 4,
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(width: 1, color: HelperColors.black8),
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
+            borderSide: BorderSide(
+                width: 1,
+                color: widget.enableBorderColor ?? HelperColors.black8),
           ),
           focusedBorder: OutlineInputBorder(
             gapPadding: 4,
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(width: 1, color: HelperColors.orange),
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
+            borderSide: BorderSide(
+                width: 1,
+                color: widget.focusedBorderColor ?? HelperColors.orange),
           ),
           suffixIcon: widget.trailing,
         ),

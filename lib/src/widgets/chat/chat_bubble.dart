@@ -3,10 +3,10 @@ import 'package:helper_design/helper_design.dart';
 
 class ChatBubble extends StatelessWidget {
   final String text;
+  final TypeMessage? typeMessage;
   final TextStyle? textStyle;
   final String? time;
   final TextStyle? timeStyle;
-  final bool isSend;
   final Color? sendBackgroundColor;
   final Color? receiveBackgroundColor;
   final IconData? icon;
@@ -20,7 +20,7 @@ class ChatBubble extends StatelessWidget {
     this.textStyle,
     this.time,
     this.timeStyle,
-    this.isSend = false,
+    this.typeMessage = TypeMessage.Sender,
     this.sendBackgroundColor,
     this.receiveBackgroundColor,
     this.icon,
@@ -31,15 +31,27 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double mainPaddingRight = 16.0;
+    double mainPaddingLeft = 16.0;
+
+    if (typeMessage == TypeMessage.Sender) {
+      mainPaddingRight = 16.0;
+      mainPaddingLeft = 70.0;
+    } else {
+      mainPaddingRight = 70.0;
+      mainPaddingLeft = 16.0;
+    }
+
     return Container(
-      constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+      margin: EdgeInsets.only(left: mainPaddingLeft, right: mainPaddingRight, top: 24.0),
       decoration: ShapeDecoration(
-          color: isSend
-              ? sendBackgroundColor ?? HelperColors.orange10
-              : receiveBackgroundColor ?? HelperColors.black10,
-          shape: isSend
-              ? ChatBubbleShapeBorder(isSend: true)
-              : ChatBubbleShapeBorder(isSend: false)),
+        color: typeMessage == TypeMessage.Sender
+            ? sendBackgroundColor ?? HelperColors.orange10
+            : receiveBackgroundColor ?? HelperColors.black10,
+        shape: typeMessage == TypeMessage.Sender
+            ? ChatBubbleShapeBorder(typeMessage: TypeMessage.Sender)
+            : ChatBubbleShapeBorder(typeMessage: TypeMessage.Receiver),
+      ),
       child: Stack(
         children: [
           Padding(
