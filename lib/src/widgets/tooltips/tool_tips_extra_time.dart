@@ -5,16 +5,21 @@ class ToolTipsExtraTime extends StatelessWidget {
   final String? text;
   final TextStyle? textStyle;
   final VoidCallback? onPressed;
+  final double? padding;
 
   const ToolTipsExtraTime(
-      {Key? key, required this.text, this.textStyle, required this.onPressed})
+      {Key? key,
+      required this.text,
+      this.textStyle,
+      required this.onPressed,
+      this.padding})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: ShapeDecoration(
-        shape: ToolTipsShapeBorder(),
+        shape: ToolTipsShapeBorder(padding: padding ?? 49.0),
         color: HelperColors.black2,
       ),
       child: Padding(

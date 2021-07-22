@@ -11,6 +11,7 @@ class CardContainer extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final BoxBorder? border;
+  final Color? borderColor;
   final CrossAxisAlignment? crossAxisAlignment;
   final MainAxisAlignment? mainAxisAlignment;
 
@@ -28,6 +29,7 @@ class CardContainer extends StatelessWidget {
     this.border,
     this.crossAxisAlignment,
     this.mainAxisAlignment,
+    this.borderColor,
   }) : super(key: key);
 
   factory CardContainer.horizontal({
@@ -40,6 +42,7 @@ class CardContainer extends StatelessWidget {
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry margin = EdgeInsets.zero,
     BoxBorder? border,
+    Color? borderColor,
     CrossAxisAlignment? crossAxisAlignment,
     MainAxisAlignment? mainAxisAlignment,
   }) =>
@@ -54,6 +57,7 @@ class CardContainer extends StatelessWidget {
         padding: padding,
         margin: margin,
         border: border,
+        borderColor: borderColor,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisAlignment: mainAxisAlignment,
       );
@@ -71,7 +75,8 @@ class CardContainer extends StatelessWidget {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            border: border ?? Border.all(width: 0.75, color: HelperColors.black10),
+            border:
+                border ?? Border.all(width: 0.75, color: borderColor ?? HelperColors.black10),
             borderRadius: BorderRadius.circular(radius ?? 12.0),
           ),
           child: cardType == CardType.vertical
