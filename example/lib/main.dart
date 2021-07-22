@@ -1,3 +1,4 @@
+import 'package:example/progress_order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
-      home: MyHomePage(title: 'Helper Design Example'),
+      home:
+      ProgressOrder()
+      // MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
