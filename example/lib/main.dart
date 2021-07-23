@@ -1,3 +1,4 @@
+import 'package:example/progress_order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
-      home: MyHomePage(title: 'Helper Design Example'),
+      home:
+      ProgressOrder()
+      // MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -144,6 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 print('onConfirmation');
                               }),
                           SizedBox(height: 50.0),
+                          ChatBoxContainer(onSendTap: () {})
                         ]);
                       },
                     );
@@ -279,18 +283,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?'),
                 SizedBox(height: 10),
                 ChatBubble(
+                    typeMessage: TypeMessage.Receiver,
                     text:
                         'Pak saya sudah ada didepan tapi saya lihat pintu masih tertutup pak apakah ada orang?'),
                 SizedBox(height: 10),
                 ChatBubble(
-                    isRead: true,
-                    isSend: true,
-                    text: 'Pak saya sudah ada didepan tapi'),
+                    isRead: true, text: 'Pak saya sudah ada didepan tapi'),
                 SizedBox(height: 10),
                 CircleIconButton(
                   onPressed: () {},
                   badgeCount: 1,
-                )
+                ),
+                SizedBox(height: 10),
               ],
             ),
           );

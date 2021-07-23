@@ -11,6 +11,7 @@ class BaseButton extends StatelessWidget {
   final double? radius;
   final Widget? child;
   final double? elevation;
+  final double? borderWidth;
 
   const BaseButton(
       {Key? key,
@@ -22,7 +23,8 @@ class BaseButton extends StatelessWidget {
       this.backgroundColor,
       this.radius,
       this.child,
-      this.elevation})
+      this.elevation,
+      this.borderWidth})
       : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class BaseButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(radius ?? 24))
             : RoundedRectangleBorder(
                 side: BorderSide(
-                    width: 1, color: borderColor ?? HelperColors.orange),
+                    width: borderWidth ?? 1, color: borderColor ?? HelperColors.orange),
                 borderRadius: BorderRadius.circular(radius ?? 12),
               ),
         color: backgroundColor ?? HelperColors.orange,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
 class OutlinedButton extends BaseButton {
-  final String text;
+  final String? text;
   final TextStyle? textStyle;
   final Color? borderColor;
   final double? height;
@@ -10,10 +10,11 @@ class OutlinedButton extends BaseButton {
   final VoidCallback? onPressed;
   final Color? backgroundColor;
   final double? radius;
+  final double? borderWidth;
 
   OutlinedButton({
     Key? key,
-    required this.text,
+    this.text,
     this.textStyle,
     this.borderColor,
     this.height,
@@ -22,6 +23,7 @@ class OutlinedButton extends BaseButton {
     Widget? child,
     this.backgroundColor,
     this.radius,
+    this.borderWidth,
   }) : super(
           key: key,
           backgroundColor: backgroundColor,
@@ -32,6 +34,7 @@ class OutlinedButton extends BaseButton {
           height: height,
           child: child,
           radius: radius,
+          borderWidth: borderWidth,
         );
 
   factory OutlinedButton.icon({
@@ -45,6 +48,7 @@ class OutlinedButton extends BaseButton {
     required Widget icon,
     Color? backgroundColor,
     double? radius,
+    double? borderWidth,
   }) = _OutlinedButtonWithIcon;
 
   @override
@@ -58,8 +62,9 @@ class OutlinedButton extends BaseButton {
       onPressed: onPressed,
       backgroundColor: backgroundColor,
       radius: radius,
+      borderWidth: borderWidth,
       child: child ??
-          Text(text,
+          Text(text ?? '',
               style: textStyle ??
                   HelperThemeData.textTheme.buttonText2!
                       .copyWith(color: HelperColors.orange)),
@@ -79,6 +84,7 @@ class _OutlinedButtonWithIcon extends OutlinedButton {
     required Widget icon,
     Color? backgroundColor,
     double? radius,
+    double? borderWidth,
   }) : super(
           key: key,
           text: text,
@@ -89,6 +95,7 @@ class _OutlinedButtonWithIcon extends OutlinedButton {
           width: width,
           backgroundColor: backgroundColor,
           radius: radius,
+          borderWidth: borderWidth,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -116,6 +123,7 @@ class _OutlineButton extends StatelessWidget {
   final Widget? child;
   final Color? backgroundColor;
   final double? radius;
+  final double? borderWidth;
 
   const _OutlineButton({
     Key? key,
@@ -128,6 +136,7 @@ class _OutlineButton extends StatelessWidget {
     this.child,
     this.backgroundColor,
     this.radius,
+    this.borderWidth,
   }) : super(key: key);
 
   @override
@@ -143,6 +152,7 @@ class _OutlineButton extends StatelessWidget {
       elevation: 0,
       child: child,
       radius: radius,
+      borderWidth: borderWidth,
     );
   }
 }

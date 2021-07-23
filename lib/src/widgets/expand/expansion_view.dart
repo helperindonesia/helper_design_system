@@ -22,6 +22,7 @@ class ExpansionView extends StatefulWidget {
     this.iconSize,
     this.titleStyle,
     this.titlePadding,
+    this.leading,
   }) : super(key: key);
 
   final String title;
@@ -39,6 +40,7 @@ class ExpansionView extends StatefulWidget {
   final double? iconSize;
   final TextStyle? titleStyle;
   final EdgeInsetsGeometry? titlePadding;
+  final Widget? leading;
 
   @override
   _ExpansionViewState createState() => _ExpansionViewState();
@@ -116,6 +118,7 @@ class _ExpansionViewState extends State<ExpansionView>
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  widget.leading ?? SizedBox(),
                   Expanded(
                       child: Text(
                     widget.title,
