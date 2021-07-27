@@ -5,15 +5,15 @@ import 'package:helper_design/helper_design.dart';
 class Profile extends StatelessWidget {
   final String? displayName;
   final int? messageCount;
-  final ValueChanged<bool>? onTogglePress;
-  final bool? isAvailable;
+  final ValueChanged<bool>? withOutConfirmationTogglePress;
+  final bool? withOutConfirmation;
 
   const Profile({
     Key? key,
     this.displayName,
     this.messageCount,
-    this.isAvailable,
-    this.onTogglePress,
+    this.withOutConfirmation,
+    this.withOutConfirmationTogglePress,
   }) : super(key: key);
 
   @override
@@ -76,8 +76,8 @@ class Profile extends StatelessWidget {
                     .copyWith(fontSize: 14.0),
               ),
               SwitchControl(
-                  value: isAvailable ?? false,
-                  onToggle: onTogglePress ?? (bool) {})
+                  value: withOutConfirmation ?? false,
+                  onToggle: withOutConfirmationTogglePress ?? (bool) {})
             ],
           ),
         )
