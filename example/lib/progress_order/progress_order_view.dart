@@ -28,6 +28,7 @@ class ProgressOrder extends StatefulWidget {
 class _ProgressOrderState extends State<ProgressOrder> {
   int currentStep = 0;
   late OrderState _orderState;
+  bool withOutConfirmation = false;
 
   @override
   void initState() {
@@ -105,10 +106,18 @@ class _ProgressOrderState extends State<ProgressOrder> {
                       children: [
                         _orderState == OrderState.FindingHelper
                             ? Profile(
-                                displayName: 'Abdur Razaq', messageCount: 2)
+                                displayName: 'Abdur Razaq',
+                                messageCount: 2,
+                                withOutConfirmation: withOutConfirmation,
+                                withOutConfirmationTogglePress:
+                                    withOutConfirmationState,
+                              )
                             : SizedBox(),
                         Task(
                           orderState: _orderState,
+                          withOutConfirmation: withOutConfirmation,
+                          onChatPress: () {},
+                          onConfirmationPress: () {},
                         ),
                       ],
                     ),
@@ -238,5 +247,11 @@ class _ProgressOrderState extends State<ProgressOrder> {
         ],
       ),
     );
+  }
+
+  void withOutConfirmationState(bool newValue) {
+    setState(() {
+      withOutConfirmation = newValue;
+    });
   }
 }
