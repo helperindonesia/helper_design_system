@@ -5,8 +5,17 @@ import 'package:helper_design/helper_design.dart';
 
 class Task extends StatelessWidget {
   final OrderState? orderState;
+  final bool withOutConfirmation;
+  final VoidCallback? onChatPress;
+  final VoidCallback? onConfirmationPress;
 
-  const Task({Key? key, this.orderState}) : super(key: key);
+  const Task({
+    Key? key,
+    this.orderState,
+    this.withOutConfirmation = false,
+    this.onChatPress,
+    this.onConfirmationPress,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +65,15 @@ class Task extends StatelessWidget {
                   ],
                 ),
               ),
-              //Footer
+              // Footer
               orderState == OrderState.FindingHelper
-                  ? taskModel[index].orderState == OrderState.OnProgress
-                      ? _footer(() {}, () {})
+                  ? !withOutConfirmation
+                      ? taskModel[index].orderState == OrderState.OnProgress
+                          ? _footer(onChatPress ?? () {},
+                              onConfirmationPress ?? () {})
+                          : SizedBox()
                       : SizedBox()
-                  : SizedBox()
+                  : SizedBox(),
             ],
           ),
         );
@@ -110,40 +122,44 @@ Widget _body(String? mediaUrl, String? description) {
           ))
         ],
       ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10.0, bottom: 13.0),
-        child: DashLine(),
-      ),
     ],
   );
 }
 
-Widget _footer(VoidCallback? onChatPress, VoidCallback? onConfirmationPress) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+Widget _footer(VoidCallback onChatPress, VoidCallback onConfirmationPress) {
+  return Column(
     children: [
-      OutlinedButton.icon(
-        height: 24.0,
-        width: 71.0,
-        onPressed: () {},
-        text: 'Chat',
-        icon: Icon(
-          Icons.chat_bubble_rounded,
-          size: 13,
-          color: HelperColors.orange,
-        ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 13.0),
+        child: DashLine(),
       ),
-      OutlinedButton.icon(
-        height: 24.0,
-        width: 110.0,
-        onPressed: () {},
-        text: 'Konfirmasi',
-        icon: Icon(
-          Icons.check_circle_rounded,
-          size: 13,
-          color: HelperColors.orange,
-        ),
-      )
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          OutlinedButton.icon(
+            height: 24.0,
+            width: 71.0,
+            onPressed: onChatPress,
+            text: 'Chat',
+            icon: Icon(
+              Icons.chat_bubble_rounded,
+              size: 13,
+              color: HelperColors.orange,
+            ),
+          ),
+          OutlinedButton.icon(
+            height: 24.0,
+            width: 110.0,
+            onPressed: onConfirmationPress,
+            text: 'Konfirmasi',
+            icon: Icon(
+              Icons.check_circle_rounded,
+              size: 13,
+              color: HelperColors.orange,
+            ),
+          )
+        ],
+      ),
     ],
   );
 }
