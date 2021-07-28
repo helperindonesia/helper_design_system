@@ -183,31 +183,31 @@ class _ProgressOrderState extends State<ProgressOrder> {
                       totalCost: 'Rp 280.000',
                     ),
                   ),
-                  CardContainer.horizontal(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.5),
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Metode Pembayaran',
-                        style: HelperThemeData.textTheme.bodyText3!
-                            .copyWith(color: HelperColors.black4),
-                      ),
-                      Expanded(child: SizedBox()),
-                      Icon(
-                        Icons.payments_rounded,
-                        size: 20.0,
-                        color: HelperColors.orange,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'Helpcash',
-                        style: HelperThemeData.textTheme.bodyText1!.copyWith(
-                            fontWeight: FontWeight.w700, fontSize: 14.0),
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 14.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.payments_rounded,
+                          size: 20.0,
+                          color: HelperColors.orange,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            'Helpcash',
+                            style: HelperThemeData.textTheme.bodyText1!.copyWith(
+                                fontWeight: FontWeight.w700, fontSize: 14.0),
+                          ),
+                        ),
+                        Icon(
+                          Icons.pending_rounded,
+                          size: 20.0,
+                          color: HelperColors.black3,
+                        )
+                      ],
+                    ),
                   ),
                   SwipeButton(
                     onConfirmation: () {},
