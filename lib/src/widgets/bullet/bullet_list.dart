@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
 class BulletList extends StatelessWidget {
-  final List<Widget> child;
+  final List<Widget> children;
 
-  const BulletList({Key? key, required this.child}) : super(key: key);
+  const BulletList({Key? key, required this.children}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class BulletList extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: child.map((child) {
+        children: children.map((children) {
           return Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Row(
@@ -28,7 +28,7 @@ class BulletList extends StatelessWidget {
                 SizedBox(
                   width: 12.0,
                 ),
-                child
+                children
               ],
             ),
           );
