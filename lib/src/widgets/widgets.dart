@@ -11,3 +11,4 @@ export 'card/card.dart';
 export 'appbar/app_bar.dart';
 export 'tooltips/tooltips.dart';
 export 'chat/chat.dart';
+export 'bullet/bullet.dart';
