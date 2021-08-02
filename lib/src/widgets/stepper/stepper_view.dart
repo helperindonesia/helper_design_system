@@ -12,6 +12,7 @@ class Step {
   final Color? lineColor;
   final String? title;
   final Widget? action;
+  final Widget? bottomPanel;
 
   Step({
     required this.content,
@@ -20,6 +21,7 @@ class Step {
     this.title,
     this.action,
     this.lineColor,
+    this.bottomPanel,
   });
 }
 
@@ -88,7 +90,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
   Widget _buildHorizontal(BuildContext context) {
     assert(widget.steps[widget.currentStep].title != null);
 
-    return Column(
+    final Widget column = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
@@ -119,5 +121,19 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
         widget.steps[widget.currentStep].action ?? Container(),
       ],
     );
+
+    if(widget.steps[widget.currentStep].bottomPanel != null) return Stack(
+      children: [
+        column,
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: widget.steps[widget.currentStep].bottomPanel!,
+        ),
+      ],
+    );
+
+    return column;
   }
 }
