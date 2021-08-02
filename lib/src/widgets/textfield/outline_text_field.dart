@@ -26,6 +26,7 @@ class OutlineTextField extends StatefulWidget {
   final Widget? trailing;
   final Widget? prefixIcon;
   final bool? autoFocus;
+  final Color? labelColor;
 
   const OutlineTextField({
     Key? key,
@@ -40,7 +41,7 @@ class OutlineTextField extends StatefulWidget {
     this.validator,
     this.inputFormatters,
     this.fillColor,
-    this.borderRadius = 0,
+    this.borderRadius,
     this.textEditingController,
     this.readOnly,
     this.onTap,
@@ -52,6 +53,7 @@ class OutlineTextField extends StatefulWidget {
     this.enableBorderColor,
     this.focusedBorderColor,
     this.autoFocus,
+    this.labelColor,
   }) : super(key: key);
 
   @override
@@ -103,7 +105,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
               ?.copyWith(color: HelperColors.black7),
           labelText: widget.labelText,
           labelStyle: HelperThemeData.textTheme.bodyText2?.copyWith(
-              height: 1, fontSize: _labelFontSize, color: _labelColor),
+              height: 1, fontSize: _labelFontSize, color: widget.labelColor ?? _labelColor),
           border: OutlineInputBorder(
             gapPadding: 4,
             borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
