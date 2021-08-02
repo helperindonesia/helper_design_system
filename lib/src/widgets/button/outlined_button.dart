@@ -41,7 +41,7 @@ class OutlinedButton extends BaseButton {
 
   factory OutlinedButton.icon({
     Key? key,
-    required String text,
+    String text,
     TextStyle? textStyle,
     Color? borderColor,
     double? height,
@@ -78,7 +78,7 @@ class OutlinedButton extends BaseButton {
 class _OutlinedButtonWithIcon extends OutlinedButton {
   _OutlinedButtonWithIcon({
     Key? key,
-    required String text,
+    String text = '',
     TextStyle? textStyle,
     Color? borderColor,
     double? height,
@@ -100,20 +100,22 @@ class _OutlinedButtonWithIcon extends OutlinedButton {
           backgroundColor: backgroundColor,
           radius: radius,
           borderWidth: borderWidth,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              icon,
-              SizedBox(width: 4),
-              Text(
-                text,
-                style: textStyle ??
-                    HelperThemeData.textTheme.buttonText2!
-                        .copyWith(color: textColor ?? HelperColors.orange),
-              )
-            ],
-          ),
+          child: text == ''
+              ? icon
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    icon,
+                    SizedBox(width: 4),
+                    Text(
+                      text,
+                      style: textStyle ??
+                          HelperThemeData.textTheme.buttonText2!.copyWith(
+                              color: textColor ?? HelperColors.orange),
+                    )
+                  ],
+                ),
         );
 }
 
