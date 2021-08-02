@@ -11,6 +11,7 @@ class OutlinedButton extends BaseButton {
   final Color? backgroundColor;
   final double? radius;
   final double? borderWidth;
+  final Color? textColor;
 
   OutlinedButton({
     Key? key,
@@ -24,6 +25,7 @@ class OutlinedButton extends BaseButton {
     this.backgroundColor,
     this.radius,
     this.borderWidth,
+    this.textColor,
   }) : super(
           key: key,
           backgroundColor: backgroundColor,
@@ -49,6 +51,7 @@ class OutlinedButton extends BaseButton {
     Color? backgroundColor,
     double? radius,
     double? borderWidth,
+    Color? textColor,
   }) = _OutlinedButtonWithIcon;
 
   @override
@@ -67,7 +70,7 @@ class OutlinedButton extends BaseButton {
           Text(text ?? '',
               style: textStyle ??
                   HelperThemeData.textTheme.buttonText2!
-                      .copyWith(color: HelperColors.orange)),
+                      .copyWith(color: textColor ?? HelperColors.orange)),
     );
   }
 }
@@ -85,6 +88,7 @@ class _OutlinedButtonWithIcon extends OutlinedButton {
     Color? backgroundColor,
     double? radius,
     double? borderWidth,
+    Color? textColor,
   }) : super(
           key: key,
           text: text,
@@ -106,7 +110,7 @@ class _OutlinedButtonWithIcon extends OutlinedButton {
                 text,
                 style: textStyle ??
                     HelperThemeData.textTheme.buttonText2!
-                        .copyWith(color: HelperColors.orange),
+                        .copyWith(color: textColor ?? HelperColors.orange),
               )
             ],
           ),

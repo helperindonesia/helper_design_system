@@ -25,6 +25,7 @@ class OutlineTextField extends StatefulWidget {
   final ValueChanged<String?>? onSaved;
   final Widget? trailing;
   final Widget? prefixIcon;
+  final bool? autoFocus;
 
   const OutlineTextField({
     Key? key,
@@ -50,6 +51,7 @@ class OutlineTextField extends StatefulWidget {
     this.borderColor,
     this.enableBorderColor,
     this.focusedBorderColor,
+    this.autoFocus,
   }) : super(key: key);
 
   @override
@@ -89,6 +91,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         });
       },
       child: TextFormField(
+        autofocus: widget.autoFocus ?? false,
         style: HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
           prefixIcon: widget.prefixIcon ?? null,
