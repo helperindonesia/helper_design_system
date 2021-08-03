@@ -12,3 +12,4 @@ export 'appbar/app_bar.dart';
 export 'tooltips/tooltips.dart';
 export 'chat/chat.dart';
 export 'bullet/bullet.dart';
+export 'label/label.dart';
