@@ -4,8 +4,8 @@ import 'package:helper_design/helper_design.dart';
 class TextFieldCounter extends StatelessWidget {
   final String? labelText;
   final TextEditingController? textEditingController;
-  final VoidCallback increasePress;
-  final VoidCallback decreasePress;
+  final VoidCallback onAddPressed;
+  final VoidCallback onSubtractPressed;
   final bool minValue;
   final bool maxValue;
 
@@ -13,8 +13,8 @@ class TextFieldCounter extends StatelessWidget {
     Key? key,
     this.labelText,
     this.textEditingController,
-    required this.increasePress,
-    required this.decreasePress,
+    required this.onAddPressed,
+    required this.onSubtractPressed,
     required this.minValue,
     required this.maxValue,
   }) : super(key: key);
@@ -45,7 +45,7 @@ class TextFieldCounter extends StatelessWidget {
             borderColor: decreaseButtonColor,
             height: 24.0,
             width: 24.0,
-            onPressed: decreasePress,
+            onPressed: onSubtractPressed,
             icon: Icon(
               Icons.remove_rounded,
               size: 20.0,
@@ -57,7 +57,7 @@ class TextFieldCounter extends StatelessWidget {
             borderColor: increaseButtonColor,
             height: 24.0,
             width: 24.0,
-            onPressed: increasePress,
+            onPressed: onAddPressed,
             icon: Icon(
               Icons.add_rounded,
               size: 20.0,
