@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
       home:
-      ProgressOrder()
-      // MyHomePage(title: 'Helper Design Example'),
+          // ProgressOrder()
+          MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -34,10 +34,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentStep = 0;
+  int _helperCount = 1;
+  TextEditingController _textEditingController = TextEditingController();
+
+  void _incrementCounter() {
+    setState(() {
+      if (_helperCount < 10) _helperCount++;
+      _textEditingController.text = '$_helperCount Orang';
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      if (_helperCount > 1) _helperCount--;
+      _textEditingController.text = '$_helperCount Orang';
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    _textEditingController.text = '$_helperCount Orang';
   }
 
   Future<bool> _onWillPop() async {
@@ -133,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 PrimaryButton(
                   text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
-                    showModalBottomSheet(
+                    showModalBottomSheet<dynamic>(
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       context: context,
@@ -148,7 +165,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 print('onConfirmation');
                               }),
                           SizedBox(height: 50.0),
-                          ChatBoxContainer(onSendTap: () {})
+                          ChatBoxContainer(onSendTap: () {}),
+                          SizedBox(height: 50.0),
+                          SizedBox(height: 50.0),
                         ]);
                       },
                     );
@@ -162,6 +181,14 @@ class _MyHomePageState extends State<MyHomePage> {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextFieldCounter(
+                  labelText: 'Jumlah Helpermu',
+                  decreasePress: _decrementCounter,
+                  increasePress: _incrementCounter,
+                  textEditingController: _textEditingController,
+                  maxValue: _helperCount == 10,
+                  minValue: _helperCount == 1,
+                ),
                 PrimaryButton(text: 'Ini Button', onPressed: () {}),
                 PrimaryButton.icon(
                   text: 'Ini Button dgn Icon',
