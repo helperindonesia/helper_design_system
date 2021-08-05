@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:example/progress_order/detail_price.dart';
 import 'package:example/progress_order/profile.dart';
 import 'package:example/progress_order/progress_order.dart';
+import 'package:example/request_cancel_order/request_cancel_order.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
@@ -197,8 +198,10 @@ class _ProgressOrderState extends State<ProgressOrder> {
                         Expanded(
                           child: Text(
                             'Helpcash',
-                            style: HelperThemeData.textTheme.bodyText1!.copyWith(
-                                fontWeight: FontWeight.w700, fontSize: 14.0),
+                            style: HelperThemeData.textTheme.bodyText1!
+                                .copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14.0),
                           ),
                         ),
                         Icon(
@@ -232,7 +235,14 @@ class _ProgressOrderState extends State<ProgressOrder> {
                           borderColor: HelperColors.black5,
                           height: 24.0,
                           width: 74.0,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RequestCancelOrderView()),
+                            );
+                          },
                           text: 'Ajukan',
                           textStyle: HelperThemeData.textTheme.buttonText1!
                               .copyWith(color: HelperColors.black3),

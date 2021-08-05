@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
       home:
-          // ProgressOrder()
-          MyHomePage(title: 'Helper Design Example'),
+          ProgressOrder()
+          // MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
