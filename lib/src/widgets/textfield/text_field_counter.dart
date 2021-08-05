@@ -1,38 +1,54 @@
 import 'package:flutter/material.dart' hide OutlinedButton;
 import 'package:helper_design/helper_design.dart';
 
-class TextFieldCounter extends StatelessWidget {
+class TextFieldCounter extends StatefulWidget {
   final String? labelText;
-  final TextEditingController? textEditingController;
-  final VoidCallback onAddPressed;
-  final VoidCallback onSubtractPressed;
-  final bool minValue;
-  final bool maxValue;
+
+  // final TextEditingController? textEditingController;
+  // final VoidCallback onAddPressed;
+  // final VoidCallback onSubtractPressed;
+  final int? value;
 
   const TextFieldCounter({
     Key? key,
     this.labelText,
-    this.textEditingController,
-    required this.onAddPressed,
-    required this.onSubtractPressed,
-    required this.minValue,
-    required this.maxValue,
+    this.value,
+    // this.textEditingController,
+    // required this.onAddPressed,
+    // required this.onSubtractPressed,
   }) : super(key: key);
 
   @override
+  _TextFieldCounterState createState() => _TextFieldCounterState();
+}
+
+class _TextFieldCounterState extends State<TextFieldCounter> {
+  int _counter = 1;
+
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text =
+        widget.value != null ? widget.value.toString() : _counter.toString();
+    _counter = widget.value ?? 1;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Color increaseButtonColor;
+    /* Color increaseButtonColor;
     Color decreaseButtonColor;
-    minValue
+    widget.minValue
         ? decreaseButtonColor = HelperColors.black9
         : decreaseButtonColor = HelperColors.orange;
-    maxValue
+    widget.maxValue
         ? increaseButtonColor = HelperColors.black9
-        : increaseButtonColor = HelperColors.orange;
+        : increaseButtonColor = HelperColors.orange;*/
     return OutlineTextField(
       readOnly: true,
-      textEditingController: textEditingController,
-      labelText: labelText,
+      textEditingController: _controller,
+      labelText: widget.labelText,
       labelColor: HelperColors.black5,
       borderColor: HelperColors.black8,
       enableBorderColor: HelperColors.black8,
@@ -42,26 +58,36 @@ class TextFieldCounter extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           OutlinedButton.icon(
-            borderColor: decreaseButtonColor,
+            // borderColor: decreaseButtonColor,
             height: 24.0,
             width: 24.0,
-            onPressed: onSubtractPressed,
+            onPressed: () {
+              setState(() {
+                if (_counter > 1) _counter--;
+                _controller.text = _counter.toString();
+              });
+            },
             icon: Icon(
               Icons.remove_rounded,
               size: 20.0,
-              color: decreaseButtonColor,
+              // color: decreaseButtonColor,
             ),
           ),
           SizedBox(width: 12.0),
           OutlinedButton.icon(
-            borderColor: increaseButtonColor,
+            // borderColor: increaseButtonColor,
             height: 24.0,
             width: 24.0,
-            onPressed: onAddPressed,
+            onPressed: () {
+              setState(() {
+                _counter++;
+                _controller.text = _counter.toString();
+              });
+            },
             icon: Icon(
               Icons.add_rounded,
               size: 20.0,
-              color: increaseButtonColor,
+              // color: increaseButtonColor,
             ),
           ),
           SizedBox(width: 12.0),
