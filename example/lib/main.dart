@@ -1,3 +1,4 @@
+import 'package:example/survey/survey.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
@@ -155,20 +156,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return ModalBottomSheet(children: [
-                          SizedBox(height: 25.0),
-                          SwipeButton(
-                              // disable: true,
-                              height: 48.0,
-                              width: MediaQuery.of(context).size.width - 30,
-                              onConfirmation: () {
-                                print('onConfirmation');
-                              }),
-                          SizedBox(height: 50.0),
-                          ChatBoxContainer(onSendTap: () {}),
-                          SizedBox(height: 50.0),
-                          SizedBox(height: 50.0),
-                        ]);
+                        return SurveyCategoryBottomSheet();
+                        //   ModalBottomSheet(children: [
+                        //   SizedBox(height: 25.0),
+                        //   SwipeButton(
+                        //       // disable: true,
+                        //       height: 48.0,
+                        //       width: MediaQuery.of(context).size.width - 30,
+                        //       onConfirmation: () {
+                        //         print('onConfirmation');
+                        //       }),
+                        //   SizedBox(height: 50.0),
+                        //   ChatBoxContainer(onSendTap: () {}),
+                        //   SizedBox(height: 50.0),
+                        //   SizedBox(height: 50.0),
+                        // ]);
                       },
                     );
                   },
