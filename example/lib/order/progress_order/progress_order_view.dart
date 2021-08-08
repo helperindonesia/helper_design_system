@@ -49,7 +49,7 @@ class _ProgressOrderViewState extends State<ProgressOrderView> {
         Divider(thickness: 0.75, color: HelperColors.black10),
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: TipCard(onPressed: () {}),
+          child: PrimaryCard(onPressed: () {}),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
