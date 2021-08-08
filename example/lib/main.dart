@@ -3,8 +3,6 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
-import 'progress_order/progress_order.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -17,8 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
       home:
-      ProgressOrder()
-      // MyHomePage(title: 'Helper Design Example'),
+          // ProgressOrder()
+          MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -34,10 +32,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentStep = 0;
+  int _helperCount = 1;
+  TextEditingController _textEditingController = TextEditingController();
+
+  void _incrementCounter() {
+    setState(() {
+      if (_helperCount < 10) _helperCount++;
+      _textEditingController.text = '$_helperCount Orang';
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      if (_helperCount > 1) _helperCount--;
+      _textEditingController.text = '$_helperCount Orang';
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    _textEditingController.text = '$_helperCount Orang';
   }
 
   Future<bool> _onWillPop() async {
@@ -133,13 +148,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 PrimaryButton(
                   text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
-                    showModalBottomSheet(
+                    showModalBottomSheet<dynamic>(
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {
                         return ModalBottomSheet(children: [
-                          SizedBox(height: 25.0),
+                          Container(
+                            padding: EdgeInsets.only(top: 16, left: 16.0),
+                            child: Text('Jadwal Pengerjaan'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 16.0),
+                            child: Text(
+                                'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
+                          ),
+                          DateTimePickerView(
+                            onChanged: (DateTime time) {
+                              print('confirm : $time}');
+                            },
+                          ),
+                          SizedBox(height: 50,),
                           SwipeButton(
                               // disable: true,
                               height: 48.0,
@@ -148,7 +178,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 print('onConfirmation');
                               }),
                           SizedBox(height: 50.0),
-                          ChatBoxContainer(onSendTap: () {})
+                          ChatBoxContainer(onSendTap: () {}),
+                          SizedBox(height: 50.0),
+                          SizedBox(height: 50.0),
                         ]);
                       },
                     );
@@ -162,6 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextFieldCounter(labelText: 'Jumlah Helpermu'),
                 PrimaryButton(text: 'Ini Button', onPressed: () {}),
                 PrimaryButton.icon(
                   text: 'Ini Button dgn Icon',
