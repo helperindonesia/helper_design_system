@@ -2,10 +2,21 @@ import 'package:flutter/material.dart' hide OutlinedButton;
 
 import '../../../helper_design.dart';
 
-class TipCard extends StatelessWidget {
+class PrimaryCard extends StatelessWidget {
+  final String? title;
+  final String? description;
+  final String? buttonText;
+  final String? illustrationImage;
   final VoidCallback onPressed;
 
-  const TipCard({Key? key, required this.onPressed}) : super(key: key);
+  const PrimaryCard(
+      {Key? key,
+      required this.onPressed,
+      this.title,
+      this.description,
+      this.buttonText,
+      this.illustrationImage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +33,7 @@ class TipCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 4.0),
               child: Text(
-                'Beri Tip Buat Helpermu',
+                title ?? 'Beri Tip Buat Helpermu',
                 style: HelperThemeData.textTheme.headline5!.copyWith(
                     fontSize: 16.0,
                     letterSpacing: 0.8 / 100,
@@ -32,7 +43,7 @@ class TipCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 4.0),
               child: Text(
-                'Apresiasi Helper yuk',
+                description ?? 'Apresiasi Helper yuk',
                 style: HelperThemeData.textTheme.caption!
                     .copyWith(color: HelperColors.white),
               ),
@@ -44,17 +55,17 @@ class TipCard extends StatelessWidget {
               height: 24.0,
               width: 80.0,
               onPressed: onPressed,
-              text: 'Beri Tip',
+              text: buttonText ?? 'Beri Tip',
               textStyle: HelperThemeData.textTheme.buttonText1!
                   .copyWith(color: HelperColors.white),
             )
           ],
         ),
         Image(
-          image: AssetImage('assets/images/get_ready.png'),
-          fit: BoxFit.cover,
-          width: 40,
-          height: 40,
+          image: AssetImage(illustrationImage ?? 'assets/images/ilustrasi_beri_tip.webp'),
+          fit: BoxFit.fill,
+          width: 142.0,
+          height: 92.0,
         ),
       ],
     );
