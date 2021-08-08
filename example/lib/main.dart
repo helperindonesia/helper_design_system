@@ -3,8 +3,6 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
-import 'progress_order/progress_order.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -156,7 +154,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       context: context,
                       builder: (context) {
                         return ModalBottomSheet(children: [
-                          SizedBox(height: 25.0),
+                          Container(
+                            padding: EdgeInsets.only(top: 16, left: 16.0),
+                            child: Text('Jadwal Pengerjaan'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 16.0),
+                            child: Text(
+                                'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
+                          ),
+                          DateTimePickerView(
+                            onChanged: (DateTime time) {
+                              print('confirm : $time}');
+                            },
+                          ),
+                          SizedBox(height: 50,),
                           SwipeButton(
                               // disable: true,
                               height: 48.0,
@@ -181,14 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextFieldCounter(
-                  labelText: 'Jumlah Helpermu',
-                  decreasePress: _decrementCounter,
-                  increasePress: _incrementCounter,
-                  textEditingController: _textEditingController,
-                  maxValue: _helperCount == 10,
-                  minValue: _helperCount == 1,
-                ),
+                TextFieldCounter(labelText: 'Jumlah Helpermu'),
                 PrimaryButton(text: 'Ini Button', onPressed: () {}),
                 PrimaryButton.icon(
                   text: 'Ini Button dgn Icon',
