@@ -45,8 +45,8 @@ class PrimaryButton extends BaseButton {
   @override
   Widget build(BuildContext context) {
     return _PrimaryButton(
-      width: width,
-      height: height,
+      width: width ?? MediaQuery.of(context).size.width,
+      height: height ?? 48.0,
       onPressed: onPressed,
       backgroundColor: backgroundColor,
       radius: radius,

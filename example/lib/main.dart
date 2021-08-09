@@ -4,7 +4,7 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
-import 'progress_order/progress_order.dart';
+import 'order/order.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
       home:
-          // ProgressOrder()
-          MyHomePage(title: 'Helper Design Example'),
+      OrderView()
+      // MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -183,14 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextFieldCounter(
-                  labelText: 'Jumlah Helpermu',
-                  decreasePress: _decrementCounter,
-                  increasePress: _incrementCounter,
-                  textEditingController: _textEditingController,
-                  maxValue: _helperCount == 10,
-                  minValue: _helperCount == 1,
-                ),
+                TextFieldCounter(labelText: 'Jumlah Helpermu'),
                 PrimaryButton(text: 'Ini Button', onPressed: () {}),
                 PrimaryButton.icon(
                   text: 'Ini Button dgn Icon',
