@@ -5,20 +5,22 @@ class ModalBottomSheet extends StatelessWidget {
   final Color? backgroundColor;
   final List<Widget> children;
   final MainAxisAlignment? mainAxisAlignment;
-  final IconData? rightIcon;
-  final IconData? leftIcon;
-  final VoidCallback? onRightButtonPressed;
-  final VoidCallback? onLeftButtonPressed;
+  final IconData? firstIcon;
+  final IconData? secondIcon;
+  final VoidCallback? firstButtonPressed;
+  final VoidCallback? secondButtonPressed;
+  final bool multipleButtonOnTop;
 
   const ModalBottomSheet({
     Key? key,
     this.backgroundColor,
     required this.children,
     this.mainAxisAlignment,
-    this.rightIcon,
-    this.leftIcon,
-    this.onRightButtonPressed,
-    this.onLeftButtonPressed,
+    this.firstIcon,
+    this.secondIcon,
+    this.firstButtonPressed,
+    this.secondButtonPressed,
+    this.multipleButtonOnTop = false,
   }) : super(key: key);
 
   @override
@@ -30,31 +32,29 @@ class ModalBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
-                mainAxisAlignment: leftIcon != null
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.end,
+                mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.end,
                 children: [
                   BaseButton(
                     onPressed:
-                        onRightButtonPressed ?? () => Navigator.pop(context),
+                        firstButtonPressed ?? () => Navigator.pop(context),
                     backgroundColor: backgroundColor ?? HelperColors.white,
                     height: 40.0,
                     width: 40.0,
                     child: Icon(
-                      rightIcon ?? Icons.close_rounded,
+                      firstIcon ?? Icons.close_rounded,
                       size: 24.0,
                       color: HelperColors.black3,
                     ),
                   ),
-                  leftIcon != null
+                  secondIcon != null
                       ? BaseButton(
-                          onPressed: onLeftButtonPressed ?? () => () {},
+                          onPressed: secondButtonPressed ?? () => () {},
                           backgroundColor:
                               backgroundColor ?? HelperColors.white,
                           height: 40.0,
                           width: 40.0,
                           child: Icon(
-                            leftIcon ?? Icons.my_location_rounded,
+                            secondIcon ?? Icons.my_location_rounded,
                             size: 24.0,
                             color: HelperColors.black3,
                           ),
