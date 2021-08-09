@@ -8,7 +8,9 @@ class OrderFinishView extends StatelessWidget {
   final VoidCallback onPressed;
 
   const OrderFinishView(
-      {Key? key, this.orderState = OrderState.Done, required this.onPressed})
+      {Key? key,
+      this.orderState = OrderState.FindingHelper,
+      required this.onPressed})
       : super(key: key);
 
   @override
@@ -22,31 +24,40 @@ class OrderFinishView extends StatelessWidget {
               : HelperColors.green,
         ),
         Container(
-          margin: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0, bottom: 16.0, right: 8.0),
           child: Column(
             children: [
               Profile(
-                orderState: OrderState.Done,
+                negotiationSuccess: false,
+                profileType: ProfileType.WithPriceAndNegotiation,
+                afterNegotiation: true,
                 displayName: 'Abdur Razaq',
               ),
-              ProgressOrderTask(),
-              orderState == OrderState.Done
-                  ? DetailPrice(
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Column(
+                  children: [
+                    ProgressOrderTask(),
+                    orderState == OrderState.Done
+                        ? DetailPrice(
                       orderState: orderState,
                     )
-                  : SizedBox(),
-              orderState == OrderState.Cancel
-                  ? TipCard(onPressed: () {})
-                  : SizedBox(),
-              SizedBox(height: 16.0),
-              PrimaryButton(
-                height: 48.0,
-                text: 'Ok, Tutup',
-                onPressed: onPressed,
-                backgroundColor: HelperColors.black10,
-                textStyle: HelperThemeData.textTheme.buttonText1!
-                    .copyWith(color: HelperColors.black3),
-              ),
+                        : SizedBox(),
+                    orderState == OrderState.Cancel
+                        ? PrimaryCard(onPressed: () {})
+                        : SizedBox(),
+                    SizedBox(height: 16.0),
+                    PrimaryButton(
+                      height: 48.0,
+                      text: 'Ok, Tutup',
+                      onPressed: onPressed,
+                      backgroundColor: HelperColors.black10,
+                      textStyle: HelperThemeData.textTheme.buttonText1!
+                          .copyWith(color: HelperColors.black3),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         )

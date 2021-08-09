@@ -98,7 +98,7 @@ class _OrderViewState extends State<OrderView> {
                 minChildSize: 0.12,
                 backgroundColor: HelperColors.white,
                 child:
-                OrderFinishView()
+                OrderFinishView(onPressed: () {  },)
                 // ProgressOrderView(orderState: _orderState),
                 ),
           ),
