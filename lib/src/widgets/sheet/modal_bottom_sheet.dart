@@ -46,7 +46,7 @@ class ModalBottomSheet extends StatelessWidget {
                       color: HelperColors.black3,
                     ),
                   ),
-                  secondIcon != null
+                  multipleButtonOnTop
                       ? BaseButton(
                           onPressed: secondButtonPressed ?? () => () {},
                           backgroundColor:
