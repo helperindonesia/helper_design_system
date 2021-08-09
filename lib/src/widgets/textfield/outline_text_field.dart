@@ -27,6 +27,8 @@ class OutlineTextField extends StatefulWidget {
   final Widget? prefixIcon;
   final bool? autoFocus;
   final Color? labelColor;
+  final int? hintMaxLines;
+  final int? minLines;
 
   const OutlineTextField({
     Key? key,
@@ -54,6 +56,8 @@ class OutlineTextField extends StatefulWidget {
     this.focusedBorderColor,
     this.autoFocus,
     this.labelColor,
+    this.hintMaxLines,
+    this.minLines,
   }) : super(key: key);
 
   @override
@@ -96,6 +100,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         autofocus: widget.autoFocus ?? false,
         style: HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
+          hintMaxLines: widget.hintMaxLines,
           prefixIcon: widget.prefixIcon ?? null,
           filled: true,
           fillColor: widget.fillColor ?? Colors.white,
@@ -105,7 +110,9 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
               ?.copyWith(color: HelperColors.black7),
           labelText: widget.labelText,
           labelStyle: HelperThemeData.textTheme.bodyText2?.copyWith(
-              height: 1, fontSize: _labelFontSize, color: widget.labelColor ?? _labelColor),
+              height: 1,
+              fontSize: _labelFontSize,
+              color: widget.labelColor ?? _labelColor),
           border: OutlineInputBorder(
             gapPadding: 4,
             borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
@@ -134,7 +141,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         textInputAction: widget.textInputAction,
         textAlign: widget.textAlign ?? TextAlign.left,
         maxLines: widget.isMultiLine ? null : 1,
-        minLines: 1,
+        minLines: widget.minLines,
         validator: widget.validator,
         controller: widget.textEditingController,
         readOnly: widget.readOnly ?? false,
