@@ -4,23 +4,21 @@ import 'package:helper_design/helper_design.dart';
 class ModalBottomSheet extends StatelessWidget {
   final Color? backgroundColor;
   final List<Widget> children;
-  final bool multipleButtonOnTop;
-  final IconData? firstIcon;
-  final IconData? secondIcon;
-  final VoidCallback? firstButtonPress;
-  final VoidCallback? secondButtonPress;
   final MainAxisAlignment? mainAxisAlignment;
+  final IconData? rightIcon;
+  final IconData? leftIcon;
+  final VoidCallback? onRightButtonPressed;
+  final VoidCallback? onLeftButtonPressed;
 
   const ModalBottomSheet({
     Key? key,
     this.backgroundColor,
     required this.children,
-    this.multipleButtonOnTop = false,
-    this.firstIcon,
-    this.secondIcon,
-    this.firstButtonPress,
-    this.secondButtonPress,
     this.mainAxisAlignment,
+    this.rightIcon,
+    this.leftIcon,
+    this.onRightButtonPressed,
+    this.onLeftButtonPressed,
   }) : super(key: key);
 
   @override
@@ -32,7 +30,9 @@ class ModalBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
-                mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.end,
+                mainAxisAlignment: leftIcon != null
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
                 children: [
                   BaseButton(
                     onPressed:

@@ -4,7 +4,6 @@ extension BottomSheetX on BuildContext {
   Future<T?> showBottomSheet<T>({
     required Widget child,
     bool isScrollControlled = false,
-    // EdgeInsetsGeometry? padding,
     bool isDismissible: true,
     Color? backgroundColor,
   }) {
