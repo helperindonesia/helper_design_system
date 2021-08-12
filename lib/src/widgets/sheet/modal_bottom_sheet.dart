@@ -5,22 +5,20 @@ class ModalBottomSheet extends StatelessWidget {
   final Color? backgroundColor;
   final List<Widget> children;
   final MainAxisAlignment? mainAxisAlignment;
-  final IconData? firstIcon;
-  final IconData? secondIcon;
-  final VoidCallback? firstButtonPressed;
-  final VoidCallback? secondButtonPressed;
-  final bool multipleButtonOnTop;
+  final IconData? rightIcon;
+  final IconData? leftIcon;
+  final VoidCallback? onRightButtonPressed;
+  final VoidCallback? onLeftButtonPressed;
 
   const ModalBottomSheet({
     Key? key,
     this.backgroundColor,
     required this.children,
     this.mainAxisAlignment,
-    this.firstIcon,
-    this.secondIcon,
-    this.firstButtonPressed,
-    this.secondButtonPressed,
-    this.multipleButtonOnTop = false,
+    this.rightIcon,
+    this.leftIcon,
+    this.onRightButtonPressed,
+    this.onLeftButtonPressed,
   }) : super(key: key);
 
   @override
@@ -32,7 +30,9 @@ class ModalBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
-                mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.end,
+                mainAxisAlignment: leftIcon != null
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
                 children: [
                   BaseButton(
                     onPressed:
