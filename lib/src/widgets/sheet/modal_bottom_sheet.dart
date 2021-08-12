@@ -34,32 +34,32 @@ class ModalBottomSheet extends StatelessWidget {
                     ? MainAxisAlignment.spaceBetween
                     : MainAxisAlignment.end,
                 children: [
-                  BaseButton(
-                    onPressed:
-                        firstButtonPressed ?? () => Navigator.pop(context),
-                    backgroundColor: backgroundColor ?? HelperColors.white,
-                    height: 40.0,
-                    width: 40.0,
-                    child: Icon(
-                      firstIcon ?? Icons.close_rounded,
-                      size: 24.0,
-                      color: HelperColors.black3,
-                    ),
-                  ),
-                  multipleButtonOnTop
+                  leftIcon != null
                       ? BaseButton(
-                          onPressed: secondButtonPressed ?? () => () {},
+                          onPressed: onLeftButtonPressed ?? () => () {},
                           backgroundColor:
                               backgroundColor ?? HelperColors.white,
                           height: 40.0,
                           width: 40.0,
                           child: Icon(
-                            secondIcon ?? Icons.my_location_rounded,
+                            leftIcon ?? Icons.arrow_back,
                             size: 24.0,
                             color: HelperColors.black3,
                           ),
                         )
                       : SizedBox(),
+                  BaseButton(
+                    onPressed:
+                        onRightButtonPressed ?? () => Navigator.pop(context),
+                    backgroundColor: backgroundColor ?? HelperColors.white,
+                    height: 40.0,
+                    width: 40.0,
+                    child: Icon(
+                      rightIcon ?? Icons.close_rounded,
+                      size: 24.0,
+                      color: HelperColors.black3,
+                    ),
+                  ),
                 ],
               ),
             ),
