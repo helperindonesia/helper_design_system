@@ -24,4 +24,18 @@ void main() {
       expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget);
     });
   });
+
+  group('Circle Icon Button Test', () {
+    testWidgets('Circle Icon Button', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home:
+              Scaffold(body: CircleIconButton(onPressed: () {}, badgeCount: 1)),
+        ),
+      );
+
+      expect(find.byIcon(Icons.chat_bubble_rounded), findsOneWidget);
+      expect(find.text('1'), findsOneWidget);
+    });
+  });
 }
