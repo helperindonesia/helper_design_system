@@ -15,11 +15,13 @@ void main() {
         ),
       );
 
+      //Verify widget and Initial Value
       expect(find.byType(TextFormField), findsOneWidget);
       TextFormField textFormField =
           find.byType(TextFormField).evaluate().first.widget as TextFormField;
       expect(textFormField.initialValue, initialValue);
 
+      //Type some text to text field and Verify
       await tester.enterText(find.byType(TextFormField), 'Hi');
       expect(find.text('Hi'), findsOneWidget);
     });
@@ -38,6 +40,7 @@ void main() {
         ),
       );
 
+      //Verify controller
       expect(find.byType(TextFormField), findsOneWidget);
       TextFormField textFormField =
           find.byType(TextFormField).evaluate().first.widget as TextFormField;
@@ -57,6 +60,7 @@ void main() {
         ),
       );
 
+      //Verify text field if enable
       TextFormField textFormFieldTrue =
           find.byType(TextFormField).evaluate().first.widget as TextFormField;
       expect(find.byType(TextFormField), findsOneWidget);
@@ -72,6 +76,7 @@ void main() {
         ),
       );
 
+      //Verify text field if disable
       TextFormField textFormFieldFalse =
           find.byType(TextFormField).evaluate().first.widget as TextFormField;
       expect(find.byType(TextFormField), findsOneWidget);
@@ -93,6 +98,7 @@ void main() {
         ),
       );
 
+      //Verify TextFormField and onChange Value
       expect(find.byType(TextFormField), findsOneWidget);
       expect(_value, isNull);
 
@@ -101,6 +107,7 @@ void main() {
         expect(_value, equals(testValue));
       }
 
+      //Verify newValue in onChange method
       await checkText('Test');
       await checkText('testValue');
     });
@@ -123,6 +130,7 @@ void main() {
         ),
       );
 
+      //Verify TextFormField and onSaved Value
       expect(find.byType(TextFormField), findsOneWidget);
       expect(_value, isNull);
 
@@ -132,6 +140,7 @@ void main() {
         expect(_value, equals(testValue));
       }
 
+      //Verify newValue in onSaved method
       await checkText('Test');
       await checkText('testValue');
     });
@@ -148,8 +157,8 @@ void main() {
         ),
       );
 
+      //Verify Widget and multiLines enable
       expect(find.byType(TextFormField), findsOneWidget);
-
       final EditableText formFieldTrue =
           tester.widget<EditableText>(find.text('testValue'));
       expect(formFieldTrue.maxLines, null);
@@ -165,8 +174,8 @@ void main() {
         ),
       );
 
+      //Verify Widget and multiLines disable
       expect(find.byType(TextFormField), findsOneWidget);
-
       final EditableText formFieldFalse =
           tester.widget<EditableText>(find.text('testValue'));
       expect(formFieldFalse.maxLines, 1);
@@ -185,14 +194,23 @@ void main() {
         ),
       );
 
+      //Verify Widget
       expect(find.byType(OutlineTextField), findsOneWidget);
 
+      // Tap the '+' icon and trigger a frame.
       await tester.tap(find.byIcon(Icons.add_rounded));
       await tester.pump();
+
+      // Verify that our counter has incremented.
+      expect(find.text('1'), findsNothing);
       expect(find.text('2'), findsOneWidget);
 
+      // Tap the '+' icon and trigger a frame.
       await tester.tap(find.byIcon(Icons.add_rounded));
       await tester.pump();
+
+      // Verify that our counter has incremented.
+      expect(find.text('2'), findsNothing);
       expect(find.text('3'), findsOneWidget);
     });
 
@@ -207,14 +225,23 @@ void main() {
         ),
       );
 
+      //Verify Widget
       expect(find.byType(OutlineTextField), findsOneWidget);
 
+      // Tap the '-' icon and trigger a frame.
       await tester.tap(find.byIcon(Icons.remove_rounded));
       await tester.pump();
+
+      // Verify that our counter has decremented.
+      expect(find.text('3'), findsNothing);
       expect(find.text('2'), findsOneWidget);
 
+      // Tap the '-' icon and trigger a frame.
       await tester.tap(find.byIcon(Icons.remove_rounded));
       await tester.pump();
+
+      // Verify that our counter has decremented.
+      expect(find.text('2'), findsNothing);
       expect(find.text('1'), findsOneWidget);
     });
   });
@@ -225,16 +252,21 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: TextFieldWithExpansionView(
-              expansionTitle: 'Expansion',
-              labelText: 'Expansion',
+              expansionTitle: 'Expansion Title',
+              labelText: 'Expansion Label',
             ),
           ),
         ),
       );
 
+      //Verify TextFormField in TextFieldWithExpansionView
       expect(find.byType(TextFormField), findsOneWidget);
+      expect(find.text('Expansion Label'), findsOneWidget);
 
+      //Type newValue to TextFormField
       await tester.enterText(find.byType(TextFormField), 'Hi');
+
+      //Verify TextFormField with newValue
       expect(find.text('Hi'), findsOneWidget);
     });
 
@@ -244,22 +276,30 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: TextFieldWithExpansionView(
-              expansionTitle: 'Expansion',
-              labelText: 'Expansion',
+              expansionTitle: 'Expansion Title',
+              labelText: 'Expansion Label',
               expansionChildren: [Text('After Expand')],
             ),
           ),
         ),
       );
 
+      //Verify Expansion Widget
+      expect(find.text('Expansion Title'), findsOneWidget);
       expect(find.byIcon(Icons.expand_more), findsOneWidget);
 
+      //Tap expansion icon to show expand child
       await tester.tap(find.byIcon(Icons.expand_more));
       await tester.pumpAndSettle();
+
+      //Verify Expansion after expand
       expect(find.text('After Expand'), findsOneWidget);
 
+      //Tap expansion icon to hide expand child
       await tester.tap(find.byIcon(Icons.expand_more));
       await tester.pumpAndSettle();
+
+      //Verify expansion after unExpand
       expect(find.text('After Expand'), findsNothing);
     });
   });

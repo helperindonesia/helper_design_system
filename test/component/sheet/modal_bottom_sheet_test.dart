@@ -18,9 +18,10 @@ void main() {
         ),
       );
 
-      await tester.pump();
+      //Verify before showing BottomSheet
       expect(find.text('BottomSheet'), findsNothing);
 
+      //Show Bottom Sheet
       showModalBottomSheet<dynamic>(
           context: context,
           builder: (BuildContext context) {
@@ -28,10 +29,15 @@ void main() {
           });
 
       await tester.pumpAndSettle();
+
+      //Verify Bottom Sheet
       expect(find.text('BottomSheet'), findsOneWidget);
 
+      //Tap inside Bottom Sheet
       await tester.tap(find.text('BottomSheet'));
       await tester.pumpAndSettle();
+
+      //Verify Bottom Sheet After Tap
       expect(find.text('BottomSheet'), findsOneWidget);
     });
 
@@ -49,9 +55,9 @@ void main() {
         ),
       );
 
-      await tester.pump();
+      //Verify before showing BottomSheet
       expect(find.text('BottomSheet'), findsNothing);
-
+      //Show Bottom Sheet
       showModalBottomSheet<dynamic>(
           context: context,
           builder: (BuildContext context) {
@@ -59,10 +65,15 @@ void main() {
           });
 
       await tester.pumpAndSettle();
+
+      //Verify Bottom Sheet
       expect(find.text('BottomSheet'), findsOneWidget);
 
+      //Tap outside Bottom Sheet
       await tester.tapAt(const Offset(20.0, 20.0));
       await tester.pumpAndSettle();
+
+      //Verify Bottom Sheet After Tap
       expect(find.text('BottomSheet'), findsNothing);
     });
   });

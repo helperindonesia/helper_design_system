@@ -29,14 +29,21 @@ void main() {
         ),
       );
 
+      //Verify default Value of Switch
       expect(value, isFalse);
 
+      //Tap Switch
       await tester.tap(find.byKey(switchKey));
       await tester.pump();
+
+      //Verify newValue(enable) after switch
       expect(value, isTrue);
 
+      //Tap Switch
       await tester.tap(find.byKey(switchKey));
       await tester.pump();
+
+      //Verify newValue(disable) after switch
       expect(value, isFalse);
     });
   });

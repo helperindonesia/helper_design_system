@@ -5,26 +5,53 @@ import 'package:helper_design/helper_design.dart';
 void main() {
   group('Step View', () {
     testWidgets('Step View 1,2,3 Test', (WidgetTester tester) async {
+      // Build our app and trigger a frame.
       await tester.pumpWidget(StepViewTest());
 
-      expect(find.text('Step 1'), findsWidgets);
+      //Verify Widget in Step 1
       expect(find.byIcon(Icons.arrow_back_rounded), findsOneWidget);
+      expect(find.text('Step 1'), findsWidgets);
+      expect(find.text('Step 2'), findsNothing);
+      expect(find.text('Step 3'), findsNothing);
 
+      //Tap icon to Next Step
       await tester.tap(find.byIcon(Icons.chevron_right_rounded));
       await tester.pumpAndSettle();
+
+      //Verify Widget in Step 2
+      expect(find.byIcon(Icons.arrow_back_rounded), findsOneWidget);
+      expect(find.text('Step 1'), findsNothing);
       expect(find.text('Step 2'), findsWidgets);
+      expect(find.text('Step 3'), findsNothing);
 
+      //Tap Icon to Next Step
       await tester.tap(find.byIcon(Icons.chevron_right_rounded));
       await tester.pumpAndSettle();
+
+      //Verify Widget in Step 3
+      expect(find.byIcon(Icons.arrow_back_rounded), findsOneWidget);
+      expect(find.text('Step 1'), findsNothing);
+      expect(find.text('Step 2'), findsNothing);
       expect(find.text('Step 3'), findsWidgets);
 
-      //onBackPress from Step 3
+      //Tap onBackPress
       await tester.tap(find.byIcon(Icons.arrow_back_rounded));
       await tester.pumpAndSettle();
-      expect(find.text('Step 2'), findsWidgets);
 
+      //Verify Widget in Step 2
+      expect(find.byIcon(Icons.arrow_back_rounded), findsOneWidget);
+      expect(find.text('Step 3'), findsNothing);
+      expect(find.text('Step 2'), findsWidgets);
+      expect(find.text('Step 1'), findsNothing);
+
+      //Tap onBackPress
       await tester.tap(find.byIcon(Icons.arrow_back_rounded));
       await tester.pumpAndSettle();
+
+      //Verify Widget in Step 1
+      expect(find.byIcon(Icons.arrow_back_rounded), findsOneWidget);
+      expect(find.text('Step 3'), findsNothing);
+      expect(find.text('Step 2'), findsNothing);
       expect(find.text('Step 1'), findsWidgets);
     });
   });

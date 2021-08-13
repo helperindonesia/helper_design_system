@@ -10,19 +10,28 @@ void main() {
         MaterialApp(
           home: Scaffold(
               body: ExpansionView(
-            title: 'Expansion',
+            title: 'Expansion Title',
             children: [Text('After Expand')],
           )),
         ),
       );
+
+      //Verify Widget
+      expect(find.text('Expansion Title'), findsOneWidget);
       expect(find.byIcon(Icons.expand_more), findsOneWidget);
 
+      //Tap expansion Icon to Expand
       await tester.tap(find.byIcon(Icons.expand_more));
       await tester.pumpAndSettle();
+
+      //Verify After Expand
       expect(find.text('After Expand'), findsOneWidget);
 
+      //Tap expansion Icon to unExpand
       await tester.tap(find.byIcon(Icons.expand_more));
       await tester.pumpAndSettle();
+
+      //Verify After unExpand
       expect(find.text('After Expand'), findsNothing);
     });
   });
