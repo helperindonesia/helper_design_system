@@ -4,18 +4,22 @@ import 'package:helper_design/helper_design.dart';
 
 void main() {
   group('Swipe Button Test', () {
+    bool? _value;
     testWidgets('Swipe Button', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: SwipeButton(
-              onConfirmation: () {},
+              onConfirmation: () {
+                _value = true;
+              },
             ),
           ),
         ),
       );
 
       //Verify Widget
+      expect(_value, isNull);
       expect(find.byIcon(Icons.arrow_circle_up_rounded), findsOneWidget);
 
       //Drag/Swipe Icon to Right
@@ -24,6 +28,7 @@ void main() {
       await tester.pumpAndSettle();
 
       //Verify After Drag/Swipe
+      expect(_value, isTrue);
       expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget);
     });
   });
