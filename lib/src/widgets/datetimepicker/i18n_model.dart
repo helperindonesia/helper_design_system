@@ -1011,7 +1011,7 @@ final _i18nModel = <LocaleType, Map<String, Object>>{
       'November',
       'Desember'
     ],
-    'day': ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Mingu'],
+    'day': ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
     'am': 'AM',
     'pm': 'PM'
   },
