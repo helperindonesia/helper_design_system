@@ -34,6 +34,20 @@ class ModalBottomSheet extends StatelessWidget {
                     ? MainAxisAlignment.spaceBetween
                     : MainAxisAlignment.end,
                 children: [
+                  leftIcon != null
+                      ? BaseButton(
+                          onPressed: onLeftButtonPressed ?? () => () {},
+                          backgroundColor:
+                              backgroundColor ?? HelperColors.white,
+                          height: 40.0,
+                          width: 40.0,
+                          child: Icon(
+                            leftIcon ?? Icons.arrow_back,
+                            size: 24.0,
+                            color: HelperColors.black3,
+                          ),
+                        )
+                      : SizedBox(),
                   BaseButton(
                     onPressed:
                         onRightButtonPressed ?? () => Navigator.pop(context),
@@ -46,20 +60,6 @@ class ModalBottomSheet extends StatelessWidget {
                       color: HelperColors.black3,
                     ),
                   ),
-                  leftIcon != null
-                      ? BaseButton(
-                          onPressed: onLeftButtonPressed ?? () => () {},
-                          backgroundColor:
-                              backgroundColor ?? HelperColors.white,
-                          height: 40.0,
-                          width: 40.0,
-                          child: Icon(
-                            leftIcon ?? Icons.my_location_rounded,
-                            size: 24.0,
-                            color: HelperColors.black3,
-                          ),
-                        )
-                      : SizedBox(),
                 ],
               ),
             ),
