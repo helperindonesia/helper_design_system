@@ -53,7 +53,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
   }
 
   Widget _buildVertical() {
-    return FixedTimeline.tileBuilder(
+    return Timeline.tileBuilder(
       builder: TimelineTileBuilder.connected(
         indicatorPositionBuilder: (_, index) => 0.0,
         nodePositionBuilder: (_, index) => 0.0,
@@ -62,7 +62,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
           return CircleAvatar(
             radius: 14,
             backgroundColor:
-            widget.steps[index].indicatorColor ?? HelperColors.orange,
+                widget.steps[index].indicatorColor ?? HelperColors.orange,
             child: widget.steps[index].indicatorIcon ??
                 Text(
                   '${index + 1}',
@@ -71,18 +71,16 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
                 ),
           );
         },
-        connectorBuilder: (_, index, type) =>
-            Connector.dashedLine(
-              dash: 4,
-              gap: 3,
-              thickness: 0.75,
-              color: widget.steps[index].lineColor ?? HelperColors.orange,
-            ),
-        contentsBuilder: (_, index) =>
-            Container(
-              padding: const EdgeInsets.only(left: 16, bottom: 16),
-              child: widget.steps[index].content,
-            ),
+        connectorBuilder: (_, index, type) => Connector.dashedLine(
+          dash: 4,
+          gap: 3,
+          thickness: 0.75,
+          color: widget.steps[index].lineColor ?? HelperColors.orange,
+        ),
+        contentsBuilder: (_, index) => Container(
+          padding: const EdgeInsets.only(left: 16, bottom: 16),
+          child: widget.steps[index].content,
+        ),
       ),
     );
   }
@@ -101,10 +99,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
           ),
         ),
         Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: ProgressIndicator(
             percentage: 100 / widget.steps.length * (widget.currentStep + 1),
@@ -122,17 +117,18 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
       ],
     );
 
-    if(widget.steps[widget.currentStep].bottomPanel != null) return Stack(
-      children: [
-        column,
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: widget.steps[widget.currentStep].bottomPanel!,
-        ),
-      ],
-    );
+    if (widget.steps[widget.currentStep].bottomPanel != null)
+      return Stack(
+        children: [
+          column,
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: widget.steps[widget.currentStep].bottomPanel!,
+          ),
+        ],
+      );
 
     return column;
   }
