@@ -8,6 +8,7 @@ class ExpansionView extends StatefulWidget {
   const ExpansionView({
     Key? key,
     required this.title,
+    this.subtitle,
     this.onExpansionChanged,
     this.children = const <Widget>[],
     this.trailing,
@@ -26,6 +27,7 @@ class ExpansionView extends StatefulWidget {
   }) : super(key: key);
 
   final String title;
+  final String? subtitle;
   final ValueChanged<bool>? onExpansionChanged;
   final List<Widget> children;
   final Color? backgroundColor;
@@ -117,15 +119,30 @@ class _ExpansionViewState extends State<ExpansionView>
                   EdgeInsets.only(left: 12.0, top: 7, bottom: 7, right: 12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   widget.leading ?? SizedBox(),
                   Expanded(
-                      child: Text(
-                    widget.title,
-                    style: widget.titleStyle ??
-                        HelperThemeData.textTheme.caption
-                            ?.copyWith(color: HelperColors.black5),
-                  )),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.title,
+                          style: widget.titleStyle ??
+                              HelperThemeData.textTheme.bodyText1
+                                  ?.copyWith(color: HelperColors.black5),
+                        ),
+                        widget.subtitle != null
+                            ? Text(
+                                widget.subtitle!,
+                                style: widget.titleStyle ??
+                                    HelperThemeData.textTheme.caption
+                                        ?.copyWith(color: HelperColors.black7),
+                              )
+                            : SizedBox(),
+                      ],
+                    ),
+                  ),
                   widget.trailing ??
                       RotationTransition(
                         turns: _iconTurns,
