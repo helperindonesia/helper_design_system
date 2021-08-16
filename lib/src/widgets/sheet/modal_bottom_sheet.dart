@@ -9,6 +9,7 @@ class ModalBottomSheet extends StatelessWidget {
   final IconData? leftIcon;
   final VoidCallback? onRightButtonPressed;
   final VoidCallback? onLeftButtonPressed;
+  final bool withTopButton;
 
   const ModalBottomSheet({
     Key? key,
@@ -19,6 +20,7 @@ class ModalBottomSheet extends StatelessWidget {
     this.leftIcon,
     this.onRightButtonPressed,
     this.onLeftButtonPressed,
+    this.withTopButton = true,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class ModalBottomSheet extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
+              child: withTopButton ? Row(
                 mainAxisAlignment: leftIcon != null
                     ? MainAxisAlignment.spaceBetween
                     : MainAxisAlignment.end,
@@ -61,7 +63,7 @@ class ModalBottomSheet extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ) : SizedBox(),
             ),
             SizedBox(height: 16.0),
             Container(
