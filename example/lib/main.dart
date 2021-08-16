@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
       home:
-      OrderView()
-      // MyHomePage(title: 'Helper Design Example'),
+          // OrderView()
+          MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -171,7 +171,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               print('confirm : $time}');
                             },
                           ),
-                          SizedBox(height: 50,),
+                          SizedBox(
+                            height: 50,
+                          ),
                           SwipeButton(
                               // disable: true,
                               height: 48.0,
@@ -187,6 +189,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     );
                   },
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    HelperLabel(
+                      text: 'Nego Berhasil',
+                      backgroundColor: HelperColors.green,
+                    ),
+                    SizedBox(width: 10),
+                    HelperLabel(
+                      text: 'Nego Ditolak',
+                      backgroundColor: HelperColors.red,
+                    ),
+                  ],
                 )
               ],
             ),
