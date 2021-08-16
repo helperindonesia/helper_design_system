@@ -3,8 +3,6 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
-import 'order/order.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -17,8 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: HelperThemeData.themeData(),
       home:
-      OrderView()
-      // MyHomePage(title: 'Helper Design Example'),
+          // OrderView()
+          MyHomePage(title: 'Helper Design Example'),
     );
   }
 }
@@ -34,27 +32,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentStep = 0;
-  int _helperCount = 1;
-  TextEditingController _textEditingController = TextEditingController();
-
-  void _incrementCounter() {
-    setState(() {
-      if (_helperCount < 10) _helperCount++;
-      _textEditingController.text = '$_helperCount Orang';
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      if (_helperCount > 1) _helperCount--;
-      _textEditingController.text = '$_helperCount Orang';
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    _textEditingController.text = '$_helperCount Orang';
   }
 
   Future<bool> _onWillPop() async {
@@ -79,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
         ),
         body: Stack(
+          fit: StackFit.expand,
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -92,20 +74,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     (i) => Step(
                       title: 'Tahapan ${i + 1}',
                       content: _buildContent(),
-                      action: Padding(
-                        padding: const EdgeInsets.only(bottom: 70),
-                        child: PrimaryButton.icon(
-                          height: 48,
-                          text: 'Lanjutkan',
-                          onPressed: () {
-                            setState(() {
-                              if (currentStep < 2) currentStep++;
-                            });
-                          },
-                          icon: Icon(
-                            Icons.chevron_right_rounded,
-                            color: Colors.white,
-                          ),
+                      action: PrimaryButton.icon(
+                        height: 48,
+                        text: 'Lanjutkan',
+                        onPressed: () {
+                          setState(() {
+                            if (currentStep < 2) currentStep++;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.chevron_right_rounded,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -113,11 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            DraggableBottomSheet(
-              initialChildSize: 0.1,
-              backgroundColor: Colors.red,
-              child: Column(
-                children: _buildHelper(50),
+            Positioned(
+              child: DraggableBottomSheet(
+                initialChildSize: 0.1,
+                backgroundColor: Colors.red,
+                child: Column(
+                  children: _buildHelper(50),
+                ),
               ),
             ),
           ],
@@ -139,15 +120,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 : null,
             content: Column(
               children: [
-                TextFieldWithExpansionView(
-                  labelText: 'adda',
-                  expansionTitle: 'abc',
-                  expansionChildren: [
-                    ...List.generate(3, (index) => Text('$index')),
-                  ],
+                Card(
+                  child: ExpansionView(
+                    title: 'Membersihkan Kamar Mandi',
+                    subtitle:
+                        index < 2 ? 'Perumahan Apartemen Tidak Indah' : null,
+                    children: [
+                      ...List.generate(3, (index) => Text('$index')),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10),
-                PrimaryButton(
+                /* PrimaryButton(
                   text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet<dynamic>(
@@ -171,7 +155,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               print('confirm : $time}');
                             },
                           ),
-                          SizedBox(height: 50,),
+                          SizedBox(
+                            height: 50,
+                          ),
                           SwipeButton(
                               // disable: true,
                               height: 48.0,
@@ -187,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     );
                   },
-                )
+                )*/
               ],
             ),
           );
@@ -317,14 +303,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {},
                     text:
                         'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?'),
-                SizedBox(height: 10),
-                ChatBubble(
-                    typeMessage: TypeMessage.Receiver,
-                    text:
-                        'Pak saya sudah ada didepan tapi saya lihat pintu masih tertutup pak apakah ada orang?'),
-                SizedBox(height: 10),
-                ChatBubble(
-                    isRead: true, text: 'Pak saya sudah ada didepan tapi'),
                 SizedBox(height: 10),
                 CircleIconButton(
                   onPressed: () {},
