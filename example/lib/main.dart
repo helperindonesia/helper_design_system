@@ -92,15 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Positioned(
-              child: DraggableBottomSheet(
-                initialChildSize: 0.1,
-                backgroundColor: Colors.red,
-                child: Column(
-                  children: _buildHelper(50),
-                ),
-              ),
-            ),
+            // Positioned(
+            //   child: DraggableBottomSheet(
+            //     initialChildSize: 0.1,
+            //     backgroundColor: Colors.red,
+            //     child: Column(
+            //       children: _buildHelper(50),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -182,6 +182,27 @@ class _MyHomePageState extends State<MyHomePage> {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextFieldWithContent(
+                  labelText: 'Ceritakan Kebutuhanmu',
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.edit_outlined,
+                          size: 24.0,color: HelperColors.black3,
+                        ),
+                        SizedBox(width: 12.0),
+                        Text(
+                          'Tulis dengan detail alamat',
+                          style: HelperThemeData.textTheme.caption!
+                              .copyWith(color: HelperColors.black3),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
                 TextFieldCounter(labelText: 'Jumlah Helpermu'),
                 PrimaryButton(text: 'Ini Button', onPressed: () {}),
                 PrimaryButton.icon(
