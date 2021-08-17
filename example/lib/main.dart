@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentStep = 0;
+  int _value = 0;
 
   @override
   void initState() {
@@ -92,15 +93,59 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            // Positioned(
-            //   child: DraggableBottomSheet(
-            //     initialChildSize: 0.1,
-            //     backgroundColor: Colors.red,
-            //     child: Column(
-            //       children: _buildHelper(50),
-            //     ),
-            //   ),
-            // ),
+            Positioned(
+              child: DraggableBottomSheet(
+                initialChildSize: 0.1,
+                backgroundColor: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(children: [
+                    SizedBox(height: 10),
+                    HelperRadioButton<int>(
+                      text: 'Harga Berdasarkan Waktu',
+                      withIcon: true,
+                      value: 1,
+                      groupValue: _value,
+                      onChanged: (value) => setState(() => _value = value!),
+                    ),
+                    HelperRadioButton<int>(
+                      withIcon: true,
+                      text: 'Harga Langsung dari Helper',
+                      value: 2,
+                      groupValue: _value,
+                      onChanged: (value) => setState(() => _value = value!),
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: HelperRadioButton<int>(
+                            withBorder: true,
+                            text: 'Sekarang',
+                            value: 3,
+                            groupValue: _value,
+                            onChanged: (value) =>
+                                setState(() => _value = value!),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: HelperRadioButton<int>(
+                            withBorder: true,
+                            text: 'Jadwalkan',
+                            value: 4,
+                            groupValue: _value,
+                            onChanged: (value) =>
+                                setState(() => _value = value!),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
+                ),
+                // _buildHelper(50),
+              ),
+            ),
           ],
         ),
       ),
@@ -190,7 +235,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Icon(
                           Icons.edit_outlined,
-                          size: 24.0,color: HelperColors.black3,
+                          size: 24.0,
+                          color: HelperColors.black3,
                         ),
                         SizedBox(width: 12.0),
                         Text(
