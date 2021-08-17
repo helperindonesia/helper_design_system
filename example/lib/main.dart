@@ -131,49 +131,95 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                /* PrimaryButton(
+                PrimaryButton(
                   text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet<dynamic>(
+                      isDismissible: false,
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return ModalBottomSheet(children: [
-                          Container(
-                            padding: EdgeInsets.only(top: 16, left: 16.0),
-                            child: Text('Jadwal Pengerjaan'),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 16.0),
-                            child: Text(
-                                'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
-                          ),
-                          DateTimePickerView(
-                            onChanged: (DateTime time) {
-                              print('confirm : $time}');
-                            },
-                          ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          SwipeButton(
-                              // disable: true,
-                              height: 48.0,
-                              width: MediaQuery.of(context).size.width - 30,
-                              onConfirmation: () {
-                                print('onConfirmation');
-                              }),
-                          SizedBox(height: 50.0),
-                          ChatBoxContainer(onSendTap: () {}),
-                          SizedBox(height: 50.0),
-                          SizedBox(height: 50.0),
-                        ]);
+                        return ModalBottomSheet(
+                            withTopButton: false,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(
+                                    top: 48.0, left: 48.0, right: 48.0),
+                                width: MediaQuery.of(context).size.width,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        fit: BoxFit.cover,
+                                        height: 148,
+                                        image: NetworkImage(
+                                          "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 16.0),
+                                    Text('Helper Sudah Siap, Ayo Mulai',
+                                        style: HelperThemeData
+                                            .textTheme.headline5),
+                                    SizedBox(height: 2.0),
+                                    Text(
+                                      'Halo kakak, Saya sekarang sudah berada di toko amazon fresh',
+                                      style: HelperThemeData
+                                          .textTheme.bodyText3!
+                                          .copyWith(color: HelperColors.black3),
+                                    ),
+                                    SizedBox(height: 32.0),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: PrimaryButton(
+                                    text: 'Ok, Mulai', onPressed: () {Navigator.pop(context);}),
+                              ),
+                              SizedBox(height: 16.0),
+                            ]);
+                        //   ModalBottomSheet(children: [
+                        //   Container(
+                        //     padding: EdgeInsets.only(top: 16, left: 16.0),
+                        //     child: Text('Jadwal Pengerjaan'),
+                        //   ),
+                        //   Padding(
+                        //     padding: const EdgeInsets.symmetric(
+                        //         horizontal: 16.0, vertical: 16.0),
+                        //     child: Text(
+                        //         'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
+                        //   ),
+                        //   DateTimePickerView(
+                        //     onChanged: (DateTime time) {
+                        //       print('confirm : $time}');
+                        //     },
+                        //   ),
+                        //   SizedBox(
+                        //     height: 50,
+                        //   ),
+                        //   SwipeButton(
+                        //       // disable: true,
+                        //       height: 48.0,
+                        //       width: MediaQuery.of(context).size.width - 30,
+                        //       onConfirmation: () {
+                        //         print('onConfirmation');
+                        //       }),
+                        //   SizedBox(height: 50.0),
+                        //   ChatBoxContainer(onSendTap: () {}),
+                        //   SizedBox(height: 50.0),
+                        //   SizedBox(height: 50.0),
+                        // ]);
                       },
                     );
                   },
-                )*/
+                )
               ],
             ),
           );
