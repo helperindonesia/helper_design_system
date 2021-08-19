@@ -8,9 +8,21 @@ class DraggableBottomSheet extends StatelessWidget {
   final double? initialChildSize;
   final double? minChildSize;
   final double? maxChildSize;
+  final bool withHeader;
+  final Widget? headerContent;
+  final Color? indicatorColor;
 
   const DraggableBottomSheet(
-      {Key? key, required this.child, this.radius, this.backgroundColor, this.initialChildSize, this.minChildSize, this.maxChildSize})
+      {Key? key,
+      required this.child,
+      this.radius,
+      this.backgroundColor,
+      this.initialChildSize,
+      this.minChildSize,
+      this.maxChildSize,
+      this.withHeader = false,
+      this.headerContent,
+      this.indicatorColor})
       : super(key: key);
 
   @override
@@ -35,20 +47,26 @@ class DraggableBottomSheet extends StatelessWidget {
                 height: 2.0,
                 width: 42.0,
                 decoration: BoxDecoration(
-                    color: HelperColors.black9,
+                    color: indicatorColor ?? HelperColors.orange8,
                     borderRadius: BorderRadius.circular(50.0)),
               ),
-              // ),
+              withHeader
+                  ? SingleChildScrollView(
+                      controller: scrollController,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        color: backgroundColor ?? HelperColors.white,
+                        child: headerContent,
+                      ),
+                    )
+                  : SizedBox(),
               Expanded(
                 child: Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
+                  width: MediaQuery.of(context).size.width,
                   color: backgroundColor ?? HelperColors.white,
                   child: SingleChildScrollView(
                     controller: scrollController,
-                    child: child ?? Container(),
+                    child: child,
                   ),
                 ),
               ),
