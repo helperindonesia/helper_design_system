@@ -92,15 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            // Positioned(
-            //   child: DraggableBottomSheet(
-            //     initialChildSize: 0.1,
-            //     backgroundColor: Colors.red,
-            //     child: Column(
-            //       children: _buildHelper(50),
-            //     ),
-            //   ),
-            // ),
+            Positioned(
+              child: DurationDraggableBottomSheet(onPressed: () {  }, timer: '01 : 10 : 30',
+              child: Column(children: _buildHelper(50),),),
+            ),
           ],
         ),
       ),
