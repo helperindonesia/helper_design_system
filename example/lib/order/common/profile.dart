@@ -33,12 +33,7 @@ class Profile extends StatelessWidget {
     return Stack(
       children: [
         CardContainer(
-          margin: EdgeInsets.only(
-              bottom: 16.0,
-              right: profileType == ProfileType.WithPriceAndNegotiation &&
-                      afterNegotiation
-                  ? 8.0
-                  : 0),
+          margin: EdgeInsets.only(bottom: 16.0),
           children: [
             profileType == ProfileType.WithAutoConfirmation
                 ? CardContainer(
@@ -73,15 +68,6 @@ class Profile extends StatelessWidget {
                 : SizedBox(),
           ],
         ),
-        profileType == ProfileType.WithPriceAndNegotiation && afterNegotiation
-            ? Positioned(
-                bottom: 34,
-                right: 0,
-                child: LabelNegotiation(
-                  text: negotiationSuccess ? 'Nego Berhasil' : 'Nego Ditolak',
-                  negotiationSuccess: negotiationSuccess,
-                ))
-            : SizedBox()
       ],
     );
   }
@@ -196,7 +182,8 @@ class Profile extends StatelessWidget {
                     borderColor: HelperColors.black5,
                     textColor: HelperColors.black3,
                     onPressed: negotiationButtonPress ?? () {})
-                : SizedBox(),
+                : HelperLabel(
+                    backgroundColor: HelperColors.green, text: 'Nego Berhasil'),
           ],
         )
       ],
