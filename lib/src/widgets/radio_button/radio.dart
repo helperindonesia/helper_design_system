@@ -7,7 +7,11 @@ class HRadio<T> extends StatefulWidget {
     required this.value,
     required this.groupValue,
     required this.onChanged,
+    required this.title,
     this.size = 24,
+    this.controlAffinity = ListTileControlAffinity.platform,
+    this.icon,
+    this.withBorder = false,
   }) : super(key: key);
   final T value;
 
@@ -16,6 +20,14 @@ class HRadio<T> extends StatefulWidget {
   final ValueChanged<T?> onChanged;
 
   final double size;
+
+  final ListTileControlAffinity controlAffinity;
+
+  final IconData? icon;
+
+  final bool withBorder;
+
+  final String? title;
 
   bool get _selected => value == groupValue;
 
@@ -35,7 +47,15 @@ class _HRadioState<T> extends State<HRadio<T>> with TickerProviderStateMixin {
     _animations = [
       CurvedAnimation(parent: _controller, curve: Curves.ease),
       ColorTween(
-        begin: HelperColors.black9,
+        begin: HelperColors.black10,
+        end: HelperColors.orange,
+      ).animate(_controller),
+      ColorTween(
+        begin: HelperColors.black10,
+        end: HelperColors.orange9,
+      ).animate(_controller),
+      ColorTween(
+        begin: HelperColors.black3,
         end: HelperColors.orange,
       ).animate(_controller),
     ];
@@ -88,29 +108,71 @@ class _HRadioState<T> extends State<HRadio<T>> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final int alpha = (_animations[0].value * 255).toInt();
 
-    return InkWell(
-      onTap: _handleChanged,
-      child: AnimatedContainer(
-        duration: _controller.duration!,
-        curve: Curves.ease,
-        height: widget.size,
-        width: widget.size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: HelperColors.orange.withAlpha(alpha),
-          border: Border.all(
-            width: 1.0,
-            color: _animations[1].value,
-          ),
+    final Widget control = AnimatedContainer(
+      duration: _controller.duration!,
+      curve: Curves.ease,
+      height: widget.size,
+      width: widget.size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: HelperColors.orange.withAlpha(alpha),
+        border: Border.all(
+          width: 1.0,
+          color: _animations[1].value,
         ),
-        child: widget._selected
-            ? Icon(
-                Icons.check_rounded,
-                color: HelperColors.white,
-                size: widget.size - 4,
-              )
-            : SizedBox.shrink(),
       ),
+      child: widget._selected
+          ? Icon(
+              Icons.check_rounded,
+              color: HelperColors.white,
+              size: widget.size - 4,
+            )
+          : SizedBox.shrink(),
     );
+
+    final Widget? icon = widget.icon != null
+        ? CircleAvatar(
+            backgroundColor: _animations[2].value,
+            radius: 16,
+            child: Icon(
+              Icons.watch_later_rounded,
+              color: _animations[3].value,
+              size: 20,
+            ),
+          )
+        : null;
+
+    Widget? leading, trailing;
+
+    switch (widget.controlAffinity) {
+      case ListTileControlAffinity.leading:
+      case ListTileControlAffinity.platform:
+        leading = control;
+        trailing = icon;
+        break;
+      case ListTileControlAffinity.trailing:
+        leading = icon;
+        trailing = control;
+        break;
+    }
+
+    final Widget tile = ListTile(
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      leading: leading,
+      trailing: trailing,
+      title: Text(widget.title ?? ''),
+      onTap: _handleChanged,
+      horizontalTitleGap: 4,
+    );
+
+    return widget.withBorder
+        ? DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: _animations[1].value, width: 1.0),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: tile,
+          )
+        : tile;
   }
 }
