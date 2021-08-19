@@ -3,6 +3,8 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
+import 'order/order.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: HelperThemeData.themeData(),
-      home:
-          // OrderView()
-          MyHomePage(title: 'Helper Design Example'),
-    );
+        title: 'Flutter Demo',
+        theme: HelperThemeData.themeData(),
+        home:
+        // OrderView()
+        MyHomePage(title: 'Helper Design Example'),
+        );
   }
 }
 
@@ -135,7 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'Show Swipe Button in Modal Bottom Sheet',
                   onPressed: () {
                     showModalBottomSheet<dynamic>(
-                      isDismissible: false,
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       context: context,
@@ -173,15 +174,34 @@ class _MyHomePageState extends State<MyHomePage> {
                                           .textTheme.bodyText3!
                                           .copyWith(color: HelperColors.black3),
                                     ),
-                                    SizedBox(height: 32.0),
+                                    SizedBox(height: 20.0),
+                                    PrimaryCard(onPressed: () {}, boxBorder: Border(),),
+                                    SizedBox(height: 20.0),
+                                    PrimaryCard(
+                                      title: 'Lihat Harga Dulu',
+                                      description:
+                                          'Penawaran harga dari Helpermu',
+                                      onPressed: () {},
+                                      buttonText: 'Lihat Penawaran Lain',
+                                      buttonWidth: 168.0,
+                                      backgroundColor: HelperColors.white,
+                                      illustrationImage:
+                                          'assets/images/illustration_lihat_harga.webp',
+                                      illustrationHeight: 100.0,
+                                      illustrationWidth: 153.0,
+                                    ),
                                   ],
                                 ),
                               ),
+                              SizedBox(height: 16.0),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0),
                                 child: PrimaryButton(
-                                    text: 'Ok, Mulai', onPressed: () {Navigator.pop(context);}),
+                                    text: 'Ok, Mulai',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    }),
                               ),
                               SizedBox(height: 16.0),
                             ]);
@@ -236,7 +256,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Icon(
                           Icons.edit_outlined,
-                          size: 24.0,color: HelperColors.black3,
+                          size: 24.0,
+                          color: HelperColors.black3,
                         ),
                         SizedBox(width: 12.0),
                         Text(
