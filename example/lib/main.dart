@@ -219,6 +219,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     );
                   },
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    HelperLabel(
+                      text: 'Nego Berhasil',
+                      backgroundColor: HelperColors.green,
+                    ),
+                    SizedBox(width: 10),
+                    HelperLabel(
+                      text: 'Nego Ditolak',
+                      backgroundColor: HelperColors.red,
+                    ),
+                  ],
                 )
               ],
             ),
