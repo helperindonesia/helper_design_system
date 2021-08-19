@@ -92,15 +92,61 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            // Positioned(
-            //   child: DraggableBottomSheet(
-            //     initialChildSize: 0.1,
-            //     backgroundColor: Colors.red,
-            //     child: Column(
-            //       children: _buildHelper(50),
-            //     ),
-            //   ),
-            // ),
+            Positioned(
+              child: DraggableBottomSheet(
+                initialChildSize: 0.3,
+                withHeader: true,
+                minChildSize: 0.3,
+                backgroundColor: HelperColors.orange10,
+                headerContent: Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Waktu Pengerjaan',
+                            style: HelperThemeData.textTheme.caption!
+                                .copyWith(color: HelperColors.black3),
+                          ),
+                          SizedBox(height: 2.0),
+                          Text(
+                            '01 : 10 : 30',
+                            style: HelperThemeData.textTheme.headline5!
+                                .copyWith(fontSize: 16.0),
+                          )
+                        ],
+                      ),
+                      OutlinedButton.icon(
+                        onPressed: () {},
+                        text: 'Tambah Waktu',
+                        width: 139.0,
+                        height: 24.0,
+                        backgroundColor: Colors.transparent,
+                        icon: Icon(
+                          Icons.add_circle_rounded,
+                          size: 16.0,
+                          color: HelperColors.orange,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: HelperColors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(16.0),
+                      )),
+                  child: Column(
+                    children: _buildHelper(50),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -181,7 +227,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0),
                                 child: PrimaryButton(
-                                    text: 'Ok, Mulai', onPressed: () {Navigator.pop(context);}),
+                                    text: 'Ok, Mulai',
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    }),
                               ),
                               SizedBox(height: 16.0),
                             ]);
@@ -236,7 +285,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Icon(
                           Icons.edit_outlined,
-                          size: 24.0,color: HelperColors.black3,
+                          size: 24.0,
+                          color: HelperColors.black3,
                         ),
                         SizedBox(width: 12.0),
                         Text(
