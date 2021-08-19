@@ -22,26 +22,27 @@ class PrimaryCard extends StatelessWidget {
   final double? borderWidth;
   final BoxBorder? boxBorder;
 
-  const PrimaryCard(
-      {Key? key,
-      required this.onPressed,
-      this.title,
-      this.description,
-      this.buttonText,
-      this.illustrationImage,
-      this.buttonHeight,
-      this.buttonWidth,
-      this.illustrationHeight,
-      this.illustrationWidth,
-      this.borderColor,
-      this.backgroundColor,
-      this.radius,
-      this.buttonBorderColor,
-      this.width,
-      this.height,
-      this.buttonTextColor,
-      this.borderWidth, this.boxBorder})
-      : super(key: key);
+  const PrimaryCard({
+    Key? key,
+    required this.onPressed,
+    required this.title,
+    required this.description,
+    required this.buttonText,
+    required this.illustrationImage,
+    this.buttonHeight,
+    this.buttonWidth,
+    this.illustrationHeight,
+    this.illustrationWidth,
+    this.borderColor,
+    this.backgroundColor,
+    this.radius,
+    this.buttonBorderColor,
+    this.width,
+    this.height,
+    this.buttonTextColor,
+    this.borderWidth,
+    this.boxBorder,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +52,10 @@ class PrimaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? HelperColors.orange10,
         borderRadius: BorderRadius.circular(radius ?? 12.0),
-        border:
-        boxBorder ?? Border.all(
-            width: borderWidth ?? 0.75,
-            color: borderColor ?? HelperColors.black10),
+        border: boxBorder ??
+            Border.all(
+                width: borderWidth ?? 0.75,
+                color: borderColor ?? HelperColors.black10),
       ),
       child: Stack(
         children: [
