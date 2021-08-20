@@ -49,7 +49,7 @@ class PrimaryCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 14.0),
-            OutlinedButton(
+            HOutlinedButton(
               backgroundColor: Colors.transparent,
               borderColor: HelperColors.white,
               height: 24.0,
@@ -62,7 +62,8 @@ class PrimaryCard extends StatelessWidget {
           ],
         ),
         Image(
-          image: AssetImage(illustrationImage ?? 'assets/images/ilustrasi_beri_tip.webp'),
+          image: AssetImage(
+              illustrationImage ?? 'assets/images/ilustrasi_beri_tip.webp'),
           fit: BoxFit.fill,
           width: 142.0,
           height: 92.0,

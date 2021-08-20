@@ -136,7 +136,7 @@ Widget _footer(VoidCallback onChatPress, VoidCallback onConfirmationPress) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          OutlinedButton.icon(
+          HOutlinedButton.icon(
             height: 24.0,
             width: 71.0,
             onPressed: onChatPress,
@@ -147,7 +147,7 @@ Widget _footer(VoidCallback onChatPress, VoidCallback onConfirmationPress) {
               color: HelperColors.orange,
             ),
           ),
-          OutlinedButton.icon(
+          HOutlinedButton.icon(
             height: 24.0,
             width: 110.0,
             onPressed: onConfirmationPress,

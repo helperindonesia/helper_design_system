@@ -33,7 +33,7 @@ class Profile extends StatelessWidget {
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 6.0),
-                OutlinedButton(
+                HOutlinedButton(
                   height: 24.0,
                   width: 116.0,
                   borderWidth: 0.75,

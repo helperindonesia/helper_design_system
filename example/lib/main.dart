@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           )
                         ],
                       ),
-                      OutlinedButton.icon(
+                      HOutlinedButton.icon(
                         onPressed: () {},
                         text: 'Tambah Waktu',
                         width: 139.0,
@@ -359,7 +359,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        OutlinedButton.icon(
+                        HOutlinedButton.icon(
                           borderColor: HelperColors.black5,
                           width: 82,
                           height: 24,
@@ -373,7 +373,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: HelperColors.black3,
                           ),
                         ),
-                        OutlinedButton.icon(
+                        HOutlinedButton.icon(
                           borderColor: HelperColors.black5,
                           width: 82,
                           height: 24,
@@ -449,11 +449,11 @@ class _MyHomePageState extends State<MyHomePage> {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                OutlinedButton(
+                HOutlinedButton(
                   onPressed: () {},
                   text: 'ABC',
                 ),
-                OutlinedButton.icon(
+                HOutlinedButton.icon(
                   onPressed: () {},
                   icon: Icon(
                     HelperIcons.edit,

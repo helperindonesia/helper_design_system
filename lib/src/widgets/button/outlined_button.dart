@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
-class OutlinedButton extends BaseButton {
+class HOutlinedButton extends BaseButton {
   final String? text;
   final TextStyle? textStyle;
   final Color? borderColor;
@@ -13,7 +13,7 @@ class OutlinedButton extends BaseButton {
   final double? borderWidth;
   final Color? textColor;
 
-  OutlinedButton({
+  HOutlinedButton({
     Key? key,
     this.text,
     this.textStyle,
@@ -39,7 +39,7 @@ class OutlinedButton extends BaseButton {
           borderWidth: borderWidth,
         );
 
-  factory OutlinedButton.icon({
+  factory HOutlinedButton.icon({
     Key? key,
     String text,
     TextStyle? textStyle,
@@ -75,7 +75,7 @@ class OutlinedButton extends BaseButton {
   }
 }
 
-class _OutlinedButtonWithIcon extends OutlinedButton {
+class _OutlinedButtonWithIcon extends HOutlinedButton {
   _OutlinedButtonWithIcon({
     Key? key,
     String text = '',

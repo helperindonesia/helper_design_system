@@ -47,7 +47,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          OutlinedButton.icon(
+          HOutlinedButton.icon(
             borderColor:
                 _counter > 1 ? HelperColors.orange : HelperColors.black9,
             height: 24.0,
@@ -65,7 +65,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
             ),
           ),
           SizedBox(width: 12.0),
-          OutlinedButton.icon(
+          HOutlinedButton.icon(
             height: 24.0,
             width: 24.0,
             onPressed: () {

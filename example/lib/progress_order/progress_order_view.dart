@@ -154,7 +154,7 @@ class _ProgressOrderState extends State<ProgressOrder> {
                             ),
                           ),
                           SizedBox(height: 14.0),
-                          OutlinedButton(
+                          HOutlinedButton(
                             backgroundColor: Colors.transparent,
                             borderColor: HelperColors.white,
                             height: 24.0,
@@ -228,7 +228,7 @@ class _ProgressOrderState extends State<ProgressOrder> {
                           style: HelperThemeData.textTheme.caption!
                               .copyWith(color: HelperColors.black5),
                         ),
-                        OutlinedButton(
+                        HOutlinedButton(
                           borderColor: HelperColors.black5,
                           height: 24.0,
                           width: 74.0,
