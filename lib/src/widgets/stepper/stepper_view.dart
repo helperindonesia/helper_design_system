@@ -53,7 +53,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
   }
 
   Widget _buildVertical() {
-    return Timeline.tileBuilder(
+    return FixedTimeline.tileBuilder(
       builder: TimelineTileBuilder.connected(
         indicatorPositionBuilder: (_, index) => 0.0,
         nodePositionBuilder: (_, index) => 0.0,
