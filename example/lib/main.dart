@@ -3,6 +3,8 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
+import 'order/order.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -121,11 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                       HOutlinedButton.icon(
+                        outlineType: OutlineType.rounded,
                         onPressed: () {},
                         text: 'Tambah Waktu',
-                        width: 139.0,
-                        height: 24.0,
-                        backgroundColor: Colors.transparent,
                         icon: Icon(
                           Icons.add_circle_rounded,
                           size: 16.0,
@@ -189,6 +189,36 @@ class _MyHomePageState extends State<MyHomePage> {
                         return ModalBottomSheet(
                             withTopButton: false,
                             children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: ProfileCard(
+                                  message: true,
+                                  fullName: 'Abdur Razaq',
+                                  rating: 3.0,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: ProfileCard(
+                                  image: true,
+                                  fullName: 'Abdur Razaq',
+                                  imageUrl:
+                                      'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
+                                  rating: 3.0,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: ProfileCard.confirmation(
+                                  message: true,
+                                    rating: 3.0,
+                                    fullName: 'Abdur Razaq',
+                                    value: true,
+                                    onToggle: (_) {}),
+                              ),
                               Container(
                                 margin: const EdgeInsets.only(
                                     top: 48.0, left: 48.0, right: 48.0),
@@ -281,6 +311,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       text: 'Nego Ditolak',
                       backgroundColor: HelperColors.red,
                     ),
+                    SizedBox(width: 10),
+                    HelperLabel(
+                      text: 'Helpcash',
+                      backgroundColor: HelperColors.orange,
+                    ),
                   ],
                 )
               ],
@@ -361,12 +396,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         HOutlinedButton.icon(
                           borderColor: HelperColors.black5,
-                          width: 82,
-                          height: 24,
                           onPressed: () {},
                           text: 'Hapus',
-                          textStyle: HelperThemeData.textTheme.buttonText2!
-                              .copyWith(color: HelperColors.black3),
                           icon: Icon(
                             Icons.remove_circle_rounded,
                             size: 16.0,
@@ -375,12 +406,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         HOutlinedButton.icon(
                           borderColor: HelperColors.black5,
-                          width: 82,
-                          height: 24,
                           onPressed: () {},
                           text: 'Hapus',
-                          textStyle: HelperThemeData.textTheme.buttonText2!
-                              .copyWith(color: HelperColors.black3),
                           icon: Icon(
                             Icons.edit,
                             size: 16.0,
