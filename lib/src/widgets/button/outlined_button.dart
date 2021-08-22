@@ -8,70 +8,44 @@ enum OutlineType { rounded, circle }
 
 class HOutlinedButton extends OutlinedButton {
   final String? text;
-  final TextStyle? textStyle;
   final Color? borderColor;
   final VoidCallback? onPressed;
-  final Color? backgroundColor;
   final double? radius;
-  final double? borderWidth;
   final Color? textColor;
   final OutlineType? outlineType;
 
   HOutlinedButton({
     Key? key,
     this.text,
-    this.textStyle,
     this.borderColor,
     required this.onPressed,
     Widget? child,
-    this.backgroundColor,
     this.radius,
-    this.borderWidth,
     this.textColor,
     this.outlineType = OutlineType.rounded,
+    ButtonStyle? buttonStyle,
   }) : super(
           key: key,
           child: child ??
               Text(
                 text ?? '',
-                style: HelperThemeData.textTheme.buttonText2
-                    ?.copyWith(color: HelperColors.orange),
+                style: defaultTextStyle(textColor: textColor),
               ),
-          style: outlinedButtonStyle(
-            radius: radius,
-            borderColor: borderColor,
-            outlineType: outlineType,
-          ),
+          style: buttonStyle ??
+              outlinedButtonStyle(
+                radius: radius,
+                borderColor: borderColor,
+                outlineType: outlineType,
+              ),
           onPressed: onPressed,
         );
-
-  static ButtonStyle outlinedButtonStyle({
-    double? radius = 16,
-    Color? borderColor,
-    OutlineType? outlineType,
-  }) {
-    return OutlinedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 14),
-        shape: outlineType == OutlineType.rounded
-            ? RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius ?? 16),
-              )
-            : CircleBorder(),
-        side: BorderSide(
-          color: borderColor ?? HelperColors.orange,
-        ));
-  }
 
   factory HOutlinedButton.icon({
     Key? key,
     String? text,
-    TextStyle? textStyle,
     Color? borderColor,
-    double? height,
     required VoidCallback onPressed,
-    double? width,
     required Widget icon,
-    Color? backgroundColor,
     double? radius,
     double? borderWidth,
     Color? textColor,
@@ -82,8 +56,34 @@ class HOutlinedButton extends OutlinedButton {
         icon: icon,
         borderColor: borderColor,
         outlineType: outlineType,
+        radius: radius,
         text: text,
+        textColor: textColor,
       );
+
+  static ButtonStyle outlinedButtonStyle({
+    double? radius,
+    Color? borderColor,
+    OutlineType? outlineType,
+  }) {
+    return OutlinedButton.styleFrom(
+      padding: EdgeInsets.symmetric(horizontal: 14),
+      shape: outlineType == OutlineType.rounded
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius ?? 16),
+            )
+          : CircleBorder(),
+      side: BorderSide(
+        color: borderColor ?? HelperColors.orange,
+      ),
+      // textStyle: defaultTextStyle(),
+    );
+  }
+
+  static TextStyle defaultTextStyle({Color? textColor}) {
+    return HelperThemeData.textTheme.buttonText2!
+        .copyWith(color: textColor ?? HelperColors.orange);
+  }
 }
 
 class _HOutlinedButtonWithIcon extends HOutlinedButton {
@@ -94,13 +94,27 @@ class _HOutlinedButtonWithIcon extends HOutlinedButton {
     required Widget icon,
     OutlineType? outlineType,
     Color? borderColor,
+    double? radius,
+    Color? textColor,
   }) : super(
           key: key,
           onPressed: onPressed,
           outlineType: outlineType,
           borderColor: borderColor,
+          buttonStyle: HOutlinedButton.outlinedButtonStyle(
+            outlineType: outlineType,
+            radius: radius,
+            borderColor: borderColor,
+          ),
           child: text != null
-              ? _OutlinedButtonWithIconChild(label: Text(text), icon: icon)
+              ? _OutlinedButtonWithIconChild(
+                  label: Text(
+                    text,
+                    style:
+                        HOutlinedButton.defaultTextStyle(textColor: textColor),
+                  ),
+                  icon: icon,
+                )
               : icon,
         );
 }
