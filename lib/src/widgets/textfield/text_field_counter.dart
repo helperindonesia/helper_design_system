@@ -50,8 +50,6 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
           HOutlinedButton.icon(
             borderColor:
                 _counter > 1 ? HelperColors.orange : HelperColors.black9,
-            height: 24.0,
-            width: 24.0,
             onPressed: () {
               setState(() {
                 if (_counter > 1) _counter--;
@@ -59,15 +57,13 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
               });
             },
             icon: Icon(
-              Icons.remove_rounded,
+              HelperIcons.mines,
               size: 20.0,
               color: _counter > 1 ? HelperColors.orange : HelperColors.black9,
             ),
           ),
-          SizedBox(width: 12.0),
+          SizedBox(width: 8),
           HOutlinedButton.icon(
-            height: 24.0,
-            width: 24.0,
             onPressed: () {
               setState(() {
                 _counter++;
@@ -75,9 +71,8 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
               });
             },
             icon: Icon(
-              Icons.add_rounded,
+              HelperIcons.plus,
               size: 20.0,
-              color: HelperColors.orange,
             ),
           ),
           SizedBox(width: 12.0),
