@@ -26,18 +26,9 @@ class HOutlinedButton extends OutlinedButton {
     ButtonStyle? buttonStyle,
   }) : super(
           key: key,
-          child: child ??
-              Text(
-                text ?? '',
-                style: defaultTextStyle(textColor: textColor),
-              ),
-          style: buttonStyle ??
-              outlinedButtonStyle(
-                radius: radius,
-                borderColor: borderColor,
-                outlineType: outlineType,
-              ),
+          child: child ?? Text(text ?? ''),
           onPressed: onPressed,
+          style: buttonStyle,
         );
 
   factory HOutlinedButton.icon({
@@ -61,28 +52,55 @@ class HOutlinedButton extends OutlinedButton {
         textColor: textColor,
       );
 
-  static ButtonStyle outlinedButtonStyle({
-    double? radius,
-    Color? borderColor,
-    OutlineType? outlineType,
-  }) {
+  @override
+  ButtonStyle defaultStyleOf(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+
+    final EdgeInsetsGeometry scaledPadding = ButtonStyleButton.scaledPadding(
+      const EdgeInsets.symmetric(horizontal: 16),
+      const EdgeInsets.symmetric(horizontal: 8),
+      const EdgeInsets.symmetric(horizontal: 4),
+      MediaQuery.maybeOf(context)?.textScaleFactor ?? 1,
+    );
+
+    OutlinedBorder? shape;
+
+    switch (outlineType) {
+      case OutlineType.rounded:
+        shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
+        break;
+      case OutlineType.circle:
+        shape = CircleBorder();
+        break;
+      default:
+        shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
+    }
+
     return OutlinedButton.styleFrom(
-      padding: EdgeInsets.symmetric(horizontal: 14),
-      shape: outlineType == OutlineType.rounded
-          ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius ?? 16),
-            )
-          : CircleBorder(),
+      primary: textColor ?? colorScheme.primary,
+      onSurface: colorScheme.onSurface,
+      backgroundColor: Colors.transparent,
+      shadowColor: theme.shadowColor,
+      elevation: 0,
+      textStyle: theme.textTheme.button,
+      padding: scaledPadding,
+      // fixedSize: Size(20, 20),
+      minimumSize: const Size(48, 24),
       side: BorderSide(
         color: borderColor ?? HelperColors.orange,
+        width: 1,
       ),
-      // textStyle: defaultTextStyle(),
+      shape: shape,
+      enabledMouseCursor: SystemMouseCursors.click,
+      disabledMouseCursor: SystemMouseCursors.forbidden,
+      visualDensity: theme.visualDensity,
+      tapTargetSize: theme.materialTapTargetSize,
+      animationDuration: kThemeChangeDuration,
+      enableFeedback: true,
+      alignment: Alignment.center,
+      splashFactory: InkRipple.splashFactory,
     );
-  }
-
-  static TextStyle defaultTextStyle({Color? textColor}) {
-    return HelperThemeData.textTheme.buttonText2!
-        .copyWith(color: textColor ?? HelperColors.orange);
   }
 }
 
@@ -101,18 +119,10 @@ class _HOutlinedButtonWithIcon extends HOutlinedButton {
           onPressed: onPressed,
           outlineType: outlineType,
           borderColor: borderColor,
-          buttonStyle: HOutlinedButton.outlinedButtonStyle(
-            outlineType: outlineType,
-            radius: radius,
-            borderColor: borderColor,
-          ),
+          textColor: textColor,
           child: text != null
               ? _OutlinedButtonWithIconChild(
-                  label: Text(
-                    text,
-                    style:
-                        HOutlinedButton.defaultTextStyle(textColor: textColor),
-                  ),
+                  label: Text(text),
                   icon: icon,
                 )
               : icon,
