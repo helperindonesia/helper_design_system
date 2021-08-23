@@ -193,31 +193,51 @@ class _MyHomePageState extends State<MyHomePage> {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 20),
                                 child: ProfileCard(
-                                  message: true,
                                   fullName: 'Abdur Razaq',
                                   rating: 3.0,
+                                  onChatIconPressed: () {},
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 20),
                                 child: ProfileCard(
-                                  image: true,
                                   fullName: 'Abdur Razaq',
                                   imageUrl:
                                       'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
                                   rating: 3.0,
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    color: HelperColors.red,
+                                  ),
+                                  footer: Container(
+                                    margin: EdgeInsets.all(10),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    color: HelperColors.green,
+                                  ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 20),
                                 child: ProfileCard.confirmation(
-                                  message: true,
-                                    rating: 3.0,
-                                    fullName: 'Abdur Razaq',
-                                    value: true,
-                                    onToggle: (_) {}),
+                                  onChatIconPressed: () {},
+                                  fullName: 'Abdur Razaq',
+                                  imageUrl:
+                                      'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
+                                  rating: 3.0,
+                                  value: true,
+                                  onToggle: (_) {},
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    color: HelperColors.red,
+                                  ),
+                                ),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(
