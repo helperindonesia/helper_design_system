@@ -4,16 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
-enum OutlineType { rounded, circle }
-
 class HOutlinedButton extends OutlinedButton {
-  final String? text;
-  final Color? borderColor;
-  final VoidCallback? onPressed;
-  final double? radius;
-  final Color? textColor;
-  final OutlineType? outlineType;
-
   HOutlinedButton({
     Key? key,
     this.text,
@@ -22,7 +13,6 @@ class HOutlinedButton extends OutlinedButton {
     Widget? child,
     this.radius,
     this.textColor,
-    this.outlineType = OutlineType.rounded,
     ButtonStyle? buttonStyle,
   }) : super(
           key: key,
@@ -30,6 +20,12 @@ class HOutlinedButton extends OutlinedButton {
           onPressed: onPressed,
           style: buttonStyle,
         );
+
+  final String? text;
+  final Color? borderColor;
+  final VoidCallback? onPressed;
+  final double? radius;
+  final Color? textColor;
 
   factory HOutlinedButton.icon({
     Key? key,
@@ -40,16 +36,16 @@ class HOutlinedButton extends OutlinedButton {
     double? radius,
     double? borderWidth,
     Color? textColor,
-    OutlineType? outlineType,
+    double? size = 24,
   }) =>
       _HOutlinedButtonWithIcon(
         onPressed: onPressed,
         icon: icon,
         borderColor: borderColor,
-        outlineType: outlineType,
         radius: radius,
         text: text,
         textColor: textColor,
+        size: size,
       );
 
   @override
@@ -64,18 +60,8 @@ class HOutlinedButton extends OutlinedButton {
       MediaQuery.maybeOf(context)?.textScaleFactor ?? 1,
     );
 
-    OutlinedBorder? shape;
-
-    switch (outlineType) {
-      case OutlineType.rounded:
-        shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
-        break;
-      case OutlineType.circle:
-        shape = CircleBorder();
-        break;
-      default:
-        shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
-    }
+    final OutlinedBorder? shape =
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
 
     return OutlinedButton.styleFrom(
       primary: textColor ?? colorScheme.primary,
@@ -85,8 +71,7 @@ class HOutlinedButton extends OutlinedButton {
       elevation: 0,
       textStyle: theme.textTheme.button,
       padding: scaledPadding,
-      // fixedSize: Size(20, 20),
-      minimumSize: const Size(48, 24),
+      minimumSize: Size(24, 24),
       side: BorderSide(
         color: borderColor ?? HelperColors.orange,
         width: 1,
@@ -110,16 +95,25 @@ class _HOutlinedButtonWithIcon extends HOutlinedButton {
     String? text,
     required VoidCallback? onPressed,
     required Widget icon,
-    OutlineType? outlineType,
     Color? borderColor,
     double? radius,
     Color? textColor,
+    double? size = 24,
   }) : super(
           key: key,
           onPressed: onPressed,
-          outlineType: outlineType,
           borderColor: borderColor,
           textColor: textColor,
+          buttonStyle: text != null
+              ? OutlinedButton.styleFrom(
+                  padding: EdgeInsets.only(
+                      left: 6, right: 10, top: 2.5, bottom: 2.5),
+                )
+              : OutlinedButton.styleFrom(
+                  fixedSize: Size(size!, size),
+                  padding: EdgeInsets.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
           child: text != null
               ? _OutlinedButtonWithIconChild(
                   label: Text(text),
