@@ -106,12 +106,8 @@ class _ProgressOrderViewState extends State<ProgressOrderView> {
               ),
               HOutlinedButton(
                 borderColor: HelperColors.black5,
-                height: 24.0,
-                width: 74.0,
                 onPressed: () {},
                 text: 'Ajukan',
-                textStyle: HelperThemeData.textTheme.buttonText1!
-                    .copyWith(color: HelperColors.black3),
               ),
             ],
           ),

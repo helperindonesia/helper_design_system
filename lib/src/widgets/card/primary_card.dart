@@ -50,14 +50,13 @@ class PrimaryCard extends StatelessWidget {
             ),
             SizedBox(height: 14.0),
             HOutlinedButton(
-              backgroundColor: Colors.transparent,
               borderColor: HelperColors.white,
-              height: 24.0,
-              width: 80.0,
+              // height: 24.0,
+              // width: 80.0,
               onPressed: onPressed,
               text: buttonText ?? 'Beri Tip',
-              textStyle: HelperThemeData.textTheme.buttonText1!
-                  .copyWith(color: HelperColors.white),
+              // textStyle: HelperThemeData.textTheme.buttonText1!
+              //     .copyWith(color: HelperColors.white),
             )
           ],
         ),

@@ -121,9 +121,6 @@ class Profile extends StatelessWidget {
                     ),
                     SizedBox(height: 6.0),
                     HOutlinedButton(
-                      height: 24.0,
-                      width: 116.0,
-                      borderWidth: 0.75,
                       borderColor: HelperColors.black,
                       onPressed: () {},
                       child: Padding(
@@ -191,8 +188,6 @@ class Profile extends StatelessWidget {
             !afterNegotiation
                 ? HOutlinedButton(
                     text: 'Nego harga',
-                    height: 24.0,
-                    width: 107.0,
                     borderColor: HelperColors.black5,
                     textColor: HelperColors.black3,
                     onPressed: negotiationButtonPress ?? () {})

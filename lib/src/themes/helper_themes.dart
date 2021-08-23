@@ -18,7 +18,7 @@ class HelperThemeData {
     secondary: HelperColors.black,
     secondaryVariant: HelperColors.black2,
     surface: Colors.white,
-    background: Colors.transparent,
+    background: Colors.white,
     error: HelperColors.red,
     onPrimary: Colors.white,
     onSecondary: Colors.white,
@@ -87,5 +87,6 @@ class HTextTheme extends TextTheme {
           bodyText2: bodyText2,
           caption: caption,
           overline: overline,
+          button: buttonText2,
         );
 }
