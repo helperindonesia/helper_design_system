@@ -31,7 +31,7 @@ class HOutlinedButton extends OutlinedButton {
     Key? key,
     String? text,
     Color? borderColor,
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
     required Widget icon,
     double? radius,
     double? borderWidth,

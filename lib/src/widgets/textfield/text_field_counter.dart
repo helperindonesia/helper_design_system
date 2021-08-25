@@ -48,18 +48,17 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           HOutlinedButton.icon(
-            borderColor:
-                _counter > 1 ? HelperColors.orange : HelperColors.black9,
-            onPressed: () {
-              setState(() {
-                if (_counter > 1) _counter--;
-                _controller.text = _counter.toString();
-              });
-            },
+            onPressed: _counter == 1
+                ? null
+                : () {
+                    setState(() {
+                      if (_counter > 1) _counter--;
+                      _controller.text = _counter.toString();
+                    });
+                  },
             icon: Icon(
               HelperIcons.mines,
               size: 20.0,
-              color: _counter > 1 ? HelperColors.orange : HelperColors.black9,
             ),
           ),
           SizedBox(width: 8),
