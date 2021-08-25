@@ -88,13 +88,13 @@ void main() {
     });
   });
 
-  group('Outlined Button', () {
-    bool? _value;
-    testWidgets('Outlined Button', (WidgetTester tester) async {
+  group('HOutlined Button', () {
+    testWidgets('HOutlined Button', (WidgetTester tester) async {
+      bool? _value;
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: OutlinedButton(
-            text: 'Outlined Button',
+          body: HOutlinedButton(
+            text: 'HOutlined Button',
             onPressed: () {
               _value = true;
             },
@@ -104,10 +104,34 @@ void main() {
 
       //Verify Widget
       expect(_value, isNull);
-      expect(find.text('Outlined Button'), findsOneWidget);
+      expect(find.text('HOutlined Button'), findsOneWidget);
 
       //Tap Outlined Button
-      await tester.tap(find.text('Outlined Button'));
+      await tester.tap(find.text('HOutlined Button'));
+
+      //Verify Outlined Button after tap
+      expect(_value, isTrue);
+    });
+
+    testWidgets('HOutlined Button With Icon', (WidgetTester tester) async {
+      bool? _value;
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: HOutlinedButton.icon(
+            onPressed: () {
+              _value = true;
+            },
+            icon: Icon(Icons.add),
+          ),
+        ),
+      ));
+
+      //Verify Widget
+      expect(_value, isNull);
+      expect(find.byIcon(Icons.add), findsOneWidget);
+
+      //Tap Outlined Button
+      await tester.tap(find.byIcon(Icons.add));
 
       //Verify Outlined Button after tap
       expect(_value, isTrue);
