@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:helper_design/helper_design.dart';
 
 class HOutlinedButton extends OutlinedButton {
   HOutlinedButton({
@@ -63,7 +63,15 @@ class HOutlinedButton extends OutlinedButton {
     final OutlinedBorder? shape =
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
 
-    return OutlinedButton.styleFrom(
+    final MaterialStateProperty<BorderSide?>? resolvedBorderColor =
+        _HOutlinedButtonResolvedBorderColor(
+      borderColor ?? colorScheme.primary,
+      colorScheme.onSurface,
+    );
+
+    ButtonStyle style = ButtonStyle(side: resolvedBorderColor);
+
+    style = style.merge(OutlinedButton.styleFrom(
       primary: textColor ?? colorScheme.primary,
       onSurface: colorScheme.onSurface,
       backgroundColor: Colors.transparent,
@@ -72,10 +80,6 @@ class HOutlinedButton extends OutlinedButton {
       textStyle: theme.textTheme.button,
       padding: scaledPadding,
       minimumSize: Size(24, 24),
-      side: BorderSide(
-        color: borderColor ?? HelperColors.orange,
-        width: 1,
-      ),
       shape: shape,
       enabledMouseCursor: SystemMouseCursors.click,
       disabledMouseCursor: SystemMouseCursors.forbidden,
@@ -85,7 +89,9 @@ class HOutlinedButton extends OutlinedButton {
       enableFeedback: true,
       alignment: Alignment.center,
       splashFactory: InkRipple.splashFactory,
-    );
+    ));
+
+    return style;
   }
 }
 
@@ -142,5 +148,22 @@ class _OutlinedButtonWithIconChild extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[icon, SizedBox(width: gap), label],
     );
+  }
+}
+
+@immutable
+class _HOutlinedButtonResolvedBorderColor
+    extends MaterialStateProperty<BorderSide?> with Diagnosticable {
+  _HOutlinedButtonResolvedBorderColor(this.primary, this.onSurface);
+
+  final Color? primary;
+  final Color? onSurface;
+
+  @override
+  BorderSide? resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.disabled))
+      return BorderSide(width: 1, color: onSurface!.withOpacity(0.38));
+
+    return BorderSide(width: 1, color: primary!);
   }
 }
