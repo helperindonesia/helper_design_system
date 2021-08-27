@@ -47,27 +47,22 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          OutlinedButton.icon(
-            borderColor:
-                _counter > 1 ? HelperColors.orange : HelperColors.black9,
-            height: 24.0,
-            width: 24.0,
-            onPressed: () {
-              setState(() {
-                if (_counter > 1) _counter--;
-                _controller.text = _counter.toString();
-              });
-            },
+          HOutlinedButton.icon(
+            onPressed: _counter == 1
+                ? null
+                : () {
+                    setState(() {
+                      if (_counter > 1) _counter--;
+                      _controller.text = _counter.toString();
+                    });
+                  },
             icon: Icon(
-              Icons.remove_rounded,
+              HelperIcons.mines,
               size: 20.0,
-              color: _counter > 1 ? HelperColors.orange : HelperColors.black9,
             ),
           ),
-          SizedBox(width: 12.0),
-          OutlinedButton.icon(
-            height: 24.0,
-            width: 24.0,
+          SizedBox(width: 8),
+          HOutlinedButton.icon(
             onPressed: () {
               setState(() {
                 _counter++;
@@ -75,9 +70,8 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
               });
             },
             icon: Icon(
-              Icons.add_rounded,
+              HelperIcons.plus,
               size: 20.0,
-              color: HelperColors.orange,
             ),
           ),
           SizedBox(width: 12.0),

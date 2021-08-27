@@ -108,9 +108,32 @@ class PrimaryCard extends StatelessWidget {
                 )
               ],
             ),
+
           ),
         ],
       ),
+
+            SizedBox(height: 14.0),
+            HOutlinedButton(
+              borderColor: HelperColors.white,
+              // height: 24.0,
+              // width: 80.0,
+              onPressed: onPressed,
+              text: buttonText ?? 'Beri Tip',
+              // textStyle: HelperThemeData.textTheme.buttonText1!
+              //     .copyWith(color: HelperColors.white),
+            )
+          ],
+        ),
+        Image(
+          image: AssetImage(
+              illustrationImage ?? 'assets/images/ilustrasi_beri_tip.webp'),
+          fit: BoxFit.fill,
+          width: 142.0,
+          height: 92.0,
+        ),
+      ],
+
     );
   }
 }

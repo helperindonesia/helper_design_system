@@ -154,15 +154,10 @@ class _ProgressOrderState extends State<ProgressOrder> {
                             ),
                           ),
                           SizedBox(height: 14.0),
-                          OutlinedButton(
-                            backgroundColor: Colors.transparent,
+                          HOutlinedButton(
                             borderColor: HelperColors.white,
-                            height: 24.0,
-                            width: 80.0,
                             onPressed: () {},
                             text: 'Beri Tip',
-                            textStyle: HelperThemeData.textTheme.buttonText1!
-                                .copyWith(color: HelperColors.white),
                           )
                         ],
                       ),
@@ -197,8 +192,10 @@ class _ProgressOrderState extends State<ProgressOrder> {
                         Expanded(
                           child: Text(
                             'Helpcash',
-                            style: HelperThemeData.textTheme.bodyText1!.copyWith(
-                                fontWeight: FontWeight.w700, fontSize: 14.0),
+                            style: HelperThemeData.textTheme.bodyText1!
+                                .copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14.0),
                           ),
                         ),
                         Icon(
@@ -228,14 +225,10 @@ class _ProgressOrderState extends State<ProgressOrder> {
                           style: HelperThemeData.textTheme.caption!
                               .copyWith(color: HelperColors.black5),
                         ),
-                        OutlinedButton(
+                        HOutlinedButton(
                           borderColor: HelperColors.black5,
-                          height: 24.0,
-                          width: 74.0,
                           onPressed: () {},
                           text: 'Ajukan',
-                          textStyle: HelperThemeData.textTheme.buttonText1!
-                              .copyWith(color: HelperColors.black3),
                         ),
                       ],
                     ),

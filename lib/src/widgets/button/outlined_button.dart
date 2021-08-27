@@ -1,164 +1,169 @@
+import 'dart:math' as math;
+import 'dart:ui';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:helper_design/helper_design.dart';
 
-class OutlinedButton extends BaseButton {
-  final String? text;
-  final TextStyle? textStyle;
-  final Color? borderColor;
-  final double? height;
-  final double? width;
-  final VoidCallback? onPressed;
-  final Color? backgroundColor;
-  final double? radius;
-  final double? borderWidth;
-  final Color? textColor;
-
-  OutlinedButton({
+class HOutlinedButton extends OutlinedButton {
+  HOutlinedButton({
     Key? key,
     this.text,
-    this.textStyle,
     this.borderColor,
-    this.height,
     required this.onPressed,
-    this.width,
     Widget? child,
-    this.backgroundColor,
     this.radius,
-    this.borderWidth,
     this.textColor,
+    ButtonStyle? buttonStyle,
   }) : super(
           key: key,
-          backgroundColor: backgroundColor,
-          borderColor: borderColor,
+          child: child ?? Text(text ?? ''),
           onPressed: onPressed,
-          isOutlinedButton: true,
-          width: width,
-          height: height,
-          child: child,
-          radius: radius,
-          borderWidth: borderWidth,
+          style: buttonStyle,
         );
 
-  factory OutlinedButton.icon({
+  final String? text;
+  final Color? borderColor;
+  final VoidCallback? onPressed;
+  final double? radius;
+  final Color? textColor;
+
+  factory HOutlinedButton.icon({
     Key? key,
-    String text,
-    TextStyle? textStyle,
+    String? text,
     Color? borderColor,
-    double? height,
-    required VoidCallback onPressed,
-    double? width,
+    required VoidCallback? onPressed,
     required Widget icon,
-    Color? backgroundColor,
     double? radius,
     double? borderWidth,
     Color? textColor,
-  }) = _OutlinedButtonWithIcon;
+    double? size = 24,
+  }) =>
+      _HOutlinedButtonWithIcon(
+        onPressed: onPressed,
+        icon: icon,
+        borderColor: borderColor,
+        radius: radius,
+        text: text,
+        textColor: textColor,
+        size: size,
+      );
+
+  @override
+  ButtonStyle defaultStyleOf(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+
+    final EdgeInsetsGeometry scaledPadding = ButtonStyleButton.scaledPadding(
+      const EdgeInsets.symmetric(horizontal: 16),
+      const EdgeInsets.symmetric(horizontal: 8),
+      const EdgeInsets.symmetric(horizontal: 4),
+      MediaQuery.maybeOf(context)?.textScaleFactor ?? 1,
+    );
+
+    final OutlinedBorder? shape =
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
+
+    final MaterialStateProperty<BorderSide?>? resolvedBorderColor =
+        _HOutlinedButtonResolvedBorderColor(
+      borderColor ?? colorScheme.primary,
+      colorScheme.onSurface,
+    );
+
+    ButtonStyle style = ButtonStyle(side: resolvedBorderColor);
+
+    style = style.merge(OutlinedButton.styleFrom(
+      primary: textColor ?? colorScheme.primary,
+      onSurface: colorScheme.onSurface,
+      backgroundColor: Colors.transparent,
+      shadowColor: theme.shadowColor,
+      elevation: 0,
+      textStyle: theme.textTheme.button,
+      padding: scaledPadding,
+      minimumSize: Size(24, 24),
+      shape: shape,
+      enabledMouseCursor: SystemMouseCursors.click,
+      disabledMouseCursor: SystemMouseCursors.forbidden,
+      visualDensity: theme.visualDensity,
+      tapTargetSize: theme.materialTapTargetSize,
+      animationDuration: kThemeChangeDuration,
+      enableFeedback: true,
+      alignment: Alignment.center,
+      splashFactory: InkRipple.splashFactory,
+    ));
+
+    return style;
+  }
+}
+
+class _HOutlinedButtonWithIcon extends HOutlinedButton {
+  _HOutlinedButtonWithIcon({
+    Key? key,
+    String? text,
+    required VoidCallback? onPressed,
+    required Widget icon,
+    Color? borderColor,
+    double? radius,
+    Color? textColor,
+    double? size = 24,
+  }) : super(
+          key: key,
+          onPressed: onPressed,
+          borderColor: borderColor,
+          textColor: textColor,
+          buttonStyle: text != null
+              ? OutlinedButton.styleFrom(
+                  padding: EdgeInsets.only(
+                      left: 6, right: 10, top: 2.5, bottom: 2.5),
+                )
+              : OutlinedButton.styleFrom(
+                  fixedSize: Size(size!, size),
+                  padding: EdgeInsets.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+          child: text != null
+              ? _OutlinedButtonWithIconChild(
+                  label: Text(text),
+                  icon: icon,
+                )
+              : icon,
+        );
+}
+
+class _OutlinedButtonWithIconChild extends StatelessWidget {
+  const _OutlinedButtonWithIconChild({
+    Key? key,
+    required this.label,
+    required this.icon,
+  }) : super(key: key);
+
+  final Widget label;
+  final Widget icon;
 
   @override
   Widget build(BuildContext context) {
-    return _OutlineButton(
-      text: text,
-      textStyle: textStyle,
-      borderColor: borderColor,
-      height: height,
-      width: width,
-      onPressed: onPressed,
-      backgroundColor: backgroundColor,
-      radius: radius,
-      borderWidth: borderWidth,
-      child: child ??
-          Text(text ?? '',
-              style: textStyle ??
-                  HelperThemeData.textTheme.buttonText2!
-                      .copyWith(color: textColor ?? HelperColors.orange)),
+    final double scale = MediaQuery.maybeOf(context)?.textScaleFactor ?? 1;
+    final double gap =
+        scale <= 1 ? 8 : lerpDouble(8, 4, math.min(scale - 1, 1))!;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[icon, SizedBox(width: gap), label],
     );
   }
 }
 
-class _OutlinedButtonWithIcon extends OutlinedButton {
-  _OutlinedButtonWithIcon({
-    Key? key,
-    String text = '',
-    TextStyle? textStyle,
-    Color? borderColor,
-    double? height,
-    required VoidCallback? onPressed,
-    double? width,
-    required Widget icon,
-    Color? backgroundColor,
-    double? radius,
-    double? borderWidth,
-    Color? textColor,
-  }) : super(
-          key: key,
-          text: text,
-          textStyle: textStyle,
-          borderColor: borderColor,
-          height: height,
-          onPressed: onPressed,
-          width: width,
-          backgroundColor: backgroundColor,
-          radius: radius,
-          borderWidth: borderWidth,
-          child: text == ''
-              ? icon
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    icon,
-                    SizedBox(width: 4),
-                    Text(
-                      text,
-                      style: textStyle ??
-                          HelperThemeData.textTheme.buttonText2!.copyWith(
-                              color: textColor ?? HelperColors.orange),
-                    )
-                  ],
-                ),
-        );
-}
+@immutable
+class _HOutlinedButtonResolvedBorderColor
+    extends MaterialStateProperty<BorderSide?> with Diagnosticable {
+  _HOutlinedButtonResolvedBorderColor(this.primary, this.onSurface);
 
-class _OutlineButton extends StatelessWidget {
-  final String? text;
-  final TextStyle? textStyle;
-  final Color? borderColor;
-  final double? height;
-  final double? width;
-  final VoidCallback? onPressed;
-  final Widget? child;
-  final Color? backgroundColor;
-  final double? radius;
-  final double? borderWidth;
-
-  const _OutlineButton({
-    Key? key,
-    this.text,
-    this.textStyle,
-    this.borderColor,
-    this.height,
-    this.width,
-    this.onPressed,
-    this.child,
-    this.backgroundColor,
-    this.radius,
-    this.borderWidth,
-  }) : super(key: key);
+  final Color? primary;
+  final Color? onSurface;
 
   @override
-  Widget build(BuildContext context) {
-    return BaseButton(
-      onPressed: onPressed,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
-      borderColor: borderColor,
-      width: width,
-      height: height,
-      isOutlinedButton: true,
-      elevation: 0,
-      child: child,
-      radius: radius,
-      borderWidth: borderWidth,
-    );
+  BorderSide? resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.disabled))
+      return BorderSide(width: 1, color: onSurface!.withOpacity(0.38));
+
+    return BorderSide(width: 1, color: primary!);
   }
 }
