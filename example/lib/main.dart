@@ -3,6 +3,8 @@ import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
 
+import 'order/order.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -92,6 +94,62 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+
+            Positioned(
+              child: DraggableBottomSheet(
+                initialChildSize: 0.3,
+                withHeader: true,
+                minChildSize: 0.3,
+                backgroundColor: HelperColors.orange10,
+                headerContent: Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Waktu Pengerjaan',
+                            style: HelperThemeData.textTheme.caption!
+                                .copyWith(color: HelperColors.black3),
+                          ),
+                          SizedBox(height: 2.0),
+                          Text(
+                            '01 : 10 : 30',
+                            style: HelperThemeData.textTheme.headline5!
+                                .copyWith(fontSize: 16.0),
+                          )
+                        ],
+                      ),
+                      HOutlinedButton.icon(
+                        outlineType: OutlineType.rounded,
+                        onPressed: () {},
+                        text: 'Tambah Waktu',
+                        icon: Icon(
+                          Icons.add_circle_rounded,
+                          size: 16.0,
+                          color: HelperColors.orange,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: HelperColors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(16.0),
+                      )),
+                  child: Column(
+                    children: _buildHelper(50),
+                  ),
+                ),
+              ),
+            ),
+
+
           ],
         ),
       ),
@@ -134,6 +192,56 @@ class _MyHomePageState extends State<MyHomePage> {
                         return ModalBottomSheet(
                             withTopButton: false,
                             children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: ProfileCard(
+                                  fullName: 'Abdur Razaq',
+                                  rating: 3.0,
+                                  onChatIconPressed: () {},
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: ProfileCard(
+                                  fullName: 'Abdur Razaq',
+                                  imageUrl:
+                                      'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
+                                  rating: 3.0,
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    color: HelperColors.red,
+                                  ),
+                                  footer: Container(
+                                    margin: EdgeInsets.all(10),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    color: HelperColors.green,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: ProfileCard.confirmation(
+                                  onChatIconPressed: () {},
+                                  fullName: 'Abdur Razaq',
+                                  imageUrl:
+                                      'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
+                                  rating: 3.0,
+                                  value: true,
+                                  onToggle: (_) {},
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    color: HelperColors.red,
+                                  ),
+                                ),
+                              ),
                               Container(
                                 margin: const EdgeInsets.only(
                                     top: 48.0, left: 48.0, right: 48.0),
@@ -194,6 +302,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     HelperLabel(
                       text: 'Nego Ditolak',
                       backgroundColor: HelperColors.red,
+                    ),
+                    SizedBox(width: 10),
+                    HelperLabel(
+                      text: 'Helpcash',
+                      backgroundColor: HelperColors.orange,
                     ),
                   ],
                 )
@@ -275,6 +388,29 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: HelperThemeData.textTheme.caption!
                               .copyWith(color: HelperColors.black5),
                         ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HOutlinedButton.icon(
+                          borderColor: HelperColors.black5,
+                          onPressed: () {},
+                          text: 'Hapus',
+                          icon: Icon(
+                            Icons.remove_circle_rounded,
+                            size: 16.0,
+                            color: HelperColors.black3,
+                          ),
+                        ),
+                        HOutlinedButton.icon(
+                          borderColor: HelperColors.black5,
+                          onPressed: () {},
+                          text: 'Hapus',
+                          icon: Icon(
+                            Icons.edit,
+                            size: 16.0,
+                            color: HelperColors.black3,
+
                       ),
                       Container(
                           padding: EdgeInsets.symmetric(
@@ -295,6 +431,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               size: 16.0,
                               color: HelperColors.black3,
                             ),
+
                           ),
                           HOutlinedButton.icon(
                             // borderColor: HelperColors.black5,
