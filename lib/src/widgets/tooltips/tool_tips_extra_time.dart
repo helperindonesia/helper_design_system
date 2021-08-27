@@ -35,13 +35,10 @@ class ToolTipsExtraTime extends StatelessWidget {
             ),
             SizedBox(height: 12.0),
             HOutlinedButton(
-                height: 24.0,
+                // height: 24.0,
                 borderColor: HelperColors.white,
-                width: 103.0,
-                backgroundColor: Colors.transparent,
+                // width: 103.0,
                 text: 'Ya, Tambah',
-                textStyle: HelperThemeData.textTheme.buttonText2!
-                    .copyWith(color: HelperColors.white),
                 onPressed: onPressed)
           ],
         ),

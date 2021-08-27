@@ -94,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+
             Positioned(
               child: DraggableBottomSheet(
                 initialChildSize: 0.3,
@@ -147,6 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+
+
           ],
         ),
       ),
@@ -284,37 +287,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               SizedBox(height: 16.0),
                             ]);
-                        //   ModalBottomSheet(children: [
-                        //   Container(
-                        //     padding: EdgeInsets.only(top: 16, left: 16.0),
-                        //     child: Text('Jadwal Pengerjaan'),
-                        //   ),
-                        //   Padding(
-                        //     padding: const EdgeInsets.symmetric(
-                        //         horizontal: 16.0, vertical: 16.0),
-                        //     child: Text(
-                        //         'Kamu bisa melakukan penjadwalan tugas sesuai dengan jadwal yang akan kamu pilih'),
-                        //   ),
-                        //   DateTimePickerView(
-                        //     onChanged: (DateTime time) {
-                        //       print('confirm : $time}');
-                        //     },
-                        //   ),
-                        //   SizedBox(
-                        //     height: 50,
-                        //   ),
-                        //   SwipeButton(
-                        //       // disable: true,
-                        //       height: 48.0,
-                        //       width: MediaQuery.of(context).size.width - 30,
-                        //       onConfirmation: () {
-                        //         print('onConfirmation');
-                        //       }),
-                        //   SizedBox(height: 50.0),
-                        //   ChatBoxContainer(onSendTap: () {}),
-                        //   SizedBox(height: 50.0),
-                        //   SizedBox(height: 50.0),
-                        // ]);
                       },
                     );
                   },
@@ -342,75 +314,81 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         case 1:
-          return Step(
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFieldWithContent(
-                  labelText: 'Ceritakan Kebutuhanmu',
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.edit_outlined,
-                          size: 24.0,
-                          color: HelperColors.black3,
-                        ),
-                        SizedBox(width: 12.0),
-                        Text(
-                          'Tulis dengan detail alamat',
-                          style: HelperThemeData.textTheme.caption!
-                              .copyWith(color: HelperColors.black3),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextFieldCounter(labelText: 'Jumlah Helpermu'),
-                PrimaryButton(text: 'Ini Button', onPressed: () {}),
-                PrimaryButton.icon(
-                  text: 'Ini Button dgn Icon',
-                  onPressed: () {},
-                  icon: Icon(Icons.camera),
-                ),
-                CardContainer(
-                  padding: EdgeInsets.all(12.0),
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Ambil Barang di Kota",
-                            style: HelperThemeData.textTheme.buttonText1!
-                                .copyWith(color: HelperColors.black),
+          return index == 0
+              ? Step(
+                  content: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /* TextFieldWithContent(
+                        labelText: 'Ceritakan Kebutuhanmu',
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.edit_outlined,
+                                size: 24.0,
+                                color: HelperColors.black3,
+                              ),
+                              SizedBox(width: 12.0),
+                              Text(
+                                'Tulis dengan detail alamat',
+                                style: HelperThemeData.textTheme.caption!
+                                    .copyWith(color: HelperColors.black3),
+                              )
+                            ],
                           ),
-                          Icon(
-                            Icons.drag_handle,
-                            color: HelperColors.black8,
-                            size: 24.0,
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 4.0),
-                      child: Text(
-                        'Jln. Perintis Kemerdekaan',
-                        style: HelperThemeData.textTheme.caption!
-                            .copyWith(color: HelperColors.black5),
-                      ),
-                    ),
-                    Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 4.0, vertical: 14.0),
-                        child:
-                            Divider() //TODO: Change Divider to DashLine after Merge
                         ),
+                      ),*/
+                      OutlineTextField(
+                        trailing: Align(
+                          alignment: Alignment.centerRight,
+                          child: HOutlinedButton(
+                            text: 'Peta',
+                            onPressed: () {},
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      TextFieldCounter(labelText: 'Jumlah Helpermu'),
+                      Container(
+                        decoration:
+                            ShapeDecoration(shape: ToolTipsShapeBorder()),
+                      )
+                    ],
+                  ),
+                )
+              : Step(
+                  content: CardContainer(
+                    padding: EdgeInsets.all(12.0),
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Ambil Barang di Kota",
+                              style: HelperThemeData.textTheme.buttonText1!
+                                  .copyWith(color: HelperColors.black),
+                            ),
+                            Icon(
+                              Icons.drag_handle,
+                              color: HelperColors.black8,
+                              size: 24.0,
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 4.0),
+                        child: Text(
+                          'Jln. Perintis Kemerdekaan',
+                          style: HelperThemeData.textTheme.caption!
+                              .copyWith(color: HelperColors.black5),
+                        ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -432,18 +410,43 @@ class _MyHomePageState extends State<MyHomePage> {
                             Icons.edit,
                             size: 16.0,
                             color: HelperColors.black3,
+
+                      ),
+                      Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 4.0, vertical: 14.0),
+                          child:
+                              Divider() //TODO: Change Divider to DashLine after Merge
                           ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                Container(
-                  decoration: ShapeDecoration(shape: ToolTipsShapeBorder()),
-                )
-              ],
-            ),
-          );
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          HOutlinedButton.icon(
+                            borderColor: HelperColors.black5,
+                            onPressed: () {},
+                            text: 'Hapus',
+                            textColor: HelperColors.black5,
+                            icon: Icon(
+                              Icons.remove_circle_rounded,
+                              size: 16.0,
+                              color: HelperColors.black3,
+                            ),
+
+                          ),
+                          HOutlinedButton.icon(
+                            // borderColor: HelperColors.black5,
+                            onPressed: () {},
+                            text: 'Edit',
+                            icon: Icon(
+                              Icons.edit,
+                              size: 16.0,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                );
         case 2:
           return Step(
             content: Column(

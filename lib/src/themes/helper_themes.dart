@@ -8,8 +8,25 @@ class HelperThemeData {
       fontFamily: GoogleFonts.nunito().fontFamily,
       textTheme: textTheme,
       primaryColor: HelperColors.orange,
+      colorScheme: colorScheme,
     );
   }
+
+  static final ColorScheme colorScheme = ColorScheme(
+    primary: HelperColors.orange,
+    primaryVariant: HelperColors.orange5,
+    secondary: HelperColors.black,
+    secondaryVariant: HelperColors.black2,
+    surface: Colors.white,
+    background: Colors.white,
+    error: HelperColors.red,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: HelperColors.black,
+    onBackground: HelperColors.black,
+    onError: Colors.white,
+    brightness: Brightness.light,
+  );
 
   static final HTextTheme textTheme = HTextTheme(
     headline1: TextStyle(
@@ -70,5 +87,6 @@ class HTextTheme extends TextTheme {
           bodyText2: bodyText2,
           caption: caption,
           overline: overline,
+          button: buttonText2,
         );
 }
