@@ -52,8 +52,11 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       shadowColor: HelperColors.black,
       titleSpacing: 0.0,
-      leading: InkWell(
-          onTap: onBackPressed ?? () => Navigator.pop(context), child: leading),
+      leading: leading != null
+          ? InkWell(
+              onTap: onBackPressed ?? () => Navigator.pop(context),
+              child: leading)
+          : null,
       title: title,
       centerTitle: false,
       actions: actions,
@@ -121,20 +124,23 @@ class _HelperAppBarWithImage extends HelperAppBar {
       VoidCallback? onBackPressed,
       List<Widget>? actions,
       double? elevation,
-      Color? backgroundColor})
+      Color? backgroundColor,bool leading = false})
       : super(
             key: key,
-            leading: IconButton(
-              onPressed: onBackPressed,
-              icon: Icon(
-                leadingIcon ?? Icons.arrow_back_rounded,
-                color: HelperColors.black3,
-              ),
-              iconSize: leadingSize ?? 24.0,
-            ),
+            leading: leading
+                ? IconButton(
+                    onPressed: onBackPressed,
+                    icon: Icon(
+                      leadingIcon ?? Icons.arrow_back_rounded,
+                      color: HelperColors.black3,
+                    ),
+                    iconSize: leadingSize ?? 24.0) : null,
             title: Row(
               children: [
                 MediaThumbnail(
+                    margin: leading
+                        ? null
+                        : EdgeInsets.only(left: 16.0),
                     height: 40.0,
                     width: 40.0,
                     borderRadius: BorderRadius.circular(24.0),
