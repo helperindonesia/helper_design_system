@@ -95,45 +95,22 @@ class PrimaryCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 12.0, top: 14.0, bottom: 12.0),
-                  child: OutlinedButton(
-                    backgroundColor: Colors.transparent,
+                  child: HOutlinedButton(
+                    // backgroundColor: Colors.transparent,
                     borderColor: buttonBorderColor ?? HelperColors.orange,
-                    height: buttonHeight ?? 24.0,
-                    width: buttonWidth ?? 80.0,
+                    // height: buttonHeight ?? 24.0,
+                    // width: buttonWidth ?? 80.0,
                     onPressed: onPressed,
                     text: buttonText ?? 'Beri Tip',
-                    textStyle: HelperThemeData.textTheme.buttonText2!.copyWith(
-                        color: buttonTextColor ?? HelperColors.orange),
+                    // textStyle: HelperThemeData.textTheme.buttonText2!.copyWith(
+                    //     color: buttonTextColor ?? HelperColors.orange),
                   ),
                 )
               ],
             ),
-
           ),
         ],
       ),
-
-            SizedBox(height: 14.0),
-            HOutlinedButton(
-              borderColor: HelperColors.white,
-              // height: 24.0,
-              // width: 80.0,
-              onPressed: onPressed,
-              text: buttonText ?? 'Beri Tip',
-              // textStyle: HelperThemeData.textTheme.buttonText1!
-              //     .copyWith(color: HelperColors.white),
-            )
-          ],
-        ),
-        Image(
-          image: AssetImage(
-              illustrationImage ?? 'assets/images/ilustrasi_beri_tip.webp'),
-          fit: BoxFit.fill,
-          width: 142.0,
-          height: 92.0,
-        ),
-      ],
-
     );
   }
 }
