@@ -124,7 +124,8 @@ class _HelperAppBarWithImage extends HelperAppBar {
       VoidCallback? onBackPressed,
       List<Widget>? actions,
       double? elevation,
-      Color? backgroundColor,bool leading = false})
+      Color? backgroundColor,
+      bool leading = false})
       : super(
             key: key,
             leading: leading
@@ -134,13 +135,14 @@ class _HelperAppBarWithImage extends HelperAppBar {
                       leadingIcon ?? Icons.arrow_back_rounded,
                       color: HelperColors.black3,
                     ),
-                    iconSize: leadingSize ?? 24.0) : null,
+                    iconSize: leadingSize ?? 24.0)
+                : null,
             title: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 MediaThumbnail(
-                    margin: leading
-                        ? null
-                        : EdgeInsets.only(left: 16.0),
+                    margin: leading ? null : EdgeInsets.only(left: 16.0),
                     height: 40.0,
                     width: 40.0,
                     borderRadius: BorderRadius.circular(24.0),
