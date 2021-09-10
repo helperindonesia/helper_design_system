@@ -9,6 +9,8 @@ class ProfileCard extends StatelessWidget {
   final double rating;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onChatIconPressed;
+  final VoidCallback? onExpandChildPressed;
+  final IconData? expandIcon;
   final Widget? footer;
 
   const ProfileCard({
@@ -20,6 +22,8 @@ class ProfileCard extends StatelessWidget {
     this.padding,
     this.onChatIconPressed,
     this.footer,
+    this.onExpandChildPressed,
+    this.expandIcon,
   }) : super(key: key);
 
   factory ProfileCard.confirmation({
@@ -67,48 +71,65 @@ class ProfileCard extends StatelessWidget {
                           .copyWith(fontSize: 16.0),
                     ),
                     SizedBox(height: 6),
-                    CardContainer.horizontal(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 14.0, vertical: 4.0),
+                    Row(
                       children: [
-                        Icon(
-                          Icons.thumb_up_rounded,
-                          color: HelperColors.green,
-                          size: 16,
+                        CardContainer.horizontal(
+                          borderColor: HelperColors.black8,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 14.0, vertical: 4.0),
+                          children: [
+                            Icon(
+                              Icons.thumb_up_rounded,
+                              color: HelperColors.green,
+                              size: 16,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              rating.toString(),
+                              style: HelperThemeData.textTheme.buttonText1!
+                                  .copyWith(
+                                fontSize: 12,
+                                color: HelperColors.black4,
+                              ),
+                            ),
+                            Container(
+                              width: 0.75,
+                              height: 15,
+                              margin: EdgeInsets.symmetric(horizontal: 8),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: HelperColors.black8),
+                            ),
+                            Icon(
+                              Icons.emoji_events_rounded,
+                              color: HelperColors.orange,
+                              size: 16,
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              'Jempolan',
+                              style: HelperThemeData.textTheme.buttonText1!
+                                  .copyWith(
+                                fontSize: 12,
+                                color: HelperColors.black4,
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(width: 4),
-                        Text(
-                          rating.toString(),
-                          style:
-                              HelperThemeData.textTheme.buttonText1!.copyWith(
-                            fontSize: 12,
-                            color: HelperColors.black4,
-                          ),
-                        ),
-                        Container(
-                          width: 0.75,
-                          height: 15,
-                          margin: EdgeInsets.symmetric(horizontal: 8),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: HelperColors.black8),
-                        ),
-                        Icon(
-                          Icons.emoji_events_rounded,
-                          color: HelperColors.orange,
-                          size: 16,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          'Jempolan',
-                          style:
-                              HelperThemeData.textTheme.buttonText1!.copyWith(
-                            fontSize: 12,
-                            color: HelperColors.black4,
-                          ),
-                        )
+                        SizedBox(width: 8),
+                        onExpandChildPressed != null
+                            ? HOutlinedButton.icon(
+                                onPressed: onExpandChildPressed,
+                                borderColor: HelperColors.black8,
+                                icon: Icon(
+                                  expandIcon ?? Icons.expand_more_rounded,
+                                  color: HelperColors.black8,
+                                  size: 24,
+                                ),
+                              )
+                            : SizedBox(),
                       ],
                     ),
                   ],
