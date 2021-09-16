@@ -12,10 +12,9 @@ class SwipeButton extends StatefulWidget {
   final Color? backgroundColor;
   final Color? disableBackgroundColor;
   final Color? replaceBackgroundColor;
-  final Color? foregroundColor;
   final Color? iconColor;
-  final IconData? leftIcon;
-  final IconData? rightIcon;
+  final Widget? leftIcon;
+  final Widget? rightIcon;
   final double? iconSize;
   final String? text;
   final TextStyle? textStyle;
@@ -33,7 +32,6 @@ class SwipeButton extends StatefulWidget {
     this.width = 300,
     this.backgroundColor,
     this.disableBackgroundColor,
-    this.foregroundColor,
     this.iconColor,
     this.leftIcon,
     this.text,
@@ -72,7 +70,7 @@ class SwipeButtonState extends State<SwipeButton> {
   Color? getColor() {
     if (!widget.disable) {
       if (_position > 0) {
-        return widget.replaceBackgroundColor ?? HelperColors.green;
+        return widget.replaceBackgroundColor ?? HelperColors.orange;
       } else {
         return widget.backgroundColor ?? HelperColors.orange;
       }
@@ -135,72 +133,72 @@ class SwipeButtonState extends State<SwipeButton> {
           ),
           Center(
             child: Text(
-              widget.text ?? "Tugas Selesai",
+              widget.text ?? "Bantu",
               style: widget.textStyle ??
                   HelperThemeData.textTheme.buttonText1!
                       .copyWith(color: HelperColors.white),
             ),
           ),
-          _isSwipe
-              ? SizedBox()
-              : Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    padding: EdgeInsets.only(right: 16.0),
-                    child: Text(
-                      widget.timer ?? '00:00:00',
-                      style: widget.timerStyle ??
-                          HelperThemeData.textTheme.bodyText1!.copyWith(
-                              fontSize: widget.timerSize ?? 12.0,
-                              color: widget.disable
-                                  ? HelperColors.black3
-                                  : HelperColors.white),
-                    ),
-                  ),
-                ),
           AnimatedPositioned(
             duration: Duration(milliseconds: _duration),
             curve: Curves.bounceOut,
             left: getPosition(),
             child: GestureDetector(
-              onPanUpdate: (details) => updatePosition(details),
-              onPanEnd: (details) => swipeReleased(details),
-              child: !_isSwipe
-                  ? Container(
-                      height: widget.height,
-                      width: widget.height,
-                      decoration: BoxDecoration(
-                        borderRadius: widget.foregroundRadius ??
-                            BorderRadius.all(
-                              Radius.circular(widget.height / 2),
-                            ),
-                        color: widget.foregroundColor ??
-                            HelperColors.white.withOpacity(0.24),
-                      ),
-                      child: Icon(
-                        widget.leftIcon ?? Icons.arrow_circle_up_rounded,
-                        color: widget.iconColor ?? HelperColors.white,
-                        size: widget.iconSize ?? 20.0,
-                      ),
-                    )
-                  : Container(
-                      height: widget.height,
-                      width: widget.height,
-                      decoration: BoxDecoration(
-                        borderRadius: widget.foregroundRadius ??
-                            BorderRadius.all(
-                              Radius.circular(widget.height / 2),
-                            ),
-                        color: widget.foregroundColor ??
-                            HelperColors.white.withOpacity(0.24),
-                      ),
-                      child: Icon(
-                        widget.rightIcon ?? Icons.check_circle_rounded,
-                        color: widget.iconColor ?? HelperColors.white,
-                        size: widget.iconSize ?? 20.0,
-                      ),
-                    ),
-            ),
+                onPanUpdate: (details) => updatePosition(details),
+                onPanEnd: (details) => swipeReleased(details),
+                child: !_isSwipe
+                    ? Container(
+                        height: widget.height,
+                        width: widget.height,
+                        decoration: BoxDecoration(
+                          borderRadius: widget.foregroundRadius ??
+                              BorderRadius.all(
+                                Radius.circular(widget.height / 2),
+                              ),
+                          color: widget.disable
+                              ? HelperColors.black9
+                              : HelperColors.orange,
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                              color: HelperColors.white,
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(widget.height / 2))),
+                          child: widget.leftIcon ??
+                              Icon(
+                                Icons.arrow_circle_up_rounded,
+                                color: widget.disable
+                                    ? HelperColors.black9
+                                    : widget.iconColor ?? HelperColors.orange,
+                                size: widget.iconSize ?? 20.0,
+                              ),
+                        ))
+                    : Container(
+                        height: widget.height,
+                        width: widget.height,
+                        decoration: BoxDecoration(
+                          borderRadius: widget.foregroundRadius ??
+                              BorderRadius.all(
+                                Radius.circular(widget.height / 2),
+                              ),
+                          color: widget.disable
+                              ? HelperColors.black9
+                              : HelperColors.orange,
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                              color: HelperColors.white,
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(widget.height / 2))),
+                          child: widget.rightIcon ??
+                              Icon(
+                                Icons.arrow_circle_up_rounded,
+                                color: widget.iconColor ?? HelperColors.orange,
+                                size: widget.iconSize ?? 20.0,
+                              ),
+                        ))),
           ),
         ],
       ),
