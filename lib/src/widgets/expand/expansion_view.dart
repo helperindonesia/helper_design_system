@@ -24,6 +24,7 @@ class ExpansionView extends StatefulWidget {
     this.titleStyle,
     this.titlePadding,
     this.leading,
+    this.subtitleStyle,
   }) : super(key: key);
 
   final String title;
@@ -41,6 +42,7 @@ class ExpansionView extends StatefulWidget {
   final Color? iconColor;
   final double? iconSize;
   final TextStyle? titleStyle;
+  final TextStyle? subtitleStyle;
   final EdgeInsetsGeometry? titlePadding;
   final Widget? leading;
 
@@ -135,7 +137,7 @@ class _ExpansionViewState extends State<ExpansionView>
                         widget.subtitle != null
                             ? Text(
                                 widget.subtitle!,
-                                style: widget.titleStyle ??
+                                style: widget.subtitleStyle ??
                                     HelperThemeData.textTheme.caption
                                         ?.copyWith(color: HelperColors.black7),
                               )
