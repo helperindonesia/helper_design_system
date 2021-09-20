@@ -15,3 +15,4 @@ export 'stepper/stepper.dart';
 export 'switch/switch.dart';
 export 'textfield/textfield.dart';
 export 'tooltips/tooltips.dart';
+export 'checkbox/check_box.dart';
