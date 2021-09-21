@@ -5,7 +5,7 @@ class HCheckBox<T> extends StatefulWidget {
   const HCheckBox({
     Key? key,
     required this.value,
-    required this.selectedValue,
+    required this.selectedValues,
     required this.onChanged,
     this.size = 24,
     this.withBorder = true,
@@ -20,7 +20,7 @@ class HCheckBox<T> extends StatefulWidget {
   }) : super(key: key);
   final T value;
 
-  final List<T> selectedValue;
+  final List<T> selectedValues;
 
   final ValueChanged<T?> onChanged;
 
@@ -44,7 +44,7 @@ class HCheckBox<T> extends StatefulWidget {
 
   final EdgeInsetsGeometry? childPadding;
 
-  bool get _selected => selectedValue.contains(value);
+  bool get _selected => selectedValues.contains(value);
 
   @override
   _HCheckBoxState createState() => _HCheckBoxState<T>();
