@@ -4,25 +4,27 @@ import 'package:helper_design/helper_design.dart';
 class DraggableBottomSheet extends StatelessWidget {
   final Widget? child;
   final double? radius;
-  final Color? backgroundColor;
+  final Color? childBackgroundColor;
   final double? initialChildSize;
   final double? minChildSize;
   final double? maxChildSize;
   final bool withHeader;
   final Widget? headerContent;
   final Color? indicatorColor;
+  final Color? headerBackgroundColor;
 
   const DraggableBottomSheet(
       {Key? key,
       required this.child,
       this.radius,
-      this.backgroundColor,
+      this.childBackgroundColor,
       this.initialChildSize,
       this.minChildSize,
       this.maxChildSize,
       this.withHeader = false,
       this.headerContent,
-      this.indicatorColor})
+      this.indicatorColor,
+      this.headerBackgroundColor})
       : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class DraggableBottomSheet extends StatelessWidget {
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: BoxDecoration(
-            color: backgroundColor ?? HelperColors.white,
+            color: headerBackgroundColor ?? HelperColors.white,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(radius ?? 16.0),
             ),
@@ -55,7 +57,7 @@ class DraggableBottomSheet extends StatelessWidget {
                       controller: scrollController,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        color: backgroundColor ?? HelperColors.white,
+                        color: headerBackgroundColor ?? HelperColors.white,
                         child: headerContent,
                       ),
                     )
@@ -63,7 +65,11 @@ class DraggableBottomSheet extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  color: backgroundColor ?? HelperColors.white,
+                  decoration: BoxDecoration(
+                      color: childBackgroundColor ?? HelperColors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16))),
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: child,

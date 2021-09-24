@@ -29,6 +29,7 @@ class OutlineTextField extends StatefulWidget {
   final Color? labelColor;
   final int? hintMaxLines;
   final int? minLines;
+  final String? prefixText;
 
   const OutlineTextField({
     Key? key,
@@ -58,6 +59,7 @@ class OutlineTextField extends StatefulWidget {
     this.labelColor,
     this.hintMaxLines,
     this.minLines,
+    this.prefixText,
   }) : super(key: key);
 
   @override
@@ -100,6 +102,8 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         autofocus: widget.autoFocus ?? false,
         style: HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
+          prefixText: widget.prefixText,
+          prefixStyle: HelperThemeData.textTheme.bodyText1,
           hintMaxLines: widget.hintMaxLines,
           prefixIcon: widget.prefixIcon ?? null,
           filled: true,
