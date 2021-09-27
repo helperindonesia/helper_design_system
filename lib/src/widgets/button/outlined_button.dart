@@ -80,6 +80,7 @@ class HOutlinedButton extends OutlinedButton {
       textStyle: theme.textTheme.button,
       padding: scaledPadding,
       minimumSize: Size(24, 24),
+      maximumSize: Size(MediaQuery.of(context).size.width, 56),
       shape: shape,
       enabledMouseCursor: SystemMouseCursors.click,
       disabledMouseCursor: SystemMouseCursors.forbidden,
