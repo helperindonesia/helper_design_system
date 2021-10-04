@@ -34,7 +34,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentStep = 0;
-  double value = 25;
+  double value = 0;
+  double value1 = 0;
   var values = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100];
 
   @override
@@ -55,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double _returnValue(double value) {
+      double result = ((value * 15) / 100);
+      // print('index ${result.round()}');
+      return values[result.round().toInt()].toDouble();
+    }
+
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
@@ -63,23 +70,34 @@ class _MyHomePageState extends State<MyHomePage> {
             mediaUrl:
                 'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
           ),
-          body: Container(
-            child: HSlider(
-              minValue: 0,
-              maxValue: 100,
-              value: value,
-              majorTick: 6,
-              minorTick: 2,
-              labelValuePrecision: 0,
-              tickValuePrecision: 0,
-              onChanged: (val) => setState(() {
-                value = val;
-                print(value);
-              }),
-              activeColor: Colors.orange,
-              inactiveColor: Colors.orange.shade50,
-              groupValues: values,
-            ),
+          body: Column(
+            children: [
+              HSlider(
+                label: _returnValue(value).toString(),
+                value: value,
+                onChanged: (val) {
+                  setState(() {
+                    value = val;
+                    print('Actual Value : ${value}');
+                    print('Expect Value ${_returnValue(value)}');
+                  });
+                },
+              ),
+              Slider(
+                value: value1,
+                onChanged: (double val) {
+                  setState(() {
+                    value1 = val;
+                    print(_returnValue(value1));
+                    // print(value);
+                  });
+                },
+                min: 0,
+                max: 100,
+                divisions: 15,
+                label: _returnValue(value1).toString(),
+              ),
+            ],
           )
           // Stack(
           //   fit: StackFit.expand,
@@ -294,18 +312,18 @@ class _MyHomePageState extends State<MyHomePage> {
           return Step(
               content: Column(
             children: [
-              Slider(
-                min: 0,
-                max: 100,
-                value: value,
-                onChanged: (val) {
-                  setState(() {
-                    value = val;
-                  });
-                },
-                divisions: value >= 50 ? 10 : 20,
-                label: value.toString(),
-              ),
+              // Slider(
+              //   min: 0,
+              //   max: 100,
+              //   value: value,
+              //   onChanged: (val) {
+              //     setState(() {
+              //       value = val;
+              //     });
+              //   },
+              //   divisions: value >= 50 ? 10 : 20,
+              //   label: value.toString(),
+              // ),
               // HSlider()
             ],
           ));
