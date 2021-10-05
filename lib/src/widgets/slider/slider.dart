@@ -152,11 +152,13 @@ class _HSliderState extends State<HSlider> with TickerProviderStateMixin {
 
   void _handleDragStart(double value) {
     assert(widget.onChangeStart != null);
+    print('drag started : $value');
     widget.onChangeStart!(_lerp(value));
   }
 
   void _handleDragEnd(double value) {
     assert(widget.onChangeEnd != null);
+    print('drag ended');
     widget.onChangeEnd!(_lerp(value));
   }
 
@@ -494,7 +496,7 @@ class _RenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMixin {
     _drag = HorizontalDragGestureRecognizer()
       ..team = team
       ..onStart = _handleDragStart
-      // ..onUpdate = _handleDragUpdate
+      ..onUpdate = _handleDragUpdate
       ..onEnd = _handleDragEnd
       ..onCancel = _endInteraction;
     _tap = TapGestureRecognizer()
@@ -586,6 +588,8 @@ class _RenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMixin {
       // whatever the distance, we still do it in _positionAnimationDuration,
       // and if we get re-targeted in the middle, it still takes that long to
       // get to the new location.
+      print(_state.positionController.value);
+
       final double distance = (_value - _state.positionController.value).abs();
 
       print('distance : $distance');
@@ -790,6 +794,7 @@ class _RenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMixin {
   double _getValueFromGlobalPosition(Offset globalPosition) {
     final double visualPosition =
         (globalToLocal(globalPosition).dx - _trackRect.left) / _trackRect.width;
+    print('trackRect.left = ${_trackRect.width}');
     print('visualPosition = $visualPosition');
     return _getValueFromVisualPosition(visualPosition);
   }
@@ -857,7 +862,7 @@ class _RenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMixin {
   }
 
   void _handleDragStart(DragStartDetails details) {
-    print('drag started');
+    // print('drag started');
     _startInteraction(details.globalPosition);
   }
 
@@ -892,6 +897,8 @@ class _RenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMixin {
   }
 
   void _handleTapDown(TapDownDetails details) {
+    print('tap down');
+
     _startInteraction(details.globalPosition);
   }
 
