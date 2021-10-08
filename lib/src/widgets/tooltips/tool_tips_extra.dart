@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart' hide OutlinedButton;
 import 'package:helper_design/helper_design.dart';
 
-class ToolTipsExtraTime extends StatelessWidget {
+class ToolTipsExtra extends StatelessWidget {
   final String? text;
+  final String? buttonText;
   final TextStyle? textStyle;
   final VoidCallback? onPressed;
   final double? padding;
 
-  const ToolTipsExtraTime(
+  const ToolTipsExtra(
       {Key? key,
       required this.text,
       this.textStyle,
       required this.onPressed,
-      this.padding})
+      this.padding,
+      this.buttonText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       decoration: ShapeDecoration(
         shape: ToolTipsShapeBorder(padding: padding ?? 49.0),
         color: HelperColors.black2,
@@ -35,10 +38,9 @@ class ToolTipsExtraTime extends StatelessWidget {
             ),
             SizedBox(height: 12.0),
             HOutlinedButton(
-                // height: 24.0,
+                textColor: HelperColors.white,
                 borderColor: HelperColors.white,
-                // width: 103.0,
-                text: 'Ya, Tambah',
+                text: buttonText ??'Ok, Mengerti',
                 onPressed: onPressed)
           ],
         ),

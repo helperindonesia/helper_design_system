@@ -30,6 +30,8 @@ class OutlineTextField extends StatefulWidget {
   final int? hintMaxLines;
   final int? minLines;
   final String? prefixText;
+  final EdgeInsetsGeometry? contentPadding;
+  final TextStyle? textStyle;
 
   const OutlineTextField({
     Key? key,
@@ -60,6 +62,8 @@ class OutlineTextField extends StatefulWidget {
     this.hintMaxLines,
     this.minLines,
     this.prefixText,
+    this.contentPadding,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -100,7 +104,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
       },
       child: TextFormField(
         autofocus: widget.autoFocus ?? false,
-        style: HelperThemeData.textTheme.bodyText1,
+        style: widget.textStyle ?? HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
           prefixText: widget.prefixText,
           prefixStyle: HelperThemeData.textTheme.bodyText1,
@@ -108,7 +112,8 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
           prefixIcon: widget.prefixIcon ?? null,
           filled: true,
           fillColor: widget.fillColor ?? Colors.white,
-          contentPadding: EdgeInsets.fromLTRB(16.0, 13, 13, 0),
+          contentPadding:
+              widget.contentPadding ?? EdgeInsets.fromLTRB(16.0, 13, 13, 0),
           hintText: widget.hintText,
           hintStyle: HelperThemeData.textTheme.bodyText2
               ?.copyWith(color: HelperColors.black7),
