@@ -8,6 +8,7 @@ class HRadio<T> extends StatefulWidget {
     required this.groupValue,
     required this.onChanged,
     required this.title,
+    this.titleStyle,
     this.size = 24,
     this.controlAffinity = ListTileControlAffinity.platform,
     this.icon,
@@ -28,6 +29,8 @@ class HRadio<T> extends StatefulWidget {
   final bool withBorder;
 
   final String? title;
+
+  final TextStyle? titleStyle;
 
   bool get _selected => value == groupValue;
 
@@ -160,7 +163,7 @@ class _HRadioState<T> extends State<HRadio<T>> with TickerProviderStateMixin {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       leading: leading,
       trailing: trailing,
-      title: Text(widget.title ?? ''),
+      title: Text(widget.title ?? '', style: widget.titleStyle),
       onTap: _handleChanged,
       horizontalTitleGap: 4,
     );
