@@ -117,8 +117,7 @@ class _ExpansionViewState extends State<ExpansionView>
           InkWell(
             onTap: _handleTap,
             child: Container(
-              padding: widget.titlePadding ??
-                  EdgeInsets.only(left: 12.0, top: 7, bottom: 7, right: 12.0),
+              padding: widget.titlePadding ?? EdgeInsets.fromLTRB(12, 7, 12, 7),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +185,7 @@ class _ExpansionViewState extends State<ExpansionView>
     final Widget result = Offstage(
       child: TickerMode(
         child: Padding(
-          padding: widget.childrenPadding ?? EdgeInsets.fromLTRB(16, 0, 12, 16),
+          padding: widget.childrenPadding ?? EdgeInsets.fromLTRB(12, 0, 12, 16),
           child: Column(
             crossAxisAlignment:
                 widget.expandedCrossAxisAlignment ?? CrossAxisAlignment.center,
