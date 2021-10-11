@@ -6,10 +6,13 @@ class TextFieldCounter extends StatefulWidget {
     Key? key,
     this.labelText,
     this.value,
+    this.valueText = '',
     this.onSaved,
   }) : super(key: key);
 
   final int? value;
+
+  final String valueText;
 
   final String? labelText;
 
@@ -27,8 +30,9 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
   @override
   void initState() {
     super.initState();
-    _controller.text =
-        widget.value != null ? widget.value.toString() : _counter.toString();
+    _controller.text = widget.value != null
+        ? widget.value.toString() + widget.valueText
+        : _counter.toString() + widget.valueText;
     _counter = widget.value ?? 1;
   }
 
@@ -53,7 +57,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
                 : () {
                     setState(() {
                       if (_counter > 1) _counter--;
-                      _controller.text = _counter.toString();
+                      _controller.text = _counter.toString() + widget.valueText;
                     });
                   },
             icon: Icon(
@@ -66,7 +70,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
             onPressed: () {
               setState(() {
                 _counter++;
-                _controller.text = _counter.toString();
+                _controller.text = _counter.toString() + widget.valueText;
               });
             },
             icon: Icon(
