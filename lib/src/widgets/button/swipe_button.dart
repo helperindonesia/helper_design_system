@@ -22,6 +22,7 @@ class SwipeButton extends StatefulWidget {
   final BorderRadius? foregroundRadius;
   final BorderRadius? backgroundRadius;
   final bool disable;
+  final bool showLoadingIndicator;
 
   const SwipeButton({
     Key? key,
@@ -43,21 +44,29 @@ class SwipeButton extends StatefulWidget {
     this.iconSize,
     this.replaceBackgroundColor,
     this.disable = false,
+    this.showLoadingIndicator = false,
   });
 
   @override
-  State<StatefulWidget> createState() {
-    return SwipeButtonState();
-  }
+  State<SwipeButton> createState() => _SwipeButtonState();
 }
 
-class SwipeButtonState extends State<SwipeButton> {
+class _SwipeButtonState extends State<SwipeButton> {
   double _position = 0;
   int _duration = 0;
   bool _isSwipe = false;
 
+  @override
+  void initState() {
+    _isSwipe = widget.showLoadingIndicator;
+    super.initState();
+  }
+
   double getPosition() {
     if (widget.disable) _position = 0;
+
+    if (widget.showLoadingIndicator) _position = widget.width;
+
     if (_position < 0) {
       return 0;
     } else if (_position > widget.width - widget.height) {
@@ -79,7 +88,7 @@ class SwipeButtonState extends State<SwipeButton> {
     }
   }
 
-  void updatePosition(details) {
+  void _updatePosition(details) {
     if (!widget.disable) {
       if (details is DragEndDetails) {
         setState(() {
@@ -87,6 +96,7 @@ class SwipeButtonState extends State<SwipeButton> {
           _position = _isSwipe ? widget.width : 0;
         });
       } else if (details is DragUpdateDetails) {
+        print(details.localPosition);
         setState(() {
           _duration = 0;
           _position = _isSwipe
@@ -99,12 +109,12 @@ class SwipeButtonState extends State<SwipeButton> {
     }
   }
 
-  void swipeReleased(details) {
+  void _swipeReleased(details) {
     if (_position > widget.width - widget.height) {
-      widget.onConfirmation();
+      if (!widget.showLoadingIndicator) widget.onConfirmation();
       _isSwipe = true;
     }
-    updatePosition(details);
+    _updatePosition(details);
   }
 
   @override
@@ -144,61 +154,61 @@ class SwipeButtonState extends State<SwipeButton> {
             curve: Curves.bounceOut,
             left: getPosition(),
             child: GestureDetector(
-                onPanUpdate: (details) => updatePosition(details),
-                onPanEnd: (details) => swipeReleased(details),
-                child: !_isSwipe
-                    ? Container(
-                        height: widget.height,
-                        width: widget.height,
+              onPanUpdate: _updatePosition,
+              onPanEnd: _swipeReleased,
+              child: !_isSwipe
+                  ? Container(
+                      height: widget.height,
+                      width: widget.height,
+                      decoration: BoxDecoration(
+                        borderRadius: widget.foregroundRadius ??
+                            BorderRadius.all(
+                              Radius.circular(widget.height / 2),
+                            ),
+                        color: widget.disable
+                            ? HelperColors.black9
+                            : HelperColors.orange,
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                          borderRadius: widget.foregroundRadius ??
-                              BorderRadius.all(
-                                Radius.circular(widget.height / 2),
-                              ),
-                          color: widget.disable
-                              ? HelperColors.black9
-                              : HelperColors.orange,
+                          color: HelperColors.white,
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(widget.height / 2)),
                         ),
-                        child: Container(
-                          margin: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                              color: HelperColors.white,
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(widget.height / 2))),
-                          child: widget.leftIcon ??
-                              Icon(
-                                Icons.arrow_circle_up_rounded,
-                                color: widget.disable
-                                    ? HelperColors.black9
-                                    : widget.iconColor ?? HelperColors.orange,
-                                size: widget.iconSize ?? 20.0,
-                              ),
-                        ))
-                    : Container(
-                        height: widget.height,
-                        width: widget.height,
+                        child: widget.leftIcon ??
+                            Icon(
+                              Icons.arrow_circle_up_rounded,
+                              color: widget.disable
+                                  ? HelperColors.black9
+                                  : widget.iconColor ?? HelperColors.orange,
+                              size: widget.iconSize ?? 20.0,
+                            ),
+                      ))
+                  : Container(
+                      height: widget.height,
+                      width: widget.height,
+                      decoration: BoxDecoration(
+                        borderRadius: widget.foregroundRadius ??
+                            BorderRadius.all(
+                              Radius.circular(widget.height / 2),
+                            ),
+                        color: widget.disable
+                            ? HelperColors.black9
+                            : HelperColors.orange,
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                          borderRadius: widget.foregroundRadius ??
-                              BorderRadius.all(
-                                Radius.circular(widget.height / 2),
-                              ),
-                          color: widget.disable
-                              ? HelperColors.black9
-                              : HelperColors.orange,
+                          color: HelperColors.white,
+                          borderRadius:
+                              BorderRadius.circular(widget.height / 2),
                         ),
-                        child: Container(
-                          margin: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                              color: HelperColors.white,
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(widget.height / 2))),
-                          child: widget.rightIcon ??
-                              Icon(
-                                Icons.arrow_circle_up_rounded,
-                                color: widget.iconColor ?? HelperColors.orange,
-                                size: widget.iconSize ?? 20.0,
-                              ),
-                        ))),
+                        child: CircularProgressIndicator(strokeWidth: 2.0),
+                      ),
+                    ),
+            ),
           ),
         ],
       ),
