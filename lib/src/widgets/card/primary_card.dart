@@ -4,7 +4,9 @@ import '../../../helper_design.dart';
 
 class PrimaryCard extends StatelessWidget {
   final String title;
+  final TextStyle? titleStyle;
   final String description;
+  final TextStyle? descriptionStyle;
   final String buttonText;
   final double? buttonHeight;
   final double? buttonWidth;
@@ -25,7 +27,9 @@ class PrimaryCard extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.title,
+    this.titleStyle,
     required this.description,
+    this.descriptionStyle,
     required this.buttonText,
     required this.illustrationImage,
     this.buttonHeight,
@@ -62,19 +66,17 @@ class PrimaryCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0, left: 16.0),
-                  child: Text(
-                    title,
-                    style: HelperThemeData.textTheme.bodyText2!.copyWith(
-                      letterSpacing: 0.8 / 100,
-                    ),
-                  ),
+                  child: Text(title,
+                      style:
+                          titleStyle ?? HelperThemeData.textTheme.buttonText1),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
                     description,
-                    style: HelperThemeData.textTheme.caption!
-                        .copyWith(color: HelperColors.black3),
+                    style: descriptionStyle ??
+                        HelperThemeData.textTheme.caption!
+                            .copyWith(color: HelperColors.black4),
                   ),
                 ),
                 Padding(
