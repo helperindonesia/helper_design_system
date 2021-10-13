@@ -14,6 +14,10 @@ class HBottomNavBar extends StatelessWidget {
     required this.items,
     required this.onItemSelected,
     this.curve = Curves.easeInOut,
+    this.textSelectedColor,
+    this.textUnSelectedColor,
+    this.selectedIconColor,
+    this.unSelectedIconColor,
   })  : assert(items.length >= 2 && items.length <= 5),
         super(key: key);
 
@@ -27,10 +31,16 @@ class HBottomNavBar extends StatelessWidget {
   final double itemCornerRadius;
   final double containerHeight;
   final Curve curve;
+  final Color? textSelectedColor;
+  final Color? textUnSelectedColor;
+  final Color? selectedIconColor;
+  final Color? unSelectedIconColor;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Material(
+      borderRadius: BorderRadius.circular(32),
+      elevation: 1.5,
       child: Container(
         height: containerHeight,
         padding: EdgeInsets.all(8),
@@ -52,6 +62,10 @@ class HBottomNavBar extends StatelessWidget {
                 itemCornerRadius: itemCornerRadius,
                 animationDuration: animationDuration,
                 curve: curve,
+                textSelectedColor: textSelectedColor ?? HelperColors.white,
+                textUnSelectedColor: textUnSelectedColor ?? HelperColors.black3,
+                selectedIconColor: selectedIconColor ?? HelperColors.white,
+                unSelectedIconColor: unSelectedIconColor ?? HelperColors.black3,
               ),
             );
           }).toList(),
@@ -69,6 +83,10 @@ class _ItemWidget extends StatelessWidget {
   final double itemCornerRadius;
   final Duration animationDuration;
   final Curve curve;
+  final Color? textSelectedColor;
+  final Color? textUnSelectedColor;
+  final Color? selectedIconColor;
+  final Color? unSelectedIconColor;
 
   const _ItemWidget({
     Key? key,
@@ -79,6 +97,10 @@ class _ItemWidget extends StatelessWidget {
     required this.itemCornerRadius,
     required this.iconSize,
     this.curve = Curves.linear,
+    this.textSelectedColor,
+    this.textUnSelectedColor,
+    this.selectedIconColor,
+    this.unSelectedIconColor,
   }) : super(key: key);
 
   @override
@@ -125,8 +147,8 @@ class _ItemWidget extends StatelessWidget {
                         data: IconThemeData(
                             size: iconSize,
                             color: isSelected
-                                ? HelperColors.white
-                                : HelperColors.black3),
+                                ? selectedIconColor
+                                : unSelectedIconColor),
                         child: item.icon,
                       ),
                       SizedBox(width: 4),
@@ -134,8 +156,8 @@ class _ItemWidget extends StatelessWidget {
                         item.title,
                         style: HelperThemeData.textTheme.buttonText2!.copyWith(
                             color: isSelected
-                                ? HelperColors.white
-                                : HelperColors.black3),
+                                ? textSelectedColor
+                                : textUnSelectedColor),
                       )
                     ],
                   ),
