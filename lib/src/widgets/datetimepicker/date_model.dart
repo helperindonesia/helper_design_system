@@ -57,7 +57,7 @@ class CommonPickerModel extends BasePickerModel {
   late LocaleType locale;
 
   CommonPickerModel({LocaleType? locale})
-      : this.locale = locale ?? LocaleType.id;
+      : this.locale = locale ?? LocaleType.en;
 
   @override
   String? leftStringAtIndex(int index) {
@@ -132,9 +132,9 @@ class DateTimePickerModel extends CommonPickerModel {
 
   DateTimePickerModel(
       {DateTime? currentTime,
-      DateTime? maxTime,
-      DateTime? minTime,
-      LocaleType? locale})
+        DateTime? maxTime,
+        DateTime? minTime,
+        LocaleType? locale})
       : super(locale: locale) {
     if (currentTime != null) {
       this.currentTime = currentTime;
@@ -299,7 +299,7 @@ class DateTimePickerModel extends CommonPickerModel {
 
   @override
   List<int> layoutProportions() {
-    return [1, 1, 1];
+    return [2, 1, 1];
   }
 
   @override

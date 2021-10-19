@@ -81,7 +81,7 @@ final _i18nModel = <LocaleType, Map<String, Object>>{
     'dayLong': ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
     'am': 'AM',
     'pm': 'PM'
-  },
+  }
 };
 
 /// Get international object for [localeType]

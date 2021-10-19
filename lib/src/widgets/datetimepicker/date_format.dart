@@ -93,19 +93,14 @@ const String WW = 'WW';
 ///     // => 8
 const String W = 'W';
 
-/// Outputs week day as short name
+/// Outputs week day as long name
 ///
 /// Example:
 ///     formatDate(new DateTime(2018, 1, 14), [D]);
 ///     // => sun
 const String D = 'D';
 
-/// Outputs week day as long name
-///
-/// Example:
-///     formatDate(new DateTime(2018, 1, 14), [D]);
-///     // => sunday
-const String DD = 'DD';
+const String DD= 'DD';
 
 /// Outputs hour (0 - 11) as two digits
 ///
@@ -237,15 +232,15 @@ String formatDate(DateTime date, List<String> formats, LocaleType locale) {
       return i18nObjInLocale(locale)['today'] as String;
     } else if (date.year == now.year) {
       if (locale == LocaleType.id) {
-        return formatDate(date, [DD, ', ', dd, ' ', M], locale);
+        return formatDate(date, [D, ', ', dd, ' ', M], locale);
       } else {
-        return formatDate(date, [DD, ' ', M, ' ', dd], locale);
+        return formatDate(date, [D, ' ', M, ' ', dd], locale);
       }
     } else {
       if (locale == LocaleType.id) {
-        return formatDate(date, [DD, ', ', dd, ' ', M, ' ', yyyy], locale);
+        return formatDate(date, [D, ', ', dd, ' ', M, ' ', yyyy], locale);
       } else {
-        return formatDate(date, [DD, ' ', M, ' ', dd, ', ', yyyy], locale);
+        return formatDate(date, [D, ' ', M, ' ', dd, ', ', yyyy], locale);
       }
     }
   }
@@ -263,11 +258,11 @@ String formatDate(DateTime date, List<String> formats, LocaleType locale) {
       sb.write(date.month);
     } else if (format == MM) {
       final monthLong =
-          i18nObjInLocaleLookup(locale, 'monthLong', date.month - 1);
+      i18nObjInLocaleLookup(locale, 'monthLong', date.month - 1);
       sb.write(monthLong);
     } else if (format == M) {
       final monthShort =
-          i18nObjInLocaleLookup(locale, 'monthShort', date.month - 1);
+      i18nObjInLocaleLookup(locale, 'monthShort', date.month - 1);
       sb.write(monthShort);
     } else if (format == dd) {
       sb.write(digits(date.day, 2));
@@ -280,11 +275,11 @@ String formatDate(DateTime date, List<String> formats, LocaleType locale) {
     } else if (format == WW) {
       sb.write(digits((dayInYear(date) + 7) ~/ 7, 2));
     } else if (format == D) {
-      String dayShort = i18nObjInLocaleLookup(locale, 'dayShort', date.weekday - 1);
-      sb.write(dayShort);
-    } else if(format == DD){
-      String dayLong = i18nObjInLocaleLookup(locale, 'dayLong', date.weekday - 1);
-      sb.write(dayLong);
+      String day = i18nObjInLocaleLookup(locale, 'dayShort', date.weekday - 1);
+      sb.write(day);
+    } else if(format == DD) {
+      String day = i18nObjInLocaleLookup(locale, 'dayLong', date.weekday - 1);
+      sb.write(day);
     }else if (format == HH) {
       sb.write(digits(date.hour, 2));
     } else if (format == H) {
@@ -333,6 +328,7 @@ String formatDate(DateTime date, List<String> formats, LocaleType locale) {
       sb.write(format);
     }
   }
+
   return sb.toString();
 }
 
