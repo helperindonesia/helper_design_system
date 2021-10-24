@@ -10,6 +10,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final double? elevation;
   final Color? backgroundColor;
+  final TextStyle? toolbarTextStyle;
 
   const HelperAppBar({
     Key? key,
@@ -21,6 +22,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.elevation,
     this.backgroundColor,
+    this.toolbarTextStyle,
   }) : super(key: key);
 
   factory HelperAppBar.helpIcon({
@@ -62,6 +64,11 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       elevation: elevation ?? 4 / 100,
       backgroundColor: backgroundColor ?? HelperColors.white,
+      titleTextStyle: toolbarTextStyle ??
+          Theme.of(context)
+              .textTheme
+              .headline6!
+              .copyWith(color: HelperColors.black2),
     );
   }
 
