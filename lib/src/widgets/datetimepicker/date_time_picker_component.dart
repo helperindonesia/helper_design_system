@@ -6,51 +6,16 @@ typedef DateChangedCallback(DateTime time);
 typedef DateCancelledCallback();
 typedef String? StringAtIndexCallBack(int index);
 
-class DateTimePickerView extends StatelessWidget {
-  final DateTime? minTime;
-  final DateTime? maxTime;
-  final DateChangedCallback? onChanged;
-  final LocaleType? locale;
-  final DateTime? currentTime;
-  final DatePickerTheme? theme;
-
-  const DateTimePickerView({
-    Key? key,
-    this.minTime,
-    this.maxTime,
-    required this.onChanged,
-    this.locale,
-    this.currentTime,
-    this.theme,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return _DatePickerComponent(
-      theme: theme,
-      onChanged: onChanged,
-      pickerModel: DateTimePickerModel(
-        currentTime: currentTime ?? DateTime.now().add(Duration(hours: 3)),
-        minTime: minTime ?? DateTime.now(),
-        maxTime: maxTime,
-        locale: locale ?? LocaleType.id,
-      ),
-    );
-  }
-}
-
-class _DatePickerComponent extends StatefulWidget {
-  _DatePickerComponent({
+class DateTimePickerComponent extends StatefulWidget {
+  DateTimePickerComponent({
     Key? key,
     required this.pickerModel,
     this.onChanged,
-    this.locale,
     this.theme,
   }) : super(key: key);
 
   final DateChangedCallback? onChanged;
   final DatePickerTheme? theme;
-  final LocaleType? locale;
 
   final BasePickerModel pickerModel;
 
@@ -60,7 +25,7 @@ class _DatePickerComponent extends StatefulWidget {
   }
 }
 
-class _DatePickerState extends State<_DatePickerComponent> {
+class _DatePickerState extends State<DateTimePickerComponent> {
   late FixedExtentScrollController leftScrollCtrl,
       middleScrollCtrl,
       rightScrollCtrl;
