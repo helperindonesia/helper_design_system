@@ -5,7 +5,7 @@ class HelperColors {
   static const Color black = Color(0xFF313131);
   static const Color white = Color(0xFFFFFFFF);
 
-  static const Color green = Color(0xFF48B759);
+  static const Color green = Color(0xFF28A745);
   static const Color red = Color(0xFFD93B3B);
   static const Color blue = Color(0xFF0069D9);
 
@@ -29,18 +29,33 @@ class HelperColors {
   static const Color black9 = Color(0xFFD5D5D5);
   static const Color black10 = Color(0xFFEAEAEA);
 
-  static const Color green2 = Color(0xFF5ABE69);
-  static const Color green3 = Color(0xFF6CC57A);
-  static const Color green4 = Color(0xFF7ECC8A);
-  static const Color green5 = Color(0xFF91D39B);
+  static const Color green2 = Color(0xFF48B759);
+  static const Color green3 = Color(0xFF5ABE69);
+  static const Color green4 = Color(0xFF6CC57A);
+  static const Color green5 = Color(0xFF7ECC8A);
+  static const Color green6 = Color(0xFF93D3A2);
+  static const Color green7 = Color(0xFFA9DBB4);
+  static const Color green8 = Color(0xFFBEE4C7);
+  static const Color green9 = Color(0xFFD4EDD9);
+  static const Color green10 = Color(0xFFE9F6EB);
 
   static const Color red2 = Color(0xFFDC4E4E);
   static const Color red3 = Color(0xFFE06262);
   static const Color red4 = Color(0xFFE47575);
   static const Color red5 = Color(0xFFE88989);
+  static const Color red6 = Color(0xFFEC9D9D);
+  static const Color red7 = Color(0xFFEFB0B0);
+  static const Color red8 = Color(0xFFF3C4C4);
+  static const Color red9 = Color(0xFFF7D7D7);
+  static const Color red10 = Color(0xFFFAE7E7);
 
   static const Color blue2 = Color(0xFF1978DC);
   static const Color blue3 = Color(0xFF3387E0);
   static const Color blue4 = Color(0xFF4C96E4);
   static const Color blue5 = Color(0xFF66A5E8);
+  static const Color blue6 = Color(0xFF7FB4EC);
+  static const Color blue7 = Color(0xFF99C3EF);
+  static const Color blue8 = Color(0xFFB2D2F3);
+  static const Color blue9 = Color(0xFFCCE1F7);
+  static const Color blue10 = Color(0xFFE0EDFA);
 }
