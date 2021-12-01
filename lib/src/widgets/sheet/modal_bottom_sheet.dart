@@ -5,6 +5,7 @@ class ModalBottomSheet extends StatelessWidget {
   final Color? backgroundColor;
   final List<Widget> children;
   final MainAxisAlignment? mainAxisAlignment;
+  final CrossAxisAlignment? crossAxisAlignment;
   final IconData? rightIcon;
   final IconData? leftIcon;
   final VoidCallback? onRightButtonPressed;
@@ -16,6 +17,7 @@ class ModalBottomSheet extends StatelessWidget {
     this.backgroundColor,
     required this.children,
     this.mainAxisAlignment,
+    this.crossAxisAlignment,
     this.rightIcon,
     this.leftIcon,
     this.onRightButtonPressed,
@@ -75,6 +77,8 @@ class ModalBottomSheet extends StatelessWidget {
                 ),
               ),
               child: Column(
+                mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+                crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
                 children: children,
               ),
             ),
