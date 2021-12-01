@@ -75,24 +75,27 @@ class CardContainer extends StatelessWidget {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            border:
-                border ?? Border.all(width: 0.75, color: borderColor ?? HelperColors.black10),
+            border: border ??
+                Border.all(
+                    width: 0.75, color: borderColor ?? HelperColors.black10),
             borderRadius: BorderRadius.circular(radius ?? 12.0),
           ),
           child: cardType == CardType.vertical
               ? Column(
-                  crossAxisAlignment:
-                      crossAxisAlignment ?? CrossAxisAlignment.start,
-                  mainAxisAlignment:
-                      mainAxisAlignment ?? MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: children as List<Widget>,
-                )
+            crossAxisAlignment:
+            crossAxisAlignment ?? CrossAxisAlignment.start,
+            mainAxisAlignment:
+            mainAxisAlignment ?? MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: children as List<Widget>,
+          )
               : Row(
-                  children: children as List<Widget>,
-                  mainAxisAlignment:
-                      mainAxisAlignment ?? MainAxisAlignment.center,
-                ),
+            children: children as List<Widget>,
+            mainAxisAlignment:
+            mainAxisAlignment ?? MainAxisAlignment.center,
+            crossAxisAlignment:
+            crossAxisAlignment ?? CrossAxisAlignment.center,
+          ),
         ),
       ),
     );
