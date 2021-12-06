@@ -10,7 +10,6 @@ class ModalBottomSheet extends StatelessWidget {
   final IconData? leftIcon;
   final VoidCallback? onRightButtonPressed;
   final VoidCallback? onLeftButtonPressed;
-  final bool withTopButton;
 
   const ModalBottomSheet({
     Key? key,
@@ -22,7 +21,6 @@ class ModalBottomSheet extends StatelessWidget {
     this.leftIcon,
     this.onRightButtonPressed,
     this.onLeftButtonPressed,
-    this.withTopButton = true,
   }) : super(key: key);
 
   @override
@@ -33,14 +31,14 @@ class ModalBottomSheet extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: withTopButton ? Row(
-                mainAxisAlignment: leftIcon != null
+              child: Row(
+                mainAxisAlignment: onLeftButtonPressed != null
                     ? MainAxisAlignment.spaceBetween
                     : MainAxisAlignment.end,
                 children: [
-                  leftIcon != null
+                  onLeftButtonPressed != null
                       ? BaseButton(
-                          onPressed: onLeftButtonPressed ?? () => () {},
+                          onPressed: onLeftButtonPressed,
                           backgroundColor:
                               backgroundColor ?? HelperColors.white,
                           height: 40.0,
@@ -52,20 +50,22 @@ class ModalBottomSheet extends StatelessWidget {
                           ),
                         )
                       : SizedBox(),
-                  BaseButton(
-                    onPressed:
-                        onRightButtonPressed ?? () => Navigator.pop(context),
-                    backgroundColor: backgroundColor ?? HelperColors.white,
-                    height: 40.0,
-                    width: 40.0,
-                    child: Icon(
-                      rightIcon ?? Icons.close_rounded,
-                      size: 24.0,
-                      color: HelperColors.black3,
-                    ),
-                  ),
+                  onRightButtonPressed != null
+                      ? BaseButton(
+                          onPressed: onRightButtonPressed,
+                          backgroundColor:
+                              backgroundColor ?? HelperColors.white,
+                          height: 40.0,
+                          width: 40.0,
+                          child: Icon(
+                            rightIcon ?? Icons.close_rounded,
+                            size: 24.0,
+                            color: HelperColors.black3,
+                          ),
+                        )
+                      : SizedBox(),
                 ],
-              ) : SizedBox(),
+              ),
             ),
             SizedBox(height: 16.0),
             Container(
@@ -78,7 +78,8 @@ class ModalBottomSheet extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-                crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
+                crossAxisAlignment:
+                    crossAxisAlignment ?? CrossAxisAlignment.start,
                 children: children,
               ),
             ),
