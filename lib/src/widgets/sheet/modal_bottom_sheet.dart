@@ -78,7 +78,7 @@ class ModalBottomSheet extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-                crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+                crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
                 children: children,
               ),
             ),
