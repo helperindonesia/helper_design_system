@@ -45,6 +45,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
       IconData? leadingIcon,
       double? leadingSize,
       VoidCallback? onBackPressed,
+      VoidCallback? onImagePressed,
       List<Widget>? actions,
       double? elevation,
       Color? backgroundColor}) = _HelperAppBarWithImage;
@@ -129,6 +130,7 @@ class _HelperAppBarWithImage extends HelperAppBar {
       IconData? leadingIcon,
       double? leadingSize,
       VoidCallback? onBackPressed,
+      VoidCallback? onImagePressed,
       List<Widget>? actions,
       double? elevation,
       Color? backgroundColor,
@@ -149,6 +151,7 @@ class _HelperAppBarWithImage extends HelperAppBar {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 MediaThumbnail(
+                  onPressed: onImagePressed,
                     margin: leading ? null : EdgeInsets.only(left: 16.0),
                     height: 40.0,
                     width: 40.0,
