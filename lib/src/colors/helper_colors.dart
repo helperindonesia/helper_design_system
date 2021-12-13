@@ -8,6 +8,7 @@ class HelperColors {
   static const Color green = Color(0xFF28A745);
   static const Color red = Color(0xFFD93B3B);
   static const Color blue = Color(0xFF0069D9);
+  static const Color grey = Color(0xFF808080);
 
   static const Color orange2 = Color(0xFFFE7F1D);
   static const Color orange3 = Color(0xFFFE8D36);
@@ -58,4 +59,14 @@ class HelperColors {
   static const Color blue8 = Color(0xFFB2D2F3);
   static const Color blue9 = Color(0xFFCCE1F7);
   static const Color blue10 = Color(0xFFE0EDFA);
+
+  static const Color grey2 = Color(0xFF8C8C8C);
+  static const Color grey3 = Color(0xFF999999);
+  static const Color grey4 = Color(0xFFA6A6A6);
+  static const Color grey5 = Color(0xFFB2B2B2);
+  static const Color grey6 = Color(0xFFBFBFBF);
+  static const Color grey7 = Color(0xFFCCCCCC);
+  static const Color grey8 = Color(0xFFD8D8D8);
+  static const Color grey9 = Color(0xFFE5E5E5);
+  static const Color grey10 = Color(0xFFF4F4F4);
 }
