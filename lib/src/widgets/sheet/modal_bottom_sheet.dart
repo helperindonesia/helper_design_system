@@ -10,6 +10,7 @@ class ModalBottomSheet extends StatelessWidget {
   final IconData? leftIcon;
   final VoidCallback? onRightButtonPressed;
   final VoidCallback? onLeftButtonPressed;
+  final EdgeInsetsGeometry? contentPadding;
 
   const ModalBottomSheet({
     Key? key,
@@ -21,6 +22,7 @@ class ModalBottomSheet extends StatelessWidget {
     this.leftIcon,
     this.onRightButtonPressed,
     this.onLeftButtonPressed,
+    this.contentPadding = const EdgeInsets.all(16),
   }) : super(key: key);
 
   @override
@@ -70,6 +72,7 @@ class ModalBottomSheet extends StatelessWidget {
             SizedBox(height: 16.0),
             Container(
               width: MediaQuery.of(context).size.width,
+              padding: contentPadding,
               decoration: BoxDecoration(
                 color: backgroundColor ?? HelperColors.white,
                 borderRadius: BorderRadius.vertical(
