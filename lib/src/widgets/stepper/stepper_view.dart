@@ -5,6 +5,8 @@ import 'package:timelines/timelines.dart';
 
 enum StepViewType { horizontal, vertical }
 
+typedef StepViewBuilder = Step Function(int index);
+
 class Step {
   final Widget content;
   final Widget? indicatorIcon;
@@ -36,6 +38,20 @@ class StepView extends StatefulWidget {
   final int currentStep;
   final List<Step> steps;
   final StepViewType stepViewType;
+
+  factory StepView.builder({
+    Key? key,
+    required int itemCount,
+    required StepViewBuilder builder,
+    int currentStep = 0,
+    StepViewType stepViewType = StepViewType.vertical,
+  }) =>
+      StepView(
+        key: key,
+        steps: List<Step>.generate(itemCount, builder),
+        currentStep: currentStep,
+        stepViewType: stepViewType,
+      );
 
   @override
   _StepViewState createState() => _StepViewState();
@@ -107,7 +123,6 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
         ),
         Expanded(
           child: AnimatedSize(
-            vsync: this,
             duration: const Duration(milliseconds: 200),
             curve: Curves.fastOutSlowIn,
             child: widget.steps[widget.currentStep].content,
