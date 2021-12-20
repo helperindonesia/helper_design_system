@@ -21,6 +21,7 @@ DerivedData/
 *.mode2v3
 *.perspectivev3
 *.iml
+helper_design.iml
 
 !default.pbxuser
 !default.mode1v3
