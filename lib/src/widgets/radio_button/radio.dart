@@ -13,6 +13,7 @@ class HRadio<T> extends StatefulWidget {
     this.controlAffinity = ListTileControlAffinity.platform,
     this.icon,
     this.withBorder = false,
+    this.contentPadding,
   }) : super(key: key);
   final T value;
 
@@ -31,6 +32,8 @@ class HRadio<T> extends StatefulWidget {
   final String? title;
 
   final TextStyle? titleStyle;
+
+  final EdgeInsetsGeometry? contentPadding;
 
   bool get _selected => value == groupValue;
 
@@ -160,6 +163,7 @@ class _HRadioState<T> extends State<HRadio<T>> with TickerProviderStateMixin {
     }
 
     final Widget tile = ListTile(
+      contentPadding: widget.contentPadding,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       leading: leading,
       trailing: trailing,
