@@ -5,6 +5,21 @@ import 'package:helper_design/helper_design.dart';
 import 'package:video_player/video_player.dart';
 
 class MediaThumbnail extends StatefulWidget {
+  const MediaThumbnail({
+    Key? key,
+    this.file,
+    this.onPressed,
+    this.mediaType = MediaType.image,
+    this.mediaUrl,
+    this.width = 98,
+    this.height = 98,
+    this.borderRadius,
+    this.margin = const EdgeInsets.only(right: 10),
+    this.isWithIcon = false,
+    this.onIconPressed,
+    this.iconSize = 20,
+  }) : super(key: key);
+
   final File? file;
   final VoidCallback? onPressed;
   final MediaType mediaType;
@@ -15,20 +30,7 @@ class MediaThumbnail extends StatefulWidget {
   final EdgeInsetsGeometry? margin;
   final bool isWithIcon;
   final VoidCallback? onIconPressed;
-
-  const MediaThumbnail({
-    Key? key,
-    this.file,
-    this.onPressed,
-    this.mediaType = MediaType.image,
-    this.mediaUrl,
-    this.width,
-    this.height,
-    this.borderRadius,
-    this.margin,
-    this.isWithIcon = false,
-    this.onIconPressed,
-  }) : super(key: key);
+  final double? iconSize;
 
   @override
   _MediaThumbnailState createState() => _MediaThumbnailState();
@@ -114,29 +116,30 @@ class _MediaThumbnailState extends State<MediaThumbnail> {
         ? InkWell(
             onTap: widget.onPressed,
             child: Container(
-              margin: widget.margin ?? EdgeInsets.all(5.0),
-              width: widget.width ?? 76.0,
-              height: widget.height ?? 76.0,
+              margin: widget.margin,
+              width: widget.width,
+              height: widget.height,
               child: ClipRRect(
-                  borderRadius:
-                      widget.borderRadius ?? BorderRadius.circular(12),
-                  child: _buildWidget()),
+                borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
+                child: _buildWidget(),
+              ),
             ),
           )
         : Container(
-            margin: widget.margin ?? EdgeInsets.all(5.0),
-            width: widget.width ?? 80.0,
-            height: widget.height ?? 82.0,
+            margin: widget.margin,
+            width: widget.width! + 6,
+            height: widget.height! + 6,
             color: Colors.transparent,
             child: Stack(
+              fit: StackFit.expand,
               children: [
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: InkWell(
                     onTap: widget.onPressed,
                     child: Container(
-                      height: 76.0,
-                      width: 76.0,
+                      width: widget.width,
+                      height: widget.height,
                       child: ClipRRect(
                         borderRadius:
                             widget.borderRadius ?? BorderRadius.circular(12.0),
@@ -150,15 +153,15 @@ class _MediaThumbnailState extends State<MediaThumbnail> {
                   child: InkWell(
                     onTap: widget.onIconPressed,
                     child: Container(
-                      height: 20.0,
-                      width: 20.0,
+                      height: widget.iconSize,
+                      width: widget.iconSize,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
                         color: HelperColors.white,
                       ),
                       child: Icon(
                         Icons.remove_circle_rounded,
-                        size: 20,
+                        size: widget.iconSize,
                         color: HelperColors.black8,
                       ),
                     ),
