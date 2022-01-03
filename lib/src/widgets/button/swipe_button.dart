@@ -16,13 +16,10 @@ class SwipeButton extends StatefulWidget {
   final Widget? leftIcon;
   final Widget? rightIcon;
   final double? iconSize;
-  final String? text;
+  final String text;
   final TextStyle? textStyle;
   final VoidCallback onConfirmation;
   final BorderRadius? foregroundRadius;
-  final BorderRadius? backgroundRadius;
-  final bool disable;
-  final bool showLoadingIndicator;
 
   const SwipeButton({
     Key? key,
@@ -31,21 +28,26 @@ class SwipeButton extends StatefulWidget {
     this.timerStyle,
     this.height = 48.0,
     this.width = 300,
-    this.backgroundColor,
-    this.disableBackgroundColor,
-    this.iconColor,
+    this.backgroundColor = HelperColors.orange,
+    this.disableBackgroundColor = HelperColors.black8,
+    this.replaceBackgroundColor = HelperColors.black8,
+    this.iconColor = HelperColors.orange,
     this.leftIcon,
-    this.text,
+    required this.text,
     this.textStyle,
     required this.onConfirmation,
     this.foregroundRadius,
     this.backgroundRadius,
     this.rightIcon,
     this.iconSize,
-    this.replaceBackgroundColor,
-    this.disable = false,
+    this.enabled = true,
     this.showLoadingIndicator = false,
   });
+
+  final BorderRadius? backgroundRadius;
+  final bool enabled;
+
+  final bool showLoadingIndicator;
 
   @override
   State<SwipeButton> createState() => _SwipeButtonState();
@@ -63,8 +65,6 @@ class _SwipeButtonState extends State<SwipeButton> {
   }
 
   double getPosition() {
-    if (widget.disable) _position = 0;
-
     if (widget.showLoadingIndicator) _position = widget.width;
 
     if (_position < 0) {
@@ -77,20 +77,21 @@ class _SwipeButtonState extends State<SwipeButton> {
   }
 
   Color? getColor() {
-    if (!widget.disable) {
+    if (widget.enabled) {
       if (_position > 0) {
-        return widget.replaceBackgroundColor ?? HelperColors.orange;
+        return widget.replaceBackgroundColor;
       } else {
-        return widget.backgroundColor ?? HelperColors.orange;
+        return widget.backgroundColor;
       }
     } else {
-      return widget.disableBackgroundColor ?? HelperColors.black9;
+      return widget.disableBackgroundColor;
     }
   }
 
   void _updatePosition(details) {
-    if (!widget.disable) {
+    if (widget.enabled) {
       if (details is DragEndDetails) {
+        debugPrint(details.primaryVelocity.toString());
         setState(() {
           _duration = 100;
           _position = _isSwipe ? widget.width : 0;
@@ -125,9 +126,7 @@ class _SwipeButtonState extends State<SwipeButton> {
       decoration: BoxDecoration(
         borderRadius: widget.backgroundRadius ??
             BorderRadius.all(Radius.circular(widget.height)),
-        color: !widget.disable
-            ? widget.backgroundColor ?? HelperColors.orange
-            : HelperColors.black9,
+        color: widget.enabled ? widget.backgroundColor : HelperColors.black9,
       ),
       child: Stack(
         children: <Widget>[
@@ -137,13 +136,14 @@ class _SwipeButtonState extends State<SwipeButton> {
             duration: Duration(milliseconds: _duration),
             curve: Curves.bounceOut,
             decoration: BoxDecoration(
-                borderRadius: widget.backgroundRadius ??
-                    BorderRadius.all(Radius.circular(widget.height)),
-                color: getColor()),
+              borderRadius: widget.backgroundRadius ??
+                  BorderRadius.all(Radius.circular(widget.height)),
+              color: getColor(),
+            ),
           ),
           Center(
             child: Text(
-              widget.text ?? "Bantu",
+              widget.text,
               style: widget.textStyle ??
                   HelperThemeData.textTheme.buttonText1!
                       .copyWith(color: HelperColors.white),
@@ -165,9 +165,7 @@ class _SwipeButtonState extends State<SwipeButton> {
                             BorderRadius.all(
                               Radius.circular(widget.height / 2),
                             ),
-                        color: widget.disable
-                            ? HelperColors.black9
-                            : HelperColors.orange,
+                        color: getColor(),
                       ),
                       child: Container(
                         margin: EdgeInsets.all(3),
@@ -179,9 +177,9 @@ class _SwipeButtonState extends State<SwipeButton> {
                         child: widget.leftIcon ??
                             Icon(
                               Icons.arrow_circle_up_rounded,
-                              color: widget.disable
-                                  ? HelperColors.black9
-                                  : widget.iconColor ?? HelperColors.orange,
+                              color: widget.enabled
+                                  ? widget.iconColor
+                                  : HelperColors.black9,
                               size: widget.iconSize ?? 20.0,
                             ),
                       ))
@@ -193,9 +191,7 @@ class _SwipeButtonState extends State<SwipeButton> {
                             BorderRadius.all(
                               Radius.circular(widget.height / 2),
                             ),
-                        color: widget.disable
-                            ? HelperColors.black9
-                            : HelperColors.orange,
+                        color: getColor(),
                       ),
                       child: Container(
                         padding: EdgeInsets.all(10),
@@ -205,7 +201,10 @@ class _SwipeButtonState extends State<SwipeButton> {
                           borderRadius:
                               BorderRadius.circular(widget.height / 2),
                         ),
-                        child: CircularProgressIndicator(strokeWidth: 2.0),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.0,
+                          color: getColor(),
+                        ),
                       ),
                     ),
             ),
