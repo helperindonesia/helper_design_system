@@ -93,6 +93,8 @@ class PrimaryCard extends StatelessWidget {
           ),
           Image(
             image: NetworkImage(illustrationImage),
+            loadingBuilder: (context, child, _) => child,
+            errorBuilder: (context, error, stackTrace) => Container(),
             fit: BoxFit.fill,
             width: illustrationWidth ?? 142.0,
             height: illustrationHeight ?? 92.0,
