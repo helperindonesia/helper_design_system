@@ -4,23 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
 class SwipeButton extends StatefulWidget {
-  final String? timer;
-  final double? timerSize;
-  final TextStyle? timerStyle;
-  final double height;
-  final double width;
-  final Color? backgroundColor;
-  final Color? disableBackgroundColor;
-  final Color? replaceBackgroundColor;
-  final Color? iconColor;
-  final Widget? leftIcon;
-  final Widget? rightIcon;
-  final double? iconSize;
-  final String text;
-  final TextStyle? textStyle;
-  final VoidCallback onConfirmation;
-  final BorderRadius? foregroundRadius;
-
   const SwipeButton({
     Key? key,
     this.timer,
@@ -44,9 +27,24 @@ class SwipeButton extends StatefulWidget {
     this.showLoadingIndicator = false,
   });
 
+  final String? timer;
+  final double? timerSize;
+  final TextStyle? timerStyle;
+  final double height;
+  final double width;
+  final Color? backgroundColor;
+  final Color? disableBackgroundColor;
+  final Color? replaceBackgroundColor;
+  final Color? iconColor;
+  final Widget? leftIcon;
+  final Widget? rightIcon;
+  final double? iconSize;
+  final String text;
+  final TextStyle? textStyle;
+  final VoidCallback onConfirmation;
+  final BorderRadius? foregroundRadius;
   final BorderRadius? backgroundRadius;
   final bool enabled;
-
   final bool showLoadingIndicator;
 
   @override
@@ -54,31 +52,41 @@ class SwipeButton extends StatefulWidget {
 }
 
 class _SwipeButtonState extends State<SwipeButton> {
-  double _position = 0;
-  int _duration = 0;
-  bool _isSwipe = false;
+  double position = 0;
+  int duration = 0;
+  bool isSwiping = false;
 
   @override
   void initState() {
-    _isSwipe = widget.showLoadingIndicator;
     super.initState();
+    isSwiping = widget.showLoadingIndicator;
+  }
+
+  @override
+  void didUpdateWidget(SwipeButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.showLoadingIndicator != widget.showLoadingIndicator) {
+      if (!widget.showLoadingIndicator) position = 0;
+      isSwiping = widget.showLoadingIndicator;
+    }
   }
 
   double getPosition() {
-    if (widget.showLoadingIndicator) _position = widget.width;
+    if (widget.showLoadingIndicator) position = widget.width;
 
-    if (_position < 0) {
+    if (position < 0) {
       return 0;
-    } else if (_position > widget.width - widget.height) {
+    } else if (position > widget.width - widget.height) {
       return widget.width - widget.height;
     } else {
-      return _position;
+      return position;
     }
   }
 
   Color? getColor() {
     if (widget.enabled) {
-      if (_position > 0) {
+      if (position > 0) {
         return widget.replaceBackgroundColor;
       } else {
         return widget.backgroundColor;
@@ -93,27 +101,27 @@ class _SwipeButtonState extends State<SwipeButton> {
       if (details is DragEndDetails) {
         debugPrint(details.primaryVelocity.toString());
         setState(() {
-          _duration = 100;
-          _position = _isSwipe ? widget.width : 0;
+          duration = 100;
+          position = isSwiping ? widget.width : 0;
         });
       } else if (details is DragUpdateDetails) {
         print(details.localPosition);
         setState(() {
-          _duration = 0;
-          _position = _isSwipe
-              ? _position
+          duration = 0;
+          position = isSwiping
+              ? position
               : details.localPosition.dx - (widget.height / 2);
         });
       }
     } else {
-      _position = 0;
+      position = 0;
     }
   }
 
   void _swipeReleased(details) {
-    if (_position > widget.width - widget.height) {
+    if (position > widget.width - widget.height) {
       if (!widget.showLoadingIndicator) widget.onConfirmation();
-      _isSwipe = true;
+      isSwiping = true;
     }
     _updatePosition(details);
   }
@@ -133,7 +141,7 @@ class _SwipeButtonState extends State<SwipeButton> {
           AnimatedContainer(
             height: widget.height,
             width: getPosition() + widget.height,
-            duration: Duration(milliseconds: _duration),
+            duration: Duration(milliseconds: duration),
             curve: Curves.bounceOut,
             decoration: BoxDecoration(
               borderRadius: widget.backgroundRadius ??
@@ -150,13 +158,13 @@ class _SwipeButtonState extends State<SwipeButton> {
             ),
           ),
           AnimatedPositioned(
-            duration: Duration(milliseconds: _duration),
+            duration: Duration(milliseconds: duration),
             curve: Curves.bounceOut,
             left: getPosition(),
             child: GestureDetector(
               onPanUpdate: _updatePosition,
               onPanEnd: _swipeReleased,
-              child: !_isSwipe
+              child: !isSwiping
                   ? Container(
                       height: widget.height,
                       width: widget.height,
