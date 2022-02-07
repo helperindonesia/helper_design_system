@@ -13,7 +13,7 @@ class PrimaryCard extends StatelessWidget {
   final String illustrationImage;
   final double? illustrationHeight;
   final double? illustrationWidth;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color? borderColor;
   final Color? backgroundColor;
   final double? radius;
