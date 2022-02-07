@@ -49,8 +49,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
       VoidCallback? onImagePressed,
       List<Widget>? actions,
       double? elevation,
-      Color? backgroundColor,
-      bool leading}) = _HelperAppBarWithImage;
+      Color? backgroundColor}) = _HelperAppBarWithImage;
 
   @override
   Widget build(BuildContext context) {
@@ -136,15 +135,14 @@ class _HelperAppBarWithImage extends HelperAppBar {
       VoidCallback? onImagePressed,
       List<Widget>? actions,
       double? elevation,
-      Color? backgroundColor,
-      bool leading = false})
+      Color? backgroundColor})
       : super(
             key: key,
-            leading: leading
+            leading: (leadingIcon != null)
                 ? IconButton(
                     onPressed: onBackPressed,
                     icon: Icon(
-                      leadingIcon ?? Icons.arrow_back_rounded,
+                      leadingIcon,
                       color: HelperColors.black3,
                     ),
                     iconSize: leadingSize ?? 24.0)
@@ -155,7 +153,9 @@ class _HelperAppBarWithImage extends HelperAppBar {
               children: [
                 MediaThumbnail(
                     onPressed: onImagePressed,
-                    margin: leading ? null : EdgeInsets.only(left: 16.0),
+                    margin: (leadingIcon != null)
+                        ? null
+                        : EdgeInsets.only(left: 16.0),
                     height: 40.0,
                     width: 40.0,
                     borderRadius: BorderRadius.circular(24.0),
