@@ -60,10 +60,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
                       _controller.text = _counter.toString() + widget.valueText;
                     });
                   },
-            icon: Icon(
-              HelperIcons.mines,
-              size: 20.0,
-            ),
+            icon: Icon(HelperIconsV2.ic_indeterminate, size: 20.0),
           ),
           SizedBox(width: 8),
           HOutlinedButton.icon(
@@ -73,10 +70,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
                 _controller.text = _counter.toString() + widget.valueText;
               });
             },
-            icon: Icon(
-              HelperIcons.plus,
-              size: 20.0,
-            ),
+            icon: Icon(HelperIconsV2.ic_add, size: 20.0),
           ),
           SizedBox(width: 12.0),
         ],
