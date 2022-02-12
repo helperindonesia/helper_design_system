@@ -99,13 +99,11 @@ class _TextFieldCounterWithExpansionViewState
                       : () {
                           setState(() {
                             if (_counter > 1) _counter--;
-                            _controller.text = _counter.toString() + widget.valueText;
+                            _controller.text =
+                                _counter.toString() + widget.valueText;
                           });
                         },
-                  icon: Icon(
-                    HelperIcons.mines,
-                    size: 20.0,
-                  ),
+                  icon: Icon(HelperIcons.ic_indeterminate, size: 20.0),
                 ),
                 SizedBox(width: 8),
                 HOutlinedButton.icon(
@@ -115,10 +113,7 @@ class _TextFieldCounterWithExpansionViewState
                       _controller.text = _counter.toString() + widget.valueText;
                     });
                   },
-                  icon: Icon(
-                    HelperIcons.plus,
-                    size: 20.0,
-                  ),
+                  icon: Icon(HelperIcons.ic_add, size: 20.0),
                 ),
                 SizedBox(width: 12.0),
               ],

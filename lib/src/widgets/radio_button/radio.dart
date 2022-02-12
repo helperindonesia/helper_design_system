@@ -24,7 +24,7 @@ class HRadio<T> extends StatefulWidget {
 
   final ListTileControlAffinity controlAffinity;
 
-  final IconData? icon;
+  final Widget? icon;
 
   final bool withBorder;
 
@@ -137,11 +137,7 @@ class _HRadioState<T> extends State<HRadio<T>> with TickerProviderStateMixin {
         ? CircleAvatar(
             backgroundColor: _animations[2].value,
             radius: 16,
-            child: Icon(
-              Icons.watch_later_rounded,
-              color: _animations[3].value,
-              size: 20,
-            ),
+            child: widget.icon
           )
         : null;
 
