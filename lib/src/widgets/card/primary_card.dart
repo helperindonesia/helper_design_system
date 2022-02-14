@@ -25,7 +25,7 @@ class PrimaryCard extends StatelessWidget {
 
   const PrimaryCard({
     Key? key,
-    required this.onPressed,
+    this.onPressed,
     required this.title,
     this.titleStyle,
     required this.description,
@@ -68,7 +68,7 @@ class PrimaryCard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 12.0, left: 16.0),
                   child: Text(title,
                       style:
-                          titleStyle ?? HelperThemeData.textTheme.buttonText1),
+                      titleStyle ?? HelperThemeData.textTheme.buttonText1),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
@@ -93,6 +93,8 @@ class PrimaryCard extends StatelessWidget {
           ),
           Image(
             image: NetworkImage(illustrationImage),
+            loadingBuilder: (context, child, _) => child,
+            errorBuilder: (context, error, stackTrace) => Container(),
             fit: BoxFit.fill,
             width: illustrationWidth ?? 142.0,
             height: illustrationHeight ?? 92.0,
