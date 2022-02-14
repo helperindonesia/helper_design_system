@@ -7,7 +7,7 @@
 ///
 /// flutter:
 ///   fonts:
-///    - family:  HelperIconsV2
+///    - family:  HelperIcons
 ///      fonts:
 ///       - asset: fonts/HelperIcons.ttf
 ///
@@ -18,7 +18,7 @@ import 'package:flutter/widgets.dart';
 class HelperIcons {
   HelperIcons._();
 
-  static const _kFontFam = 'HelperIconsV2';
+  static const _kFontFam = 'HelperIcons';
   static const String? _kFontPkg = 'helper_design';
 
   static const IconData ic_add_circle =
