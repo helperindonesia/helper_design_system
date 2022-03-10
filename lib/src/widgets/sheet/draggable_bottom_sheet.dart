@@ -35,9 +35,11 @@ class DraggableBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return NotificationListener<DraggableScrollableNotification>(
       onNotification: (notification) {
-        extentListener!(notification.extent);
-
-        return true;
+        if (extentListener != null) {
+          extentListener!(notification.extent);
+          return true;
+        }
+        return false;
       },
       child: DraggableScrollableSheet(
         initialChildSize: initialChildSize,
