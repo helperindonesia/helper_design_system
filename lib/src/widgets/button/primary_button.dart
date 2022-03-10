@@ -73,33 +73,30 @@ class _PrimaryButtonWithIcon extends PrimaryButton {
     double? radius,
     required Widget icon,
   }) : super(
-            key: key,
-            text: text,
-            textStyle: textStyle,
-            width: width,
-            height: height,
-            onPressed: onPressed,
-            backgroundColor: backgroundColor,
-            radius: radius,
-            child: Stack(
-              children: [
-                Center(
-                  child: Text(
-                    text,
-                    style: textStyle ??
-                        HelperThemeData.textTheme.buttonText1!
-                            .copyWith(color: Colors.white),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: icon,
-                  ),
-                )
-              ],
-            ));
+          key: key,
+          text: text,
+          textStyle: textStyle,
+          width: width,
+          height: height,
+          onPressed: onPressed,
+          backgroundColor: backgroundColor,
+          radius: radius,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: icon,
+              ),
+              Text(
+                text,
+                style: textStyle ??
+                    HelperThemeData.textTheme.buttonText1!
+                        .copyWith(color: Colors.white),
+              ),
+            ],
+          ),
+        );
 }
 
 class _PrimaryButton extends StatelessWidget {
