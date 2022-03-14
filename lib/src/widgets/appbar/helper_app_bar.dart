@@ -40,6 +40,7 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
   factory HelperAppBar.image(
       {Key? key,
       String? name,
+      String? description,
       required String mediaUrl,
       TextStyle? textStyle,
       IconData? leadingIcon,
@@ -125,6 +126,7 @@ class _HelperAppBarWithImage extends HelperAppBar {
   _HelperAppBarWithImage(
       {Key? key,
       String? name,
+      String? description,
       required String mediaUrl,
       TextStyle? textStyle,
       IconData? leadingIcon,
@@ -133,15 +135,14 @@ class _HelperAppBarWithImage extends HelperAppBar {
       VoidCallback? onImagePressed,
       List<Widget>? actions,
       double? elevation,
-      Color? backgroundColor,
-      bool leading = false})
+      Color? backgroundColor})
       : super(
             key: key,
-            leading: leading
+            leading: (leadingIcon != null)
                 ? IconButton(
                     onPressed: onBackPressed,
                     icon: Icon(
-                      leadingIcon ?? Icons.arrow_back_rounded,
+                      leadingIcon,
                       color: HelperColors.black3,
                     ),
                     iconSize: leadingSize ?? 24.0)
@@ -151,19 +152,32 @@ class _HelperAppBarWithImage extends HelperAppBar {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 MediaThumbnail(
-                  onPressed: onImagePressed,
-                    margin: leading ? null : EdgeInsets.only(left: 16.0),
+                    onPressed: onImagePressed,
+                    margin: (leadingIcon != null)
+                        ? null
+                        : EdgeInsets.only(left: 16.0),
                     height: 40.0,
                     width: 40.0,
                     borderRadius: BorderRadius.circular(24.0),
                     mediaUrl: mediaUrl),
                 SizedBox(width: 12.0),
-                Text(
-                  name ?? '',
-                  style: textStyle ??
-                      HelperThemeData.textTheme.headline4!.copyWith(
-                          color: HelperColors.black,
-                          fontWeight: FontWeight.w800),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    (description != null)
+                        ? Text(description,
+                            style: HelperThemeData.textTheme.caption)
+                        : SizedBox(),
+                    Text(
+                      name ?? '',
+                      style: textStyle ??
+                          HelperThemeData.textTheme.headline4!.copyWith(
+                              fontSize: (description != null) ? 16 : 20,
+                              color: HelperColors.black,
+                              fontWeight: FontWeight.w800),
+                    ),
+                  ],
                 ),
               ],
             ),
