@@ -37,7 +37,7 @@ class DraggableBottomSheet extends StatelessWidget {
       onNotification: (notification) {
         if (extentListener != null) {
           extentListener!(notification.extent);
-          return true;
+          return false;
         }
         return false;
       },
