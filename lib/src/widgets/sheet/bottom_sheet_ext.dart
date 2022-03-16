@@ -5,11 +5,13 @@ extension BottomSheetX on BuildContext {
     required Widget child,
     bool isScrollControlled = false,
     bool isDismissible: true,
+    bool enableDrag: false,
     Color? backgroundColor,
   }) {
     return showModalBottomSheet<T?>(
       context: this,
       isScrollControlled: isScrollControlled,
+      enableDrag: enableDrag,
       backgroundColor: backgroundColor ?? Colors.transparent,
       isDismissible: isDismissible,
       builder: (context) => child,
