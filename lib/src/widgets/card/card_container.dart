@@ -7,11 +7,11 @@ class CardContainer extends StatelessWidget {
   final double? width, height;
   final CardType cardType;
   final Color? color;
-  final double? radius;
+  final double radius;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final BoxBorder? border;
-  final Color? borderColor;
+  final Color borderColor;
   final CrossAxisAlignment? crossAxisAlignment;
   final MainAxisAlignment? mainAxisAlignment;
 
@@ -38,11 +38,11 @@ class CardContainer extends StatelessWidget {
     double? width,
     double? height,
     Color? color = HelperColors.white,
-    double? radius = 12.0,
+    double radius = 12.0,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry margin = EdgeInsets.zero,
     BoxBorder? border,
-    Color? borderColor,
+    Color borderColor = HelperColors.black10,
     CrossAxisAlignment? crossAxisAlignment,
     MainAxisAlignment? mainAxisAlignment,
   }) =>
@@ -69,14 +69,14 @@ class CardContainer extends StatelessWidget {
       height: height,
       margin: margin,
       child: Material(
-        borderRadius: BorderRadius.circular(radius!),
+        borderRadius: BorderRadius.circular(radius),
         elevation: elevation!,
         color: color,
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            border: border ?? Border.all(width: 0.75, color: borderColor!),
-            borderRadius: BorderRadius.circular(radius!),
+            border: border ?? Border.all(width: 0.75, color: borderColor),
+            borderRadius: BorderRadius.circular(radius),
           ),
           child: cardType == CardType.vertical
               ? Column(
@@ -88,11 +88,11 @@ class CardContainer extends StatelessWidget {
                   children: children as List<Widget>,
                 )
               : Row(
-                  children: children as List<Widget>,
                   mainAxisAlignment:
                       mainAxisAlignment ?? MainAxisAlignment.center,
                   crossAxisAlignment:
                       crossAxisAlignment ?? CrossAxisAlignment.center,
+                  children: children as List<Widget>,
                 ),
         ),
       ),
