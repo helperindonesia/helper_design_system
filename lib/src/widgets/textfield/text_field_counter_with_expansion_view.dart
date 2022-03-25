@@ -2,37 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
 class TextFieldCounterWithExpansionView extends StatefulWidget {
-  const TextFieldCounterWithExpansionView(
-      {Key? key,
-      this.value,
-      this.valueText = '',
-      this.labelText,
-      this.onSaved,
-      required this.expansionTitle,
-      this.onExpansionChanged,
-      this.expansionChildren = const <Widget>[],
-      this.expansionBackgroundColor,
-      this.expansionCollapsedBackgroundColor,
-      this.expansionTrailing,
-      this.initiallyExpanded = false,
-      this.expansionMaintainState = false,
-      this.expandedAlignment,
-      this.expandedCrossAxisAlignment,
-      this.expansionChildrenPadding,
-      this.expansionIconColor,
-      this.expansionIconSize,
-      this.expansionTitleStyle,
-      this.expansionTitlePadding})
-      : super(key: key);
+  const TextFieldCounterWithExpansionView({
+    Key? key,
+    this.value,
+    this.valueText = '',
+    this.labelText,
+    this.onSaved,
+    required this.expansionTitle,
+    this.onExpansionChanged,
+    this.expansionChildren = const <Widget>[],
+    this.expansionBackgroundColor,
+    this.expansionCollapsedBackgroundColor,
+    this.expansionTrailing,
+    this.initiallyExpanded = false,
+    this.expansionMaintainState = false,
+    this.expandedAlignment,
+    this.expandedCrossAxisAlignment,
+    this.expansionChildrenPadding,
+    this.expansionIconColor,
+    this.expansionIconSize,
+    this.expansionTitleStyle,
+    this.expansionTitlePadding,
+  }) : super(key: key);
 
   final int? value;
-
   final String valueText;
-
   final String? labelText;
-
   final FormFieldSetter<String>? onSaved;
-
   final String expansionTitle;
   final ValueChanged<bool>? onExpansionChanged;
   final List<Widget> expansionChildren;
@@ -107,12 +103,15 @@ class _TextFieldCounterWithExpansionViewState
                 ),
                 SizedBox(width: 8),
                 HOutlinedButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      _counter++;
-                      _controller.text = _counter.toString() + widget.valueText;
-                    });
-                  },
+                  onPressed: _counter >= 10
+                      ? null
+                      : () {
+                          setState(() {
+                            _counter++;
+                            _controller.text =
+                                _counter.toString() + widget.valueText;
+                          });
+                        },
                   icon: Icon(HelperIcons.ic_add, size: 20.0),
                 ),
                 SizedBox(width: 12.0),

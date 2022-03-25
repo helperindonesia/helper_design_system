@@ -8,15 +8,14 @@ class TextFieldCounter extends StatefulWidget {
     this.value,
     this.valueText = '',
     this.onSaved,
+    this.counting = 1,
   }) : super(key: key);
 
   final int? value;
-
   final String valueText;
-
   final String? labelText;
-
   final FormFieldSetter<String>? onSaved;
+  final int counting;
 
   @override
   _TextFieldCounterState createState() => _TextFieldCounterState();
@@ -24,6 +23,7 @@ class TextFieldCounter extends StatefulWidget {
 
 class _TextFieldCounterState extends State<TextFieldCounter> {
   int _counter = 1;
+  int _counting = 1;
 
   final TextEditingController _controller = TextEditingController();
 
@@ -34,6 +34,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         ? widget.value.toString() + widget.valueText
         : _counter.toString() + widget.valueText;
     _counter = widget.value ?? 1;
+    _counting = widget.counting;
   }
 
   @override
@@ -52,11 +53,11 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           HOutlinedButton.icon(
-            onPressed: _counter == 1
+            onPressed: _counter == _counting
                 ? null
                 : () {
                     setState(() {
-                      if (_counter > 1) _counter--;
+                      if (_counter > _counting) _counter -= _counting;
                       _controller.text = _counter.toString() + widget.valueText;
                     });
                   },
@@ -66,7 +67,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
           HOutlinedButton.icon(
             onPressed: () {
               setState(() {
-                _counter++;
+                _counter += _counting;
                 _controller.text = _counter.toString() + widget.valueText;
               });
             },
