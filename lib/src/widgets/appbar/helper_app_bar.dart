@@ -20,8 +20,8 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingSize,
     this.onBackPressed,
     this.actions,
-    this.elevation,
-    this.backgroundColor,
+    this.elevation = 4 / 100,
+    this.backgroundColor = HelperColors.white,
     this.toolbarTextStyle,
   }) : super(key: key);
 
@@ -63,8 +63,8 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: title,
       centerTitle: false,
       actions: actions,
-      elevation: elevation ?? 4 / 100,
-      backgroundColor: backgroundColor ?? HelperColors.white,
+      elevation: elevation,
+      backgroundColor: backgroundColor,
       titleTextStyle: toolbarTextStyle ??
           Theme.of(context)
               .textTheme
@@ -78,29 +78,29 @@ class HelperAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class _HelperAppBarWithHelpIcon extends HelperAppBar {
-  _HelperAppBarWithHelpIcon(
-      {Key? key,
-      String? title,
-      TextStyle? textStyle,
-      IconData? leadingIcon,
-      double? leadingSize,
-      VoidCallback? onBackPressed,
-      VoidCallback? onHelpPressed,
-      List<Widget>? actions,
-      double? elevation,
-      Color? backgroundColor})
-      : super(
+  _HelperAppBarWithHelpIcon({
+    Key? key,
+    String? title = '',
+    TextStyle? textStyle,
+    IconData? leadingIcon = Icons.arrow_back,
+    double? leadingSize = 24.0,
+    VoidCallback? onBackPressed,
+    VoidCallback? onHelpPressed,
+    List<Widget>? actions,
+    double? elevation,
+    Color? backgroundColor,
+  }) : super(
             key: key,
             leading: IconButton(
               onPressed: onBackPressed,
               icon: Icon(
-                leadingIcon ?? Icons.arrow_back,
+                leadingIcon,
                 color: HelperColors.black3,
               ),
-              iconSize: leadingSize ?? 24.0,
+              iconSize: leadingSize,
             ),
             title: Text(
-              title ?? '',
+              title!,
               style: textStyle ??
                   HelperThemeData.textTheme.headline4!.copyWith(
                       color: HelperColors.black, fontWeight: FontWeight.w800),
@@ -124,11 +124,11 @@ class _HelperAppBarWithHelpIcon extends HelperAppBar {
 class _HelperAppBarWithImage extends HelperAppBar {
   _HelperAppBarWithImage(
       {Key? key,
-      String? name,
+      String? name = '',
       required String mediaUrl,
       TextStyle? textStyle,
-      IconData? leadingIcon,
-      double? leadingSize,
+      IconData? leadingIcon = Icons.arrow_back_rounded,
+      double? leadingSize = 24.0,
       VoidCallback? onBackPressed,
       VoidCallback? onImagePressed,
       List<Widget>? actions,
@@ -141,17 +141,17 @@ class _HelperAppBarWithImage extends HelperAppBar {
                 ? IconButton(
                     onPressed: onBackPressed,
                     icon: Icon(
-                      leadingIcon ?? Icons.arrow_back_rounded,
+                      leadingIcon,
                       color: HelperColors.black3,
                     ),
-                    iconSize: leadingSize ?? 24.0)
+                    iconSize: leadingSize)
                 : null,
             title: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 MediaThumbnail(
-                  onPressed: onImagePressed,
+                    onPressed: onImagePressed,
                     margin: leading ? null : EdgeInsets.only(left: 16.0),
                     height: 40.0,
                     width: 40.0,
@@ -159,7 +159,7 @@ class _HelperAppBarWithImage extends HelperAppBar {
                     mediaUrl: mediaUrl),
                 SizedBox(width: 12.0),
                 Text(
-                  name ?? '',
+                  name!,
                   style: textStyle ??
                       HelperThemeData.textTheme.headline4!.copyWith(
                           color: HelperColors.black,
