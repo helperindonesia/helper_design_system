@@ -18,18 +18,18 @@ class CardContainer extends StatelessWidget {
   const CardContainer({
     Key? key,
     this.children,
-    this.elevation,
+    this.elevation = 0,
     this.width,
     this.height,
     this.cardType = CardType.vertical,
-    this.color,
-    this.radius,
+    this.color = HelperColors.white,
+    this.radius = 12.0,
     this.padding,
     this.margin,
     this.border,
     this.crossAxisAlignment,
     this.mainAxisAlignment,
-    this.borderColor,
+    this.borderColor = HelperColors.black10,
   }) : super(key: key);
 
   factory CardContainer.horizontal({
@@ -37,8 +37,8 @@ class CardContainer extends StatelessWidget {
     double? elevation = 0,
     double? width,
     double? height,
-    Color? color,
-    double? radius,
+    Color? color = HelperColors.white,
+    double? radius = 12.0,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry margin = EdgeInsets.zero,
     BoxBorder? border,
@@ -48,12 +48,12 @@ class CardContainer extends StatelessWidget {
   }) =>
       CardContainer(
         children: children,
-        radius: radius ?? 12.0,
+        radius: radius,
         elevation: elevation,
         width: width,
         height: height,
         cardType: CardType.horizontal,
-        color: color ?? HelperColors.white,
+        color: color,
         padding: padding,
         margin: margin,
         border: border,
@@ -69,33 +69,31 @@ class CardContainer extends StatelessWidget {
       height: height,
       margin: margin,
       child: Material(
-        borderRadius: BorderRadius.circular(radius ?? 12.0),
-        elevation: elevation ?? 0,
-        color: color ?? HelperColors.white,
+        borderRadius: BorderRadius.circular(radius!),
+        elevation: elevation!,
+        color: color,
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            border: border ??
-                Border.all(
-                    width: 0.75, color: borderColor ?? HelperColors.black10),
-            borderRadius: BorderRadius.circular(radius ?? 12.0),
+            border: border ?? Border.all(width: 0.75, color: borderColor!),
+            borderRadius: BorderRadius.circular(radius!),
           ),
           child: cardType == CardType.vertical
               ? Column(
-            crossAxisAlignment:
-            crossAxisAlignment ?? CrossAxisAlignment.start,
-            mainAxisAlignment:
-            mainAxisAlignment ?? MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: children as List<Widget>,
-          )
+                  crossAxisAlignment:
+                      crossAxisAlignment ?? CrossAxisAlignment.start,
+                  mainAxisAlignment:
+                      mainAxisAlignment ?? MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: children as List<Widget>,
+                )
               : Row(
-            children: children as List<Widget>,
-            mainAxisAlignment:
-            mainAxisAlignment ?? MainAxisAlignment.center,
-            crossAxisAlignment:
-            crossAxisAlignment ?? CrossAxisAlignment.center,
-          ),
+                  children: children as List<Widget>,
+                  mainAxisAlignment:
+                      mainAxisAlignment ?? MainAxisAlignment.center,
+                  crossAxisAlignment:
+                      crossAxisAlignment ?? CrossAxisAlignment.center,
+                ),
         ),
       ),
     );
