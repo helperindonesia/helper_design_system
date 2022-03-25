@@ -14,12 +14,12 @@ class DashPainter extends CustomPainter {
   final PathBuilder? customPath;
 
   DashPainter({
-    this.strokeWidth,
+    this.strokeWidth = 0.75,
     this.dashPattern = const <double>[4, 4],
-    this.color,
+    this.color = HelperColors.orange,
     this.borderType,
-    this.radius,
-    this.strokeCap,
+    this.radius = const Radius.circular(12.0),
+    this.strokeCap = StrokeCap.round,
     this.customPath,
   }) {
     assert(dashPattern.isNotEmpty, 'Dash Pattern cannot be empty');
@@ -28,9 +28,9 @@ class DashPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..strokeWidth = strokeWidth ?? 0.75
-      ..color = color ?? HelperColors.orange
-      ..strokeCap = strokeCap ?? StrokeCap.round
+      ..strokeWidth = strokeWidth!
+      ..color = color!
+      ..strokeCap = strokeCap!
       ..style = PaintingStyle.stroke;
 
     Path _path;
@@ -54,7 +54,7 @@ class DashPainter extends CustomPainter {
         path = _getCirclePath(size);
         break;
       case BorderType.RRect:
-        path = _getRRectPath(size, radius ?? const Radius.circular(12.0));
+        path = _getRRectPath(size, radius!);
         break;
     }
 

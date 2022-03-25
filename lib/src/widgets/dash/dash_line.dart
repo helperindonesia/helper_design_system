@@ -10,24 +10,24 @@ class DashLine extends StatelessWidget {
 
   const DashLine({
     Key? key,
-    this.dashHeight,
-    this.dashWidth,
-    this.color,
-    this.height,
+    this.dashHeight = 0.75,
+    this.dashWidth = 4.0,
+    this.color = HelperColors.black10,
+    this.height = 0.75,
     this.width,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? 0.75,
+      height: height,
       width: width ?? MediaQuery.of(context).size.width,
       child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         final boxWidth = constraints.constrainWidth();
-        final dashedWidth = dashWidth ?? 4.0;
-        final dashedHeight = dashHeight ?? 0.75;
-        final dashCount = (boxWidth / (2 * dashedWidth)).floor();
+        final dashedWidth = dashWidth;
+        final dashedHeight = dashHeight;
+        final dashCount = (boxWidth / (2 * dashedWidth!)).floor();
         return Flex(
           direction: Axis.horizontal,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +36,7 @@ class DashLine extends StatelessWidget {
               width: dashedWidth,
               height: dashedHeight,
               child: DecoratedBox(
-                decoration: BoxDecoration(color: color ?? HelperColors.black10),
+                decoration: BoxDecoration(color: color),
               ),
             );
           }),

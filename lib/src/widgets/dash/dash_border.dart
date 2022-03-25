@@ -17,13 +17,13 @@ class DashBorder extends StatelessWidget {
   DashBorder({
     Key? key,
     required this.child,
-    this.borderColor,
-    this.strokeWidth,
-    this.borderType,
-    this.dashPattern,
-    this.padding,
-    this.radius,
-    this.strokeCap,
+    this.borderColor = HelperColors.orange,
+    this.strokeWidth = 0.75,
+    this.borderType = BorderType.RRect,
+    this.dashPattern = const <double>[4, 4],
+    this.padding = const EdgeInsets.all(2),
+    this.radius = const Radius.circular(12.0),
+    this.strokeCap = StrokeCap.round,
     this.customPath,
   });
 
@@ -53,18 +53,18 @@ class DashBorder extends StatelessWidget {
         Positioned.fill(
           child: CustomPaint(
             painter: DashPainter(
-              strokeWidth: strokeWidth ?? 0.75,
-              radius: radius ?? const Radius.circular(12.0),
-              color: borderColor ?? HelperColors.orange,
-              borderType: borderType ?? BorderType.RRect,
-              dashPattern: dashPattern ?? const <double>[4, 4],
+              strokeWidth: strokeWidth,
+              radius: radius,
+              color: borderColor,
+              borderType: borderType,
+              dashPattern: dashPattern!,
               customPath: customPath,
-              strokeCap: strokeCap ?? StrokeCap.round,
+              strokeCap: strokeCap,
             ),
           ),
         ),
         Padding(
-          padding: padding ?? const EdgeInsets.all(2),
+          padding: padding!,
           child: child,
         ),
       ],
@@ -84,11 +84,11 @@ class _DashBorderIconWithText extends DashBorder {
     Radius? radius,
     StrokeCap? strokeCap,
     PathBuilder? customPath,
-    String? text,
+    String? text = 'Tambah',
     TextStyle? textStyle,
-    Color? childColor,
-    IconData? iconData,
-    double? iconSize,
+    Color? childColor = HelperColors.orange,
+    IconData? iconData = Icons.add_circle_rounded,
+    double? iconSize = 24.0,
     required VoidCallback? onPressed,
   }) : super(
           key: key,
@@ -110,17 +110,16 @@ class _DashBorderIconWithText extends DashBorder {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        iconData ?? Icons.add_circle_rounded,
-                        size: iconSize ?? 24.0,
-                        color: childColor ?? HelperColors.orange,
+                        iconData,
+                        size: iconSize,
+                        color: childColor,
                       ),
                       SizedBox(height: 4.2),
                       Text(
-                        text ?? 'Tambah',
+                        text!,
                         style: textStyle ??
-                            HelperThemeData.textTheme.bodyText1!.copyWith(
-                                fontSize: 14.0,
-                                color: childColor ?? HelperColors.orange),
+                            HelperThemeData.textTheme.bodyText1!
+                                .copyWith(fontSize: 14.0, color: childColor),
                       )
                     ],
                   ),
