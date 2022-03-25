@@ -34,16 +34,16 @@ class PrimaryCard extends StatelessWidget {
     required this.illustrationImage,
     this.buttonHeight,
     this.buttonWidth,
-    this.illustrationHeight,
-    this.illustrationWidth,
-    this.borderColor,
+    this.illustrationHeight = 92.0,
+    this.illustrationWidth = 142.0,
+    this.borderColor = HelperColors.black10,
     this.backgroundColor = HelperColors.orange10,
     this.radius = 12.0,
-    this.buttonBorderColor,
+    this.buttonBorderColor = HelperColors.orange,
     this.width,
     this.height,
     this.buttonTextColor,
-    this.borderWidth,
+    this.borderWidth = 0.75,
   }) : super(key: key);
 
   @override
@@ -53,8 +53,8 @@ class PrimaryCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius!),
         side: BorderSide(
-          width: borderWidth ?? 0.75,
-          color: borderColor ?? HelperColors.black10,
+          width: borderWidth!,
+          color: borderColor!,
         ),
       ),
       child: Row(
@@ -68,7 +68,7 @@ class PrimaryCard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 12.0, left: 16.0),
                   child: Text(title,
                       style:
-                      titleStyle ?? HelperThemeData.textTheme.buttonText1),
+                          titleStyle ?? HelperThemeData.textTheme.buttonText1),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
@@ -83,7 +83,7 @@ class PrimaryCard extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       left: 12.0, top: 14.0, bottom: 12.0),
                   child: HOutlinedButton(
-                    borderColor: buttonBorderColor ?? HelperColors.orange,
+                    borderColor: buttonBorderColor,
                     onPressed: onPressed,
                     text: buttonText,
                   ),
@@ -96,8 +96,8 @@ class PrimaryCard extends StatelessWidget {
             loadingBuilder: (context, child, _) => child,
             errorBuilder: (context, error, stackTrace) => Container(),
             fit: BoxFit.fill,
-            width: illustrationWidth ?? 142.0,
-            height: illustrationHeight ?? 92.0,
+            width: illustrationWidth,
+            height: illustrationHeight,
           ),
         ],
       ),
