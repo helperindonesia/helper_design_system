@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:helper_design/helper_design.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
@@ -14,15 +13,15 @@ class ExpansionView extends StatefulWidget {
     this.trailing,
     this.initiallyExpanded = false,
     this.maintainState = false,
-    this.expandedCrossAxisAlignment,
-    this.expandedAlignment,
-    this.childrenPadding,
-    this.backgroundColor,
+    this.expandedCrossAxisAlignment = CrossAxisAlignment.center,
+    this.expandedAlignment = Alignment.center,
+    this.childrenPadding = const EdgeInsets.fromLTRB(12, 0, 12, 16),
+    this.backgroundColor = HelperColors.white,
     this.collapsedBackgroundColor,
-    this.iconColor,
-    this.iconSize,
+    this.iconColor = HelperColors.black8,
+    this.iconSize = 24.0,
     this.titleStyle,
-    this.titlePadding,
+    this.titlePadding = const EdgeInsets.fromLTRB(12, 7, 12, 7),
     this.leading,
     this.subtitleStyle,
   }) : super(key: key);
@@ -117,7 +116,7 @@ class _ExpansionViewState extends State<ExpansionView>
           InkWell(
             onTap: _handleTap,
             child: Container(
-              padding: widget.titlePadding ?? EdgeInsets.fromLTRB(12, 7, 12, 7),
+              padding: widget.titlePadding,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,14 +132,13 @@ class _ExpansionViewState extends State<ExpansionView>
                               HelperThemeData.textTheme.bodyText1
                                   ?.copyWith(color: HelperColors.black5),
                         ),
-                        widget.subtitle != null
-                            ? Text(
-                                widget.subtitle!,
-                                style: widget.subtitleStyle ??
-                                    HelperThemeData.textTheme.caption
-                                        ?.copyWith(color: HelperColors.black7),
-                              )
-                            : SizedBox(),
+                        if (widget.subtitle != null)
+                          Text(
+                            widget.subtitle!,
+                            style: widget.subtitleStyle ??
+                                HelperThemeData.textTheme.caption
+                                    ?.copyWith(color: HelperColors.black7),
+                          ),
                       ],
                     ),
                   ),
@@ -149,8 +147,8 @@ class _ExpansionViewState extends State<ExpansionView>
                         turns: _iconTurns,
                         child: Icon(
                           Icons.expand_more,
-                          size: widget.iconSize ?? 24,
-                          color: widget.iconColor ?? HelperColors.black8,
+                          size: widget.iconSize,
+                          color: widget.iconColor,
                         ),
                       ),
                 ],
@@ -159,7 +157,7 @@ class _ExpansionViewState extends State<ExpansionView>
           ),
           ClipRect(
             child: Align(
-              alignment: widget.expandedAlignment ?? Alignment.center,
+              alignment: widget.expandedAlignment!,
               heightFactor: _heightFactor.value,
               child: child,
             ),
@@ -173,7 +171,7 @@ class _ExpansionViewState extends State<ExpansionView>
   void didChangeDependencies() {
     _backgroundColorTween
       ..begin = widget.collapsedBackgroundColor
-      ..end = widget.backgroundColor ?? HelperColors.white;
+      ..end = widget.backgroundColor;
     super.didChangeDependencies();
   }
 
@@ -185,10 +183,9 @@ class _ExpansionViewState extends State<ExpansionView>
     final Widget result = Offstage(
       child: TickerMode(
         child: Padding(
-          padding: widget.childrenPadding ?? EdgeInsets.fromLTRB(12, 0, 12, 16),
+          padding: widget.childrenPadding!,
           child: Column(
-            crossAxisAlignment:
-                widget.expandedCrossAxisAlignment ?? CrossAxisAlignment.center,
+            crossAxisAlignment: widget.expandedCrossAxisAlignment!,
             children: widget.children,
           ),
         ),
