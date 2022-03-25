@@ -7,7 +7,7 @@ class PrimaryButton extends BaseButton {
   final double? width;
   final double? height;
   final VoidCallback? onPressed;
-  final Color? backgroundColor;
+  final Color backgroundColor;
   final double? radius;
 
   const PrimaryButton({
@@ -18,7 +18,7 @@ class PrimaryButton extends BaseButton {
     required this.onPressed,
     Widget? child,
     this.height = 48.0,
-    this.backgroundColor,
+    this.backgroundColor = HelperColors.orange,
     this.radius,
   }) : super(
           key: key,
@@ -37,7 +37,7 @@ class PrimaryButton extends BaseButton {
     double? width,
     double? height,
     required VoidCallback? onPressed,
-    Color? backgroundColor,
+    Color backgroundColor,
     double? radius,
     required Widget icon,
   }) = _PrimaryButtonWithIcon;
@@ -69,7 +69,7 @@ class _PrimaryButtonWithIcon extends PrimaryButton {
     double? width,
     double? height,
     VoidCallback? onPressed,
-    Color? backgroundColor,
+    Color backgroundColor = HelperColors.orange,
     double? radius,
     required Widget icon,
   }) : super(
@@ -104,7 +104,7 @@ class _PrimaryButton extends StatelessWidget {
   final double? width;
   final VoidCallback? onPressed;
   final Widget? child;
-  final Color? backgroundColor;
+  final Color backgroundColor;
   final double? radius;
 
   const _PrimaryButton({
@@ -113,7 +113,7 @@ class _PrimaryButton extends StatelessWidget {
     this.width,
     this.onPressed,
     required this.child,
-    this.backgroundColor,
+    this.backgroundColor = HelperColors.orange,
     this.radius,
   }) : super(key: key);
 
