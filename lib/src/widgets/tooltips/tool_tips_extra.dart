@@ -14,8 +14,8 @@ class ToolTipsExtra extends StatelessWidget {
       required this.text,
       this.textStyle,
       required this.onPressed,
-      this.padding,
-      this.buttonText,
+      this.padding = 49.0,
+      this.buttonText = 'Ok, Mengerti',
       this.toolTipTickPosition = ToolTipTickPosition.RIGHT})
       : super(key: key);
 
@@ -25,7 +25,7 @@ class ToolTipsExtra extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: ShapeDecoration(
         shape: ToolTipsShapeBorder(
-            toolTipTickPosition: toolTipTickPosition, padding: padding ?? 49.0),
+            toolTipTickPosition: toolTipTickPosition, padding: padding!),
         color: HelperColors.black2,
       ),
       child: Padding(
@@ -34,7 +34,7 @@ class ToolTipsExtra extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              text ?? "",
+              text!,
               style: textStyle ??
                   HelperThemeData.textTheme.bodyText3!
                       .copyWith(color: HelperColors.white),
@@ -43,7 +43,7 @@ class ToolTipsExtra extends StatelessWidget {
             HOutlinedButton(
                 textColor: HelperColors.white,
                 borderColor: HelperColors.white,
-                text: buttonText ?? 'Ok, Mengerti',
+                text: buttonText,
                 onPressed: onPressed)
           ],
         ),
