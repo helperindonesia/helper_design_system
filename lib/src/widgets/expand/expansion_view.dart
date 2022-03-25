@@ -35,9 +35,9 @@ class ExpansionView extends StatefulWidget {
   final Widget? trailing;
   final bool initiallyExpanded;
   final bool maintainState;
-  final Alignment? expandedAlignment;
-  final CrossAxisAlignment? expandedCrossAxisAlignment;
-  final EdgeInsetsGeometry? childrenPadding;
+  final Alignment expandedAlignment;
+  final CrossAxisAlignment expandedCrossAxisAlignment;
+  final EdgeInsetsGeometry childrenPadding;
   final Color? iconColor;
   final double? iconSize;
   final TextStyle? titleStyle;
@@ -157,7 +157,7 @@ class _ExpansionViewState extends State<ExpansionView>
           ),
           ClipRect(
             child: Align(
-              alignment: widget.expandedAlignment!,
+              alignment: widget.expandedAlignment,
               heightFactor: _heightFactor.value,
               child: child,
             ),
@@ -183,9 +183,9 @@ class _ExpansionViewState extends State<ExpansionView>
     final Widget result = Offstage(
       child: TickerMode(
         child: Padding(
-          padding: widget.childrenPadding!,
+          padding: widget.childrenPadding,
           child: Column(
-            crossAxisAlignment: widget.expandedCrossAxisAlignment!,
+            crossAxisAlignment: widget.expandedCrossAxisAlignment,
             children: widget.children,
           ),
         ),
