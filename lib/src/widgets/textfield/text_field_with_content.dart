@@ -10,13 +10,13 @@ class TextFieldWithContent extends StatelessWidget {
   final String? initialValue;
   final String? labelText;
   final String? hintText;
-  final TextAlign? textAlign;
+  final TextAlign textAlign;
   final FormFieldValidator? validator;
   final List<TextInputFormatter>? inputFormatters;
   final Color? fillColor;
-  final double? borderRadius;
+  final double borderRadius;
   final TextEditingController? textEditingController;
-  final bool? readOnly;
+  final bool readOnly;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
@@ -32,13 +32,13 @@ class TextFieldWithContent extends StatelessWidget {
     this.initialValue,
     required this.labelText,
     this.hintText,
-    this.textAlign,
+    this.textAlign = TextAlign.left,
     this.validator,
     this.inputFormatters,
     this.fillColor,
-    this.borderRadius,
+    this.borderRadius = 12,
     this.textEditingController,
-    this.readOnly,
+    this.readOnly = false,
     this.onTap,
     this.onChanged,
     this.onSaved,

@@ -10,18 +10,17 @@ class TextFieldWithExpansionView extends StatelessWidget {
   final String? initialValue;
   final String? labelText;
   final String? hintText;
-  final TextAlign? textAlign;
+  final TextAlign textAlign;
   final FormFieldValidator? validator;
   final List<TextInputFormatter>? inputFormatters;
   final Color? fillColor;
-  final double? borderRadius;
+  final double borderRadius;
   final TextEditingController? textEditingController;
-  final bool? readOnly;
+  final bool readOnly;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
   final Widget? trailing;
-
   final String expansionTitle;
   final ValueChanged<bool>? onExpansionChanged;
   final List<Widget> expansionChildren;
@@ -30,9 +29,6 @@ class TextFieldWithExpansionView extends StatelessWidget {
   final Widget? expansionTrailing;
   final bool initiallyExpanded;
   final bool expansionMaintainState;
-  final Alignment? expandedAlignment;
-  final CrossAxisAlignment? expandedCrossAxisAlignment;
-  final EdgeInsetsGeometry? expansionChildrenPadding;
   final Color? expansionIconColor;
   final double? expansionIconSize;
   final TextStyle? expansionTitleStyle;
@@ -47,13 +43,13 @@ class TextFieldWithExpansionView extends StatelessWidget {
     this.initialValue,
     required this.labelText,
     this.hintText,
-    this.textAlign,
+    this.textAlign = TextAlign.left,
     this.validator,
     this.inputFormatters,
     this.fillColor,
-    this.borderRadius,
+    this.borderRadius = 12,
     this.textEditingController,
-    this.readOnly,
+    this.readOnly = false,
     this.onTap,
     this.onChanged,
     this.onSaved,
@@ -67,9 +63,6 @@ class TextFieldWithExpansionView extends StatelessWidget {
     this.expansionTrailing,
     this.initiallyExpanded = false,
     this.expansionMaintainState = false,
-    this.expandedAlignment,
-    this.expandedCrossAxisAlignment,
-    this.expansionChildrenPadding,
     this.expansionIconColor,
     this.expansionIconSize,
     this.expansionTitleStyle,
@@ -118,9 +111,6 @@ class TextFieldWithExpansionView extends StatelessWidget {
               trailing: expansionTrailing,
               initiallyExpanded: initiallyExpanded,
               maintainState: expansionMaintainState,
-              expandedAlignment: expandedAlignment,
-              expandedCrossAxisAlignment: expandedCrossAxisAlignment,
-              childrenPadding: expansionChildrenPadding,
               iconColor: expansionIconColor,
               titleStyle: expansionTitleStyle,
               titlePadding: expansionTitlePadding,

@@ -16,9 +16,6 @@ class TextFieldCounterWithExpansionView extends StatefulWidget {
     this.expansionTrailing,
     this.initiallyExpanded = false,
     this.expansionMaintainState = false,
-    this.expandedAlignment,
-    this.expandedCrossAxisAlignment,
-    this.expansionChildrenPadding,
     this.expansionIconColor,
     this.expansionIconSize,
     this.expansionTitleStyle,
@@ -37,9 +34,6 @@ class TextFieldCounterWithExpansionView extends StatefulWidget {
   final Widget? expansionTrailing;
   final bool initiallyExpanded;
   final bool expansionMaintainState;
-  final Alignment? expandedAlignment;
-  final CrossAxisAlignment? expandedCrossAxisAlignment;
-  final EdgeInsetsGeometry? expansionChildrenPadding;
   final Color? expansionIconColor;
   final double? expansionIconSize;
   final TextStyle? expansionTitleStyle;
@@ -130,9 +124,6 @@ class _TextFieldCounterWithExpansionViewState
               trailing: widget.expansionTrailing,
               initiallyExpanded: widget.initiallyExpanded,
               maintainState: widget.expansionMaintainState,
-              expandedAlignment: widget.expandedAlignment,
-              expandedCrossAxisAlignment: widget.expandedCrossAxisAlignment,
-              childrenPadding: widget.expansionChildrenPadding,
               iconColor: widget.expansionIconColor,
               titleStyle: widget.expansionTitleStyle,
               titlePadding: widget.expansionTitlePadding,

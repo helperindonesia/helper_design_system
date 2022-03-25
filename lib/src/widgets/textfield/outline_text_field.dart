@@ -10,16 +10,16 @@ class OutlineTextField extends StatefulWidget {
   final String? initialValue;
   final String? labelText;
   final String? hintText;
-  final TextAlign? textAlign;
+  final TextAlign textAlign;
   final FormFieldValidator? validator;
   final List<TextInputFormatter>? inputFormatters;
   final Color? fillColor;
-  final double? borderRadius;
-  final Color? borderColor;
-  final Color? enableBorderColor;
-  final Color? focusedBorderColor;
+  final double borderRadius;
+  final Color borderColor;
+  final Color enableBorderColor;
+  final Color focusedBorderColor;
   final TextEditingController? textEditingController;
-  final bool? readOnly;
+  final bool readOnly;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
@@ -82,7 +82,8 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
   }
 
   void validateFont(String? value, bool hasFocus) {
-    if (value == null && !hasFocus || value == '' && !hasFocus) {
+    if (value == null && !hasFocus ||
+        (value != null && value.isEmpty) && !hasFocus) {
       _labelFontSize = 16;
       _labelColor = HelperColors.black7;
     } else if (!hasFocus) {
@@ -123,18 +124,18 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
               color: widget.labelColor ?? _labelColor),
           border: OutlineInputBorder(
             gapPadding: 4,
-            borderRadius: BorderRadius.circular(widget.borderRadius!),
-            borderSide: BorderSide(width: 1, color: widget.borderColor!),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(width: 1, color: widget.borderColor),
           ),
           enabledBorder: OutlineInputBorder(
             gapPadding: 4,
-            borderRadius: BorderRadius.circular(widget.borderRadius!),
-            borderSide: BorderSide(width: 1, color: widget.enableBorderColor!),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(width: 1, color: widget.enableBorderColor),
           ),
           focusedBorder: OutlineInputBorder(
             gapPadding: 4,
-            borderRadius: BorderRadius.circular(widget.borderRadius!),
-            borderSide: BorderSide(width: 1, color: widget.focusedBorderColor!),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(width: 1, color: widget.focusedBorderColor),
           ),
           suffixIcon: widget.trailing,
         ),
@@ -142,12 +143,12 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         initialValue: widget.initialValue,
         keyboardType: widget.keyboardType,
         textInputAction: widget.textInputAction,
-        textAlign: widget.textAlign!,
+        textAlign: widget.textAlign,
         maxLines: widget.isMultiLine ? null : 1,
         minLines: widget.minLines,
         validator: widget.validator,
         controller: widget.textEditingController,
-        readOnly: widget.readOnly!,
+        readOnly: widget.readOnly,
         onTap: widget.onTap,
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
