@@ -65,16 +65,15 @@ class DraggableBottomSheet extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50.0),
                   ),
                 ),
-                withHeader
-                    ? SingleChildScrollView(
-                        controller: scrollController,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: headerBackgroundColor,
-                          child: headerContent,
-                        ),
-                      )
-                    : SizedBox(),
+                if (withHeader)
+                  SingleChildScrollView(
+                    controller: scrollController,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: headerBackgroundColor,
+                      child: headerContent,
+                    ),
+                  ),
                 Expanded(
                   child: Container(
                     width: MediaQuery.of(context).size.width,
