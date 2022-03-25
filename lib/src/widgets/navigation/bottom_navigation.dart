@@ -6,7 +6,7 @@ class HBottomNavBar extends StatelessWidget {
     Key? key,
     this.selectedIndex = 0,
     this.iconSize = 24,
-    this.backgroundColor,
+    this.backgroundColor = HelperColors.black,
     this.itemCornerRadius = 24,
     this.containerHeight = 64,
     this.animationDuration = const Duration(milliseconds: 270),
@@ -14,10 +14,10 @@ class HBottomNavBar extends StatelessWidget {
     required this.items,
     required this.onItemSelected,
     this.curve = Curves.easeInOut,
-    this.textSelectedColor,
-    this.textUnSelectedColor,
-    this.selectedIconColor,
-    this.unSelectedIconColor,
+    this.textSelectedColor = HelperColors.white,
+    this.textUnSelectedColor = HelperColors.black3,
+    this.selectedIconColor = HelperColors.white,
+    this.unSelectedIconColor = HelperColors.black3,
   })  : assert(items.length >= 2 && items.length <= 5),
         super(key: key);
 
@@ -46,7 +46,7 @@ class HBottomNavBar extends StatelessWidget {
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32),
-          color: backgroundColor ?? HelperColors.black,
+          color: backgroundColor,
         ),
         child: Row(
           mainAxisAlignment: mainAxisAlignment,
@@ -62,10 +62,10 @@ class HBottomNavBar extends StatelessWidget {
                 itemCornerRadius: itemCornerRadius,
                 animationDuration: animationDuration,
                 curve: curve,
-                textSelectedColor: textSelectedColor ?? HelperColors.white,
-                textUnSelectedColor: textUnSelectedColor ?? HelperColors.black3,
-                selectedIconColor: selectedIconColor ?? HelperColors.white,
-                unSelectedIconColor: unSelectedIconColor ?? HelperColors.black3,
+                textSelectedColor: textSelectedColor,
+                textUnSelectedColor: textUnSelectedColor,
+                selectedIconColor: selectedIconColor,
+                unSelectedIconColor: unSelectedIconColor,
               ),
             );
           }).toList(),
@@ -124,21 +124,20 @@ class _ItemWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 3 - 16,
             child: Stack(
               children: [
-                !isSelected
-                    ? Positioned(
-                        right: 12,
-                        child: (item.badgeCount != null && item.badgeCount != 0)
-                            ? CircleAvatar(
-                                child: Text(
-                                  item.badgeCount.toString(),
-                                  style: HelperThemeData.textTheme.caption!
-                                      .copyWith(color: Colors.white),
-                                ),
-                                radius: 8,
-                                backgroundColor: HelperColors.red,
-                              )
-                            : SizedBox())
-                    : SizedBox(),
+                if (!isSelected)
+                  Positioned(
+                      right: 12,
+                      child: (item.badgeCount != null && item.badgeCount != 0)
+                          ? CircleAvatar(
+                              child: Text(
+                                item.badgeCount.toString(),
+                                style: HelperThemeData.textTheme.caption!
+                                    .copyWith(color: Colors.white),
+                              ),
+                              radius: 8,
+                              backgroundColor: HelperColors.red,
+                            )
+                          : SizedBox()),
                 Container(
                   padding: EdgeInsets.fromLTRB(14, 12, 17, 12),
                   child: Row(
