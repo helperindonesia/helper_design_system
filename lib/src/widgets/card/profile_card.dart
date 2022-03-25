@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
 class ProfileCard extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
   final String fullName;
   final Widget? child;
   final double rating;
@@ -13,11 +13,11 @@ class ProfileCard extends StatelessWidget {
 
   const ProfileCard({
     Key? key,
-    this.imageUrl = '',
+    this.imageUrl,
     required this.fullName,
     this.child,
     required this.rating,
-    this.padding,
+    this.padding = const EdgeInsets.all(16.0),
     this.onChatIconPressed,
     this.footer,
   }) : super(key: key);
@@ -40,24 +40,23 @@ class ProfileCard extends StatelessWidget {
     return CardContainer(
       children: [
         CardContainer(
-          padding: padding ?? EdgeInsets.all(16.0),
+          padding: padding,
           children: [
             Row(
               children: [
-                imageUrl != ''
-                    ? Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image(
-                            height: 56,
-                            width: 52,
-                            image: NetworkImage(imageUrl),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                    : SizedBox(),
+                if (imageUrl != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image(
+                        height: 56,
+                        width: 52,
+                        image: NetworkImage(imageUrl!),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -90,8 +89,9 @@ class ProfileCard extends StatelessWidget {
                           height: 15,
                           margin: EdgeInsets.symmetric(horizontal: 8),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: HelperColors.black8),
+                            borderRadius: BorderRadius.circular(20),
+                            color: HelperColors.black8,
+                          ),
                         ),
                         Icon(
                           Icons.emoji_events_rounded,
@@ -114,23 +114,21 @@ class ProfileCard extends StatelessWidget {
                   ],
                 ),
                 Expanded(child: SizedBox()),
-                onChatIconPressed != null
-                    ? InkWell(
-                        onTap: onChatIconPressed,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: HelperColors.green),
-                          child: Icon(
-                            Icons.chat_bubble_rounded,
-                            size: 20,
-                            color: HelperColors.white,
-                          ),
-                        ),
-                      )
-                    : SizedBox(),
+                if (onChatIconPressed != null)
+                  InkWell(
+                    onTap: onChatIconPressed,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: HelperColors.green),
+                      child: Icon(
+                        Icons.chat_bubble_rounded,
+                        size: 20,
+                        color: HelperColors.white,
+                      ),
+                    ),
+                  )
               ],
             ),
             child ?? SizedBox(),
@@ -145,7 +143,7 @@ class ProfileCard extends StatelessWidget {
 class _ProfileCardWithConfirmation extends ProfileCard {
   _ProfileCardWithConfirmation({
     Key? key,
-    String? text,
+    String? text = 'Butuh Persetujuan Untuk Lanjut',
     String? imageUrl,
     required String fullName,
     Widget? child,
@@ -156,7 +154,7 @@ class _ProfileCardWithConfirmation extends ProfileCard {
     required ValueChanged<bool> onToggle,
   }) : super(
           key: key,
-          imageUrl: imageUrl ?? '',
+          imageUrl: imageUrl,
           fullName: fullName,
           child: child,
           rating: rating,
@@ -169,7 +167,7 @@ class _ProfileCardWithConfirmation extends ProfileCard {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  text ?? 'Butuh Persetujuan Untuk Lanjut',
+                  text!,
                   style: HelperThemeData.textTheme.bodyText1!
                       .copyWith(fontSize: 14),
                 ),
