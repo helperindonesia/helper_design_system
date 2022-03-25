@@ -17,7 +17,7 @@ class PrimaryButton extends BaseButton {
     this.width,
     required this.onPressed,
     Widget? child,
-    this.height,
+    this.height = 48.0,
     this.backgroundColor,
     this.radius,
   }) : super(
@@ -46,7 +46,7 @@ class PrimaryButton extends BaseButton {
   Widget build(BuildContext context) {
     return _PrimaryButton(
       width: width ?? MediaQuery.of(context).size.width,
-      height: height ?? 48.0,
+      height: height,
       onPressed: onPressed,
       backgroundColor: backgroundColor,
       radius: radius,

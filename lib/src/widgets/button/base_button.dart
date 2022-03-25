@@ -13,19 +13,19 @@ class BaseButton extends StatelessWidget {
   final double? elevation;
   final double? borderWidth;
 
-  const BaseButton(
-      {Key? key,
-      @required this.onPressed,
-      @required this.height,
-      @required this.width,
-      this.isOutlinedButton = false,
-      this.borderColor,
-      this.backgroundColor,
-      this.radius,
-      this.child,
-      this.elevation,
-      this.borderWidth})
-      : super(key: key);
+  const BaseButton({
+    Key? key,
+    @required this.onPressed,
+    @required this.height,
+    @required this.width,
+    this.isOutlinedButton = false,
+    this.borderColor = HelperColors.orange,
+    this.backgroundColor = HelperColors.orange,
+    this.radius,
+    this.child,
+    this.elevation,
+    this.borderWidth = 1,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,10 @@ class BaseButton extends StatelessWidget {
             ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius ?? 24))
             : RoundedRectangleBorder(
-                side: BorderSide(
-                    width: borderWidth ?? 1, color: borderColor ?? HelperColors.orange),
+                side: BorderSide(width: borderWidth!, color: borderColor!),
                 borderRadius: BorderRadius.circular(radius ?? 12),
               ),
-        color: backgroundColor ?? HelperColors.orange,
+        color: backgroundColor,
         child: child,
       ),
     );
