@@ -9,6 +9,7 @@ class TextFieldCounter extends StatefulWidget {
     this.valueText = '',
     this.onSaved,
     this.counting = 1,
+    this.maxCount = 10,
   }) : super(key: key);
 
   final int? value;
@@ -16,6 +17,7 @@ class TextFieldCounter extends StatefulWidget {
   final String? labelText;
   final FormFieldSetter<String>? onSaved;
   final int counting;
+  final int maxCount;
 
   @override
   _TextFieldCounterState createState() => _TextFieldCounterState();
@@ -24,6 +26,7 @@ class TextFieldCounter extends StatefulWidget {
 class _TextFieldCounterState extends State<TextFieldCounter> {
   int _counter = 1;
   int _counting = 1;
+  int _maxCount = 10;
 
   final TextEditingController _controller = TextEditingController();
 
@@ -35,6 +38,7 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         : _counter.toString() + widget.valueText;
     _counter = widget.value ?? 1;
     _counting = widget.counting;
+    _maxCount = widget.maxCount;
   }
 
   @override
@@ -65,12 +69,14 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
           ),
           SizedBox(width: 8),
           HOutlinedButton.icon(
-            onPressed: () {
-              setState(() {
-                _counter += _counting;
-                _controller.text = _counter.toString() + widget.valueText;
-              });
-            },
+            onPressed: _counter == _maxCount
+                ? null
+                : () {
+                    setState(() {
+                      _counter += _counting;
+                      _controller.text = _counter.toString() + widget.valueText;
+                    });
+                  },
             icon: Icon(HelperIcons.ic_add, size: 20.0),
           ),
           SizedBox(width: 12.0),
