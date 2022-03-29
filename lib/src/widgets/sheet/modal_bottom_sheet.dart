@@ -10,7 +10,7 @@ class ModalBottomSheet extends StatelessWidget {
   final IconData leftIcon;
   final VoidCallback? onRightButtonPressed;
   final VoidCallback? onLeftButtonPressed;
-  final EdgeInsetsGeometry? contentPadding;
+  final EdgeInsetsGeometry contentPadding;
 
   const ModalBottomSheet({
     Key? key,

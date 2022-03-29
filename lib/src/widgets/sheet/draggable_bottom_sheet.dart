@@ -4,7 +4,7 @@ import 'package:helper_design/helper_design.dart';
 typedef ExtentListener = Function(double extent);
 
 class DraggableBottomSheet extends StatelessWidget {
-  final Widget? child;
+  final Widget child;
   final double radius;
   final Color childBackgroundColor;
   final double initialChildSize;

@@ -6,13 +6,13 @@ extension BottomSheetX on BuildContext {
     bool isScrollControlled = false,
     bool isDismissible: true,
     bool enableDrag: false,
-    Color? backgroundColor,
+    Color backgroundColor = Colors.transparent,
   }) {
     return showModalBottomSheet<T?>(
       context: this,
       isScrollControlled: isScrollControlled,
       enableDrag: enableDrag,
-      backgroundColor: backgroundColor ?? Colors.transparent,
+      backgroundColor: backgroundColor,
       isDismissible: isDismissible,
       builder: (context) => child,
     );
