@@ -5,19 +5,19 @@ import 'dash_border.dart';
 typedef PathBuilder = Path Function(Size);
 
 class DashPainter extends CustomPainter {
-  final double? strokeWidth;
+  final double strokeWidth;
   final List<double> dashPattern;
-  final Color? color;
-  final BorderType? borderType;
-  final Radius? radius;
-  final StrokeCap? strokeCap;
+  final Color color;
+  final BorderType borderType;
+  final Radius radius;
+  final StrokeCap strokeCap;
   final PathBuilder? customPath;
 
   DashPainter({
     this.strokeWidth = 0.75,
     this.dashPattern = const <double>[4, 4],
     this.color = HelperColors.orange,
-    this.borderType,
+    this.borderType = BorderType.RRect,
     this.radius = const Radius.circular(12.0),
     this.strokeCap = StrokeCap.round,
     this.customPath,
@@ -28,9 +28,9 @@ class DashPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..strokeWidth = strokeWidth!
-      ..color = color!
-      ..strokeCap = strokeCap!
+      ..strokeWidth = strokeWidth
+      ..color = color
+      ..strokeCap = strokeCap
       ..style = PaintingStyle.stroke;
 
     Path _path;
@@ -49,12 +49,12 @@ class DashPainter extends CustomPainter {
   /// Returns a [Path] based on the the [borderType] parameter
   Path _getPath(Size size) {
     Path path;
-    switch (borderType ?? BorderType.RRect) {
+    switch (borderType) {
       case BorderType.Circle:
         path = _getCirclePath(size);
         break;
       case BorderType.RRect:
-        path = _getRRectPath(size, radius!);
+        path = _getRRectPath(size, radius);
         break;
     }
 

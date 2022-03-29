@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
 class DashLine extends StatelessWidget {
-  final double? dashHeight;
-  final double? dashWidth;
-  final Color? color;
-  final double? height;
+  final double dashHeight;
+  final double dashWidth;
+  final Color color;
+  final double height;
   final double? width;
 
   const DashLine({
@@ -27,7 +27,7 @@ class DashLine extends StatelessWidget {
         final boxWidth = constraints.constrainWidth();
         final dashedWidth = dashWidth;
         final dashedHeight = dashHeight;
-        final dashCount = (boxWidth / (2 * dashedWidth!)).floor();
+        final dashCount = (boxWidth / (2 * dashedWidth)).floor();
         return Flex(
           direction: Axis.horizontal,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
