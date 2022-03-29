@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     hide OutlinedButton, Stepper, Step, StepState;
 import 'package:helper_design/helper_design.dart';
-
-import 'order/order.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,12 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: HelperThemeData.themeData(),
-        home:
-        // OrderView()
-        MyHomePage(title: 'Helper Design Example'),
-        );
+      title: 'Flutter Demo',
+      theme: HelperThemeData.themeData(),
+      home:
+          // OrderView()
+          MyHomePage(title: 'Helper Design Example'),
+    );
   }
 }
 
@@ -94,62 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-
-            Positioned(
-              child: DraggableBottomSheet(
-                initialChildSize: 0.3,
-                withHeader: true,
-                minChildSize: 0.3,
-                backgroundColor: HelperColors.orange10,
-                headerContent: Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Waktu Pengerjaan',
-                            style: HelperThemeData.textTheme.caption!
-                                .copyWith(color: HelperColors.black3),
-                          ),
-                          SizedBox(height: 2.0),
-                          Text(
-                            '01 : 10 : 30',
-                            style: HelperThemeData.textTheme.headline5!
-                                .copyWith(fontSize: 16.0),
-                          )
-                        ],
-                      ),
-                      HOutlinedButton.icon(
-                        outlineType: OutlineType.rounded,
-                        onPressed: () {},
-                        text: 'Tambah Waktu',
-                        icon: Icon(
-                          Icons.add_circle_rounded,
-                          size: 16.0,
-                          color: HelperColors.orange,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: HelperColors.white,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16.0),
-                      )),
-                  child: Column(
-                    children: _buildHelper(50),
-                  ),
-                ),
-              ),
-            ),
-
-
           ],
         ),
       ),
@@ -163,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return Step(
             indicatorIcon: index > 1
                 ? Icon(
-                    HelperIcons.plus,
+                    Icons.add_circle,
                     color: HelperColors.white,
                   )
                 : null,
@@ -188,120 +129,112 @@ class _MyHomePageState extends State<MyHomePage> {
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return ModalBottomSheet(
-                            withTopButton: false,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                child: ProfileCard(
-                                  fullName: 'Abdur Razaq',
-                                  rating: 3.0,
-                                  onChatIconPressed: () {},
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                child: ProfileCard(
-                                  fullName: 'Abdur Razaq',
-                                  imageUrl:
-                                      'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
-                                  rating: 3.0,
-                                  child: Container(
-                                    margin: EdgeInsets.only(top: 10),
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 100,
-                                    color: HelperColors.red,
-                                  ),
-                                  footer: Container(
-                                    margin: EdgeInsets.all(10),
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 100,
-                                    color: HelperColors.green,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                child: ProfileCard.confirmation(
-                                  onChatIconPressed: () {},
-                                  fullName: 'Abdur Razaq',
-                                  imageUrl:
-                                      'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
-                                  rating: 3.0,
-                                  value: true,
-                                  onToggle: (_) {},
-                                  child: Container(
-                                    margin: EdgeInsets.only(top: 10),
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 100,
-                                    color: HelperColors.red,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    top: 48.0, left: 48.0, right: 48.0),
+                        return ModalBottomSheet(children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: ProfileCard(
+                              fullName: 'Abdur Razaq',
+                              rating: 3.0,
+                              onChatIconPressed: () {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: ProfileCard(
+                              fullName: 'Abdur Razaq',
+                              imageUrl:
+                                  'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
+                              rating: 3.0,
+                              child: Container(
+                                margin: EdgeInsets.only(top: 10),
                                 width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        fit: BoxFit.cover,
-                                        height: 148,
-                                        image: NetworkImage(
-                                          "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
-                                        ),
-                                      ),
+                                height: 100,
+                                color: HelperColors.red,
+                              ),
+                              footer: Container(
+                                margin: EdgeInsets.all(10),
+                                width: MediaQuery.of(context).size.width,
+                                height: 100,
+                                color: HelperColors.green,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            child: ProfileCard.confirmation(
+                              onChatIconPressed: () {},
+                              fullName: 'Abdur Razaq',
+                              imageUrl:
+                                  'https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg',
+                              rating: 3.0,
+                              value: true,
+                              onToggle: (_) {},
+                              child: Container(
+                                margin: EdgeInsets.only(top: 10),
+                                width: MediaQuery.of(context).size.width,
+                                height: 100,
+                                color: HelperColors.red,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(
+                                top: 48.0, left: 48.0, right: 48.0),
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image(
+                                    width: MediaQuery.of(context).size.width,
+                                    fit: BoxFit.cover,
+                                    height: 148,
+                                    image: NetworkImage(
+                                      "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
                                     ),
-                                    SizedBox(height: 16.0),
-                                    Text('Helper Sudah Siap, Ayo Mulai',
-                                        style: HelperThemeData
-                                            .textTheme.headline5),
-                                    SizedBox(height: 2.0),
-                                    Text(
-                                      'Halo kakak, Saya sekarang sudah berada di toko amazon fresh',
-                                      style: HelperThemeData
-                                          .textTheme.bodyText3!
-                                          .copyWith(color: HelperColors.black3),
-                                    ),
-                                    SizedBox(height: 20.0),
-                                    PrimaryCard(onPressed: () {}, boxBorder: Border(),),
-                                    SizedBox(height: 20.0),
-                                    PrimaryCard(
-                                      title: 'Lihat Harga Dulu',
-                                      description:
-                                          'Penawaran harga dari Helpermu',
-                                      onPressed: () {},
-                                      buttonText: 'Lihat Penawaran Lain',
-                                      buttonWidth: 168.0,
-                                      backgroundColor: HelperColors.white,
-                                      illustrationImage:
-                                          'assets/images/illustration_lihat_harga.webp',
-                                      illustrationHeight: 100.0,
-                                      illustrationWidth: 153.0,
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 16.0),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                child: PrimaryButton(
-                                    text: 'Ok, Mulai',
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    }),
-                              ),
-                              SizedBox(height: 16.0),
-                            ]);
+                                SizedBox(height: 16.0),
+                                Text('Helper Sudah Siap, Ayo Mulai',
+                                    style: HelperThemeData.textTheme.headline5),
+                                SizedBox(height: 2.0),
+                                Text(
+                                  'Halo kakak, Saya sekarang sudah berada di toko amazon fresh',
+                                  style: HelperThemeData.textTheme.bodyText3!
+                                      .copyWith(color: HelperColors.black3),
+                                ),
+                                SizedBox(height: 20.0),
+                                PrimaryCard(
+                                  title: 'Lihat Harga Dulu',
+                                  description: 'Penawaran harga dari Helpermu',
+                                  onPressed: () {},
+                                  buttonText: 'Lihat Penawaran Lain',
+                                  buttonWidth: 168.0,
+                                  backgroundColor: HelperColors.white,
+                                  illustrationImage:
+                                      'assets/images/illustration_lihat_harga.webp',
+                                  illustrationHeight: 100.0,
+                                  illustrationWidth: 153.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 16.0),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: PrimaryButton(
+                                text: 'Ok, Mulai',
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                          ),
+                          SizedBox(height: 16.0),
+                        ]);
                       },
                     );
                   },
@@ -328,202 +261,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           );
-        case 1:
-
-          return Step(
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFieldWithContent(
-                  labelText: 'Ceritakan Kebutuhanmu',
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      children: [
-//                         Icon(
-//                           Icons.edit_outlined,
-//                           size: 24.0,
-//                           color: HelperColors.black3,
-
-          return index == 0
-              ? Step(
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /* TextFieldWithContent(
-                        labelText: 'Ceritakan Kebutuhanmu',
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.edit_outlined,
-                                size: 24.0,
-                                color: HelperColors.black3,
-                              ),
-                              SizedBox(width: 12.0),
-                              Text(
-                                'Tulis dengan detail alamat',
-                                style: HelperThemeData.textTheme.caption!
-                                    .copyWith(color: HelperColors.black3),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),*/
-                      OutlineTextField(
-                        trailing: Align(
-                          alignment: Alignment.centerRight,
-                          child: HOutlinedButton(
-                            text: 'Peta',
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      TextFieldCounter(labelText: 'Jumlah Helpermu'),
-                      Container(
-                        decoration:
-                            ShapeDecoration(shape: ToolTipsShapeBorder()),
-                      )
-                    ],
-                  ),
-                )
-              : Step(
-                  content: CardContainer(
-                    padding: EdgeInsets.all(12.0),
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.only(top: 1.0, left: 4.0, bottom: 2.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Ambil Barang di Kota",
-                              style: HelperThemeData.textTheme.buttonText1!
-                                  .copyWith(color: HelperColors.black),
-                            ),
-                            Icon(
-                              Icons.drag_handle,
-                              color: HelperColors.black8,
-                              size: 24.0,
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Text(
-                          'Jln. Perintis Kemerdekaan',
-                          style: HelperThemeData.textTheme.caption!
-                              .copyWith(color: HelperColors.black5),
-                        ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        HOutlinedButton.icon(
-                          borderColor: HelperColors.black5,
-                          onPressed: () {},
-                          text: 'Hapus',
-                          icon: Icon(
-                            Icons.remove_circle_rounded,
-                            size: 16.0,
-                            color: HelperColors.black3,
-                          ),
-                        ),
-                        HOutlinedButton.icon(
-                          borderColor: HelperColors.black5,
-                          onPressed: () {},
-                          text: 'Hapus',
-                          icon: Icon(
-                            Icons.edit,
-                            size: 16.0,
-                            color: HelperColors.black3,
-
-                      ),
-                      Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 4.0, vertical: 14.0),
-                          child:
-                              Divider() //TODO: Change Divider to DashLine after Merge
-                          ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          HOutlinedButton.icon(
-                            borderColor: HelperColors.black5,
-                            onPressed: () {},
-                            text: 'Hapus',
-                            textColor: HelperColors.black5,
-                            icon: Icon(
-                              Icons.remove_circle_rounded,
-                              size: 16.0,
-                              color: HelperColors.black3,
-                            ),
-
-                          ),
-                          HOutlinedButton.icon(
-                            // borderColor: HelperColors.black5,
-                            onPressed: () {},
-                            text: 'Edit',
-                            icon: Icon(
-                              Icons.edit,
-                              size: 16.0,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-        case 2:
-          return Step(
-            content: Column(
-              children: [
-                Row(
-                  children: [
-                    MediaThumbnail(
-                      margin: EdgeInsets.all(5),
-                      mediaUrl:
-                          "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
-                    ),
-                    MediaThumbnail(
-                      mediaType: MediaType.video,
-                      margin: EdgeInsets.all(5),
-                      mediaUrl:
-                          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4",
-                    ),
-                    MediaThumbnail(
-                      isWithIcon: true,
-                      mediaType: MediaType.image,
-                      margin: EdgeInsets.all(5),
-                      mediaUrl:
-                          "https://cdn1-production-images-kly.akamaized.net/WrP9G-ttMc51fEkHtJtDysZ5OY8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2329745/original/020818800_1534239405-7._Allkpop.jpg",
-                    ),
-                  ],
-                ),
-                Container(
-                  height: 10,
-                  width: 200,
-                  child: DashLine(color: HelperColors.orange),
-                ),
-                DashBorder.iconWithText(onPressed: () {}),
-                SizedBox(height: 10),
-                ToolTipsExtraTime(
-                    onPressed: () {},
-                    text:
-                        'Kamu bisa tambah waktu sekitar 30 menit per sekali penambahan, mau tambah waktu untuk tugasmu?'),
-                SizedBox(height: 10),
-                CircleIconButton(
-                  onPressed: () {},
-                  badgeCount: 1,
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          );
         default:
           return Step(
             lineColor: index > 0 ? HelperColors.black7 : null,
@@ -537,7 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 HOutlinedButton.icon(
                   onPressed: () {},
                   icon: Icon(
-                    HelperIcons.edit,
+                    Icons.edit,
                     color: HelperColors.orange,
                   ),
                   text: 'abc',
@@ -553,15 +290,4 @@ class _MyHomePageState extends State<MyHomePage> {
       stepViewType: StepViewType.vertical,
     );
   }
-}
-
-List<Widget> _buildHelper(int value) {
-  var helper = <Widget>[];
-  helper.add(Text("Helpers"));
-
-  for (var i = 0; i < value; i++) {
-    helper.add(Text("Helper " + i.toString()));
-  }
-
-  return helper;
 }
