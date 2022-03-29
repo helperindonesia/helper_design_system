@@ -30,7 +30,7 @@ class ExpansionView extends StatefulWidget {
   final String? subtitle;
   final ValueChanged<bool>? onExpansionChanged;
   final List<Widget> children;
-  final Color? backgroundColor;
+  final Color backgroundColor;
   final Color? collapsedBackgroundColor;
   final Widget? trailing;
   final bool initiallyExpanded;
@@ -38,11 +38,11 @@ class ExpansionView extends StatefulWidget {
   final Alignment expandedAlignment;
   final CrossAxisAlignment expandedCrossAxisAlignment;
   final EdgeInsetsGeometry childrenPadding;
-  final Color? iconColor;
-  final double? iconSize;
+  final Color iconColor;
+  final double iconSize;
   final TextStyle? titleStyle;
   final TextStyle? subtitleStyle;
-  final EdgeInsetsGeometry? titlePadding;
+  final EdgeInsetsGeometry titlePadding;
   final Widget? leading;
 
   @override
