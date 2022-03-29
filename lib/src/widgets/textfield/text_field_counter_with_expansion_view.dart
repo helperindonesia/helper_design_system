@@ -11,15 +11,15 @@ class TextFieldCounterWithExpansionView extends StatefulWidget {
     required this.expansionTitle,
     this.onExpansionChanged,
     this.expansionChildren = const <Widget>[],
-    this.expansionBackgroundColor,
+    this.expansionBackgroundColor = HelperColors.white,
     this.expansionCollapsedBackgroundColor,
     this.expansionTrailing,
     this.initiallyExpanded = false,
     this.expansionMaintainState = false,
-    this.expansionIconColor,
-    this.expansionIconSize,
+    this.expansionIconColor = HelperColors.black8,
+    this.expansionIconSize = 24.0,
     this.expansionTitleStyle,
-    this.expansionTitlePadding,
+    this.expansionTitlePadding = const EdgeInsets.fromLTRB(12, 7, 12, 7),
   }) : super(key: key);
 
   final int? value;
@@ -29,15 +29,15 @@ class TextFieldCounterWithExpansionView extends StatefulWidget {
   final String expansionTitle;
   final ValueChanged<bool>? onExpansionChanged;
   final List<Widget> expansionChildren;
-  final Color? expansionBackgroundColor;
+  final Color expansionBackgroundColor;
   final Color? expansionCollapsedBackgroundColor;
   final Widget? expansionTrailing;
   final bool initiallyExpanded;
   final bool expansionMaintainState;
-  final Color? expansionIconColor;
-  final double? expansionIconSize;
+  final Color expansionIconColor;
+  final double expansionIconSize;
   final TextStyle? expansionTitleStyle;
-  final EdgeInsetsGeometry? expansionTitlePadding;
+  final EdgeInsetsGeometry expansionTitlePadding;
 
   @override
   _TextFieldCounterWithExpansionViewState createState() =>
