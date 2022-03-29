@@ -19,20 +19,20 @@ class SwitchControl extends StatefulWidget {
     this.inActiveBorderColor = HelperColors.black9,
     this.duration = const Duration(milliseconds: 300),
   }) : super(key: key);
-  final bool? value;
+  final bool value;
   final ValueChanged<bool> onToggle;
-  final Color? activeToggleColor;
-  final Color? inactiveToggleColor;
-  final double? width;
-  final double? height;
-  final double? toggleSize;
-  final double? borderRadius;
-  final double? padding;
+  final Color activeToggleColor;
+  final Color inactiveToggleColor;
+  final double width;
+  final double height;
+  final double toggleSize;
+  final double borderRadius;
+  final double padding;
   final BoxBorder? activeSwitchBorder;
   final BoxBorder? inactiveSwitchBorder;
-  final Color? activeBorderColor;
-  final Color? inActiveBorderColor;
-  final Duration? duration;
+  final Color activeBorderColor;
+  final Color inActiveBorderColor;
+  final Duration duration;
 
   @override
   _SwitchControlState createState() => _SwitchControlState();
@@ -48,7 +48,7 @@ class _SwitchControlState extends State<SwitchControl>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      value: widget.value! ? 1.0 : 0.0,
+      value: widget.value ? 1.0 : 0.0,
       duration: widget.duration,
     );
     _toggleAnimation = AlignmentTween(
@@ -74,7 +74,7 @@ class _SwitchControlState extends State<SwitchControl>
 
     if (oldWidget.value == widget.value) return;
 
-    if (widget.value!)
+    if (widget.value)
       _animationController.forward();
     else
       _animationController.reverse();
@@ -85,14 +85,14 @@ class _SwitchControlState extends State<SwitchControl>
     Color _toggleColor = Colors.white;
     Border _switchBorder;
 
-    if (widget.value!) {
-      _toggleColor = widget.activeToggleColor!;
+    if (widget.value) {
+      _toggleColor = widget.activeToggleColor;
       _switchBorder = widget.activeSwitchBorder as Border? ??
-          Border.all(color: widget.activeBorderColor!, width: 1);
+          Border.all(color: widget.activeBorderColor, width: 1);
     } else {
-      _toggleColor = widget.inactiveToggleColor!;
+      _toggleColor = widget.inactiveToggleColor;
       _switchBorder = widget.inactiveSwitchBorder as Border? ??
-          Border.all(color: widget.inActiveBorderColor!, width: 1);
+          Border.all(color: widget.inActiveBorderColor, width: 1);
     }
 
     return AnimatedBuilder(
@@ -103,19 +103,19 @@ class _SwitchControlState extends State<SwitchControl>
           child: Align(
             child: GestureDetector(
               onTap: () {
-                if (widget.value!)
+                if (widget.value)
                   _animationController.forward();
                 else
                   _animationController.reverse();
 
-                widget.onToggle(!widget.value!);
+                widget.onToggle(!widget.value);
               },
               child: Container(
                 width: widget.width,
                 height: widget.height,
-                padding: EdgeInsets.all(widget.padding!),
+                padding: EdgeInsets.all(widget.padding),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(widget.borderRadius!),
+                  borderRadius: BorderRadius.circular(widget.borderRadius),
                   color: HelperColors.white,
                   border: _switchBorder,
                 ),
