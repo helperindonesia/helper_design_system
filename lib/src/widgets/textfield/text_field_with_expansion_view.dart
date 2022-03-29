@@ -4,16 +4,16 @@ import 'package:helper_design/helper_design.dart';
 
 class TextFieldWithExpansionView extends StatelessWidget {
   final bool isMultiLine;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
   final bool? enabled;
   final String? initialValue;
-  final String? labelText;
+  final String labelText;
   final String? hintText;
   final TextAlign textAlign;
   final FormFieldValidator? validator;
   final List<TextInputFormatter>? inputFormatters;
-  final Color? fillColor;
+  final Color fillColor;
   final double borderRadius;
   final TextEditingController? textEditingController;
   final bool readOnly;
@@ -37,8 +37,8 @@ class TextFieldWithExpansionView extends StatelessWidget {
   const TextFieldWithExpansionView({
     Key? key,
     this.isMultiLine = true,
-    this.keyboardType,
-    this.textInputAction,
+    this.keyboardType = TextInputType.text,
+    this.textInputAction = TextInputAction.next,
     this.enabled,
     this.initialValue,
     required this.labelText,
@@ -46,7 +46,7 @@ class TextFieldWithExpansionView extends StatelessWidget {
     this.textAlign = TextAlign.left,
     this.validator,
     this.inputFormatters,
-    this.fillColor,
+    this.fillColor = HelperColors.white,
     this.borderRadius = 12,
     this.textEditingController,
     this.readOnly = false,

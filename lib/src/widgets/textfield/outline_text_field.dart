@@ -4,8 +4,8 @@ import 'package:helper_design/helper_design.dart';
 
 class OutlineTextField extends StatefulWidget {
   final bool isMultiLine;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
   final bool? enabled;
   final String? initialValue;
   final String? labelText;
@@ -13,7 +13,7 @@ class OutlineTextField extends StatefulWidget {
   final TextAlign textAlign;
   final FormFieldValidator? validator;
   final List<TextInputFormatter>? inputFormatters;
-  final Color? fillColor;
+  final Color fillColor;
   final double borderRadius;
   final Color borderColor;
   final Color enableBorderColor;
@@ -25,7 +25,7 @@ class OutlineTextField extends StatefulWidget {
   final ValueChanged<String?>? onSaved;
   final Widget? trailing;
   final Widget? prefixIcon;
-  final bool? autoFocus;
+  final bool autoFocus;
   final Color? labelColor;
   final int? hintMaxLines;
   final int? minLines;
@@ -104,7 +104,7 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         });
       },
       child: TextFormField(
-        autofocus: widget.autoFocus!,
+        autofocus: widget.autoFocus,
         style: widget.textStyle ?? HelperThemeData.textTheme.bodyText1,
         decoration: InputDecoration(
           prefixText: widget.prefixText,
