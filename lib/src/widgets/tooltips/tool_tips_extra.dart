@@ -2,11 +2,11 @@ import 'package:flutter/material.dart' hide OutlinedButton;
 import 'package:helper_design/helper_design.dart';
 
 class ToolTipsExtra extends StatelessWidget {
-  final String? text;
-  final String? buttonText;
+  final String text;
+  final String buttonText;
   final TextStyle? textStyle;
-  final VoidCallback? onPressed;
-  final double? padding;
+  final VoidCallback onPressed;
+  final double padding;
   final ToolTipTickPosition toolTipTickPosition;
 
   const ToolTipsExtra(
@@ -25,7 +25,7 @@ class ToolTipsExtra extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: ShapeDecoration(
         shape: ToolTipsShapeBorder(
-            toolTipTickPosition: toolTipTickPosition, padding: padding!),
+            toolTipTickPosition: toolTipTickPosition, padding: padding),
         color: HelperColors.black2,
       ),
       child: Padding(
@@ -34,7 +34,7 @@ class ToolTipsExtra extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              text!,
+              text,
               style: textStyle ??
                   HelperThemeData.textTheme.bodyText3!
                       .copyWith(color: HelperColors.white),
