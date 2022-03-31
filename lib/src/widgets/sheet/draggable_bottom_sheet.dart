@@ -47,6 +47,8 @@ class DraggableBottomSheet extends StatelessWidget {
         maxChildSize: maxChildSize,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             decoration: BoxDecoration(
               color: headerBackgroundColor,
               borderRadius: BorderRadius.vertical(
