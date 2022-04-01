@@ -25,8 +25,6 @@ class TextFieldCounter extends StatefulWidget {
 
 class _TextFieldCounterState extends State<TextFieldCounter> {
   int _counter = 1;
-  int _counting = 1;
-  int _maxCount = 10;
 
   final TextEditingController _controller = TextEditingController();
 
@@ -37,8 +35,6 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         ? widget.value.toString() + widget.valueText
         : _counter.toString() + widget.valueText;
     _counter = widget.value ?? 1;
-    _counting = widget.counting;
-    _maxCount = widget.maxCount;
   }
 
   @override
@@ -57,11 +53,12 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           HOutlinedButton.icon(
-            onPressed: _counter == _counting
+            onPressed: _counter == widget.counting
                 ? null
                 : () {
                     setState(() {
-                      if (_counter > _counting) _counter -= _counting;
+                      if (_counter > widget.counting)
+                        _counter -= widget.counting;
                       _controller.text = _counter.toString() + widget.valueText;
                     });
                   },
@@ -69,11 +66,11 @@ class _TextFieldCounterState extends State<TextFieldCounter> {
           ),
           SizedBox(width: 8),
           HOutlinedButton.icon(
-            onPressed: _counter == _maxCount
+            onPressed: _counter == widget.maxCount
                 ? null
                 : () {
                     setState(() {
-                      _counter += _counting;
+                      _counter += widget.counting;
                       _controller.text = _counter.toString() + widget.valueText;
                     });
                   },
