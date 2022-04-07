@@ -22,6 +22,7 @@ class TextFieldWithContent extends StatelessWidget {
   final ValueChanged<String?>? onSaved;
   final Widget? trailing;
   final Widget? child;
+  final TextStyle? errorStyle;
 
   const TextFieldWithContent({
     Key? key,
@@ -44,6 +45,7 @@ class TextFieldWithContent extends StatelessWidget {
     this.onSaved,
     this.trailing,
     this.child,
+    this.errorStyle,
   }) : super(key: key);
 
   @override
@@ -76,6 +78,7 @@ class TextFieldWithContent extends StatelessWidget {
             onChanged: onChanged,
             onSaved: onSaved,
             trailing: trailing,
+            errorStyle: errorStyle,
           ),
           child ?? SizedBox(),
         ],

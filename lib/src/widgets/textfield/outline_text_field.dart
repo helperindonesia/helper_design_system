@@ -33,6 +33,7 @@ class OutlineTextField extends StatefulWidget {
   final String? prefixText;
   final EdgeInsetsGeometry? contentPadding;
   final TextStyle? textStyle;
+  final TextStyle? errorStyle;
 
   const OutlineTextField({
     Key? key,
@@ -58,7 +59,7 @@ class OutlineTextField extends StatefulWidget {
     this.borderColor = HelperColors.black8,
     this.enableBorderColor = HelperColors.black8,
     this.focusedBorderColor = HelperColors.orange,
-    this.errorBorderColor = HelperColors.black8,
+    this.errorBorderColor = HelperColors.red,
     this.autoFocus = false,
     this.labelColor,
     this.hintMaxLines,
@@ -66,6 +67,7 @@ class OutlineTextField extends StatefulWidget {
     this.prefixText,
     this.contentPadding = const EdgeInsets.fromLTRB(16.0, 13, 13, 0),
     this.textStyle,
+    this.errorStyle,
   }) : super(key: key);
 
   @override
@@ -117,13 +119,15 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
           fillColor: widget.fillColor,
           contentPadding: widget.contentPadding,
           hintText: widget.hintText,
+          errorStyle: widget.errorStyle,
           hintStyle: HelperThemeData.textTheme.bodyText2
               ?.copyWith(color: HelperColors.black7),
           labelText: widget.labelText,
           labelStyle: HelperThemeData.textTheme.bodyText2?.copyWith(
-              height: 1,
-              fontSize: _labelFontSize,
-              color: widget.labelColor ?? _labelColor),
+            height: 1,
+            fontSize: _labelFontSize,
+            color: widget.labelColor ?? _labelColor,
+          ),
           border: OutlineInputBorder(
             gapPadding: 4,
             borderRadius: BorderRadius.circular(widget.borderRadius),
@@ -139,11 +143,11 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
             borderRadius: BorderRadius.circular(widget.borderRadius),
             borderSide: BorderSide(width: 1, color: widget.focusedBorderColor),
           ),
-          errorBorder: OutlineInputBorder(
-            gapPadding: 4,
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide(width: 1, color: widget.errorBorderColor),
-          ),
+          // errorBorder: OutlineInputBorder(
+          //   gapPadding: 4,
+          //   borderRadius: BorderRadius.circular(widget.borderRadius),
+          //   borderSide: BorderSide(width: 1, color: widget.errorBorderColor),
+          // ),
           suffixIcon: widget.trailing,
         ),
         enabled: widget.enabled,
