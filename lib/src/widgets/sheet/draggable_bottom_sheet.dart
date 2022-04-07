@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:helper_design/helper_design.dart';
 
-typedef ExtentListener = Function(double extent);
+typedef ExtentListener = Function(DraggableScrollableNotification notification);
 
 class DraggableBottomSheet extends StatelessWidget {
-  final Widget child;
-  final double radius;
-  final Color childBackgroundColor;
-  final double initialChildSize;
-  final double minChildSize;
-  final double maxChildSize;
-  final bool withHeader;
-  final Widget? headerContent;
-  final Color indicatorColor;
-  final Color headerBackgroundColor;
-  final ExtentListener? extentListener;
-
   const DraggableBottomSheet({
     Key? key,
     required this.child,
@@ -29,15 +17,31 @@ class DraggableBottomSheet extends StatelessWidget {
     this.indicatorColor = HelperColors.orange8,
     this.headerBackgroundColor = HelperColors.white,
     this.extentListener,
+    this.snap = false,
+    this.snapSizes,
   }) : super(key: key);
+
+  final Widget child;
+  final double radius;
+  final Color childBackgroundColor;
+  final double initialChildSize;
+  final double minChildSize;
+  final double maxChildSize;
+  final bool withHeader;
+  final Widget? headerContent;
+  final Color indicatorColor;
+  final Color headerBackgroundColor;
+  final ExtentListener? extentListener;
+  final bool snap;
+  final List<double>? snapSizes;
 
   @override
   Widget build(BuildContext context) {
     return NotificationListener<DraggableScrollableNotification>(
       onNotification: (notification) {
         if (extentListener != null) {
-          extentListener!(notification.extent);
-          return false;
+          extentListener!(notification);
+          // return true;
         }
         return false;
       },
@@ -45,6 +49,8 @@ class DraggableBottomSheet extends StatelessWidget {
         initialChildSize: initialChildSize,
         minChildSize: minChildSize,
         maxChildSize: maxChildSize,
+        snap: snap,
+        snapSizes: snapSizes,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
             padding: EdgeInsets.only(
