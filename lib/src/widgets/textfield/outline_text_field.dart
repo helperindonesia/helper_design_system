@@ -18,6 +18,7 @@ class OutlineTextField extends StatefulWidget {
   final Color borderColor;
   final Color enableBorderColor;
   final Color focusedBorderColor;
+  final Color errorBorderColor;
   final TextEditingController? textEditingController;
   final bool readOnly;
   final VoidCallback? onTap;
@@ -57,6 +58,7 @@ class OutlineTextField extends StatefulWidget {
     this.borderColor = HelperColors.black8,
     this.enableBorderColor = HelperColors.black8,
     this.focusedBorderColor = HelperColors.orange,
+    this.errorBorderColor = HelperColors.black8,
     this.autoFocus = false,
     this.labelColor,
     this.hintMaxLines,
@@ -136,6 +138,11 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
             gapPadding: 4,
             borderRadius: BorderRadius.circular(widget.borderRadius),
             borderSide: BorderSide(width: 1, color: widget.focusedBorderColor),
+          ),
+          errorBorder: OutlineInputBorder(
+            gapPadding: 4,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(width: 1, color: widget.errorBorderColor),
           ),
           suffixIcon: widget.trailing,
         ),
