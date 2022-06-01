@@ -184,7 +184,7 @@ class _SwipeButtonState extends State<SwipeButton> {
                         ),
                         child: widget.leftIcon ??
                             Icon(
-                              Icons.arrow_circle_up_rounded,
+                              HelperIcons.ic_arrow_right_circle,
                               color: widget.enabled
                                   ? widget.iconColor
                                   : HelperColors.black9,
