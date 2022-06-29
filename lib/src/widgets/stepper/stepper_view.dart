@@ -33,11 +33,13 @@ class StepView extends StatefulWidget {
     this.currentStep = 0,
     required this.steps,
     this.stepViewType = StepViewType.vertical,
+    this.appBar,
   }) : super(key: key);
 
   final int currentStep;
   final List<Step> steps;
   final StepViewType stepViewType;
+  final Widget? appBar;
 
   factory StepView.builder({
     Key? key,
@@ -62,7 +64,7 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     switch (widget.stepViewType) {
       case StepViewType.horizontal:
-        return _buildHorizontal(context);
+        return _buildHorizontal(context, appBar: widget.appBar);
       case StepViewType.vertical:
         return _buildVertical();
     }
@@ -101,12 +103,13 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildHorizontal(BuildContext context) {
+  Widget _buildHorizontal(BuildContext context, {Widget? appBar}) {
     assert(widget.steps[widget.currentStep].title != null);
 
     final Widget column = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        appBar ?? SizedBox.shrink(),
         Padding(
           padding: const EdgeInsets.all(16),
           child: Text(
