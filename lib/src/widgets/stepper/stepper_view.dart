@@ -62,15 +62,9 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     switch (widget.stepViewType) {
       case StepViewType.horizontal:
-        return Container(
-          color: HelperColors.white,
-          child: _buildHorizontal(context),
-        );
+        return _buildHorizontal(context);
       case StepViewType.vertical:
-        return Container(
-          color: HelperColors.white,
-          child: _buildVertical(),
-        );
+        return _buildVertical();
     }
   }
 
