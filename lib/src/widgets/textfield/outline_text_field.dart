@@ -76,25 +76,20 @@ class OutlineTextField extends StatefulWidget {
 
 class _OutlineTextFieldState extends State<OutlineTextField> {
   late Color? _labelColor;
-  late double? _labelFontSize;
 
   @override
   void initState() {
     super.initState();
     _labelColor = HelperColors.black7;
-    _labelFontSize = 16;
   }
 
   void validateFont(String? value, bool hasFocus) {
     if (value == null && !hasFocus ||
         (value != null && value.isEmpty) && !hasFocus) {
-      _labelFontSize = 16;
       _labelColor = HelperColors.black7;
     } else if (!hasFocus) {
-      _labelFontSize = 12;
       _labelColor = HelperColors.black5;
     } else {
-      _labelFontSize = 12;
       _labelColor = HelperColors.orange3;
     }
   }
@@ -125,7 +120,6 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
           labelText: widget.labelText,
           labelStyle: HelperThemeData.textTheme.bodyText2?.copyWith(
             height: 1,
-            fontSize: _labelFontSize,
             color: widget.labelColor ?? _labelColor,
           ),
           border: OutlineInputBorder(
