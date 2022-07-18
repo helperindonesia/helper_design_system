@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide ProgressIndicator;
-import 'package:flutter/widgets.dart';
 import 'package:helper_design/helper_design.dart';
 import 'package:timelines/timelines.dart';
 
@@ -15,6 +14,7 @@ class Step {
   final String? title;
   final Widget? action;
   final Widget? bottomPanel;
+  final EdgeInsetsGeometry? contentPadding;
 
   Step({
     required this.content,
@@ -24,6 +24,7 @@ class Step {
     this.action,
     this.lineColor,
     this.bottomPanel,
+    this.contentPadding,
   });
 }
 
@@ -33,11 +34,15 @@ class StepView extends StatefulWidget {
     this.currentStep = 0,
     required this.steps,
     this.stepViewType = StepViewType.vertical,
+    this.lastConnector = false,
+    this.lastConnectorColor,
   }) : super(key: key);
 
   final int currentStep;
   final List<Step> steps;
   final StepViewType stepViewType;
+  final bool lastConnector;
+  final Color? lastConnectorColor;
 
   factory StepView.builder({
     Key? key,
@@ -93,8 +98,17 @@ class _StepViewState extends State<StepView> with TickerProviderStateMixin {
           thickness: 0.75,
           color: widget.steps[index].lineColor ?? HelperColors.orange,
         ),
+        lastConnectorBuilder: widget.lastConnector
+            ? (_) => Connector.dashedLine(
+                  dash: 4,
+                  gap: 3,
+                  thickness: 0.75,
+                  color: widget.lastConnectorColor ?? HelperColors.orange,
+                )
+            : null,
         contentsBuilder: (_, index) => Container(
-          padding: const EdgeInsets.only(left: 16, bottom: 16),
+          padding: widget.steps[index].contentPadding ??
+              const EdgeInsets.only(left: 16, bottom: 16),
           child: widget.steps[index].content,
         ),
       ),
