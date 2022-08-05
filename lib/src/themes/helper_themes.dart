@@ -9,6 +9,7 @@ class HelperThemeData {
       textTheme: textTheme,
       primaryColor: HelperColors.orange,
       colorScheme: colorScheme,
+      scaffoldBackgroundColor: HelperColors.white
     );
   }
 
