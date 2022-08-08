@@ -25,7 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  google_fonts: 2.1.0
+  google_fonts: 3.0.1
   timelines: ^0.1.0
   video_player: ^2.3.0
 
