@@ -24,6 +24,8 @@ class OutlineTextField extends StatefulWidget {
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
+  final ValueChanged<String>? onFieldSubmitted;
+  final VoidCallback? onEditingComplete;
   final Widget? trailing;
   final Widget? prefixIcon;
   final bool autoFocus;
@@ -54,6 +56,8 @@ class OutlineTextField extends StatefulWidget {
     this.onTap,
     this.onChanged,
     this.onSaved,
+    this.onFieldSubmitted,
+    this.onEditingComplete,
     this.trailing,
     this.prefixIcon,
     this.borderColor = HelperColors.black8,
@@ -163,6 +167,8 @@ class _OutlineTextFieldState extends State<OutlineTextField> {
         onTap: widget.onTap,
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        onEditingComplete: widget.onEditingComplete,
         inputFormatters: widget.inputFormatters,
       ),
     );
